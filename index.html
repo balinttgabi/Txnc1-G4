@@ -3,366 +3,502 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>TXNC1 — G4 Rider</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
 
-body{
-font-family:Arial,Helvetica,sans-serif;
-background:#080808;
-color:#fff;
-line-height:1.5
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#080808;
+  color:#fff;
+  line-height:1.5;
+}
+
+/* =========================
+   NAV
+========================= */
+
 nav{
-position:fixed;
-top:0;
-width:100%;
-z-index:10;
-background:rgba(8,8,8,.9);
-backdrop-filter:blur(10px);
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px 7%;
-border-bottom:1px solid #222
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:10;
+  background:rgba(8,8,8,.9);
+  backdrop-filter:blur(10px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 7%;
+  border-bottom:1px solid #222;
 }
 
 .logo{
-font-size:25px;
-font-weight:900;
-letter-spacing:3px
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:3px;
 }
 
 nav a{
-color:#fff;
-text-decoration:none;
-margin-left:24px;
-font-size:14px
+  color:#fff;
+  text-decoration:none;
+  margin-left:24px;
+  font-size:14px;
+  transition:.2s;
 }
 
+nav a:hover{
+  color:#aaa;
+}
+
+/* =========================
+   HERO
+========================= */
+
 .hero{
-min-height:100vh;
-display:flex;
-align-items:center;
-padding:120px 7% 70px;
-background:radial-gradient(circle at 75% 40%,#333 0,#111 25%,#080808 55%);
-position:relative;
-overflow:hidden
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:120px 7% 70px;
+  background:
+    radial-gradient(
+      circle at 75% 40%,
+      #333 0,
+      #111 25%,
+      #080808 55%
+    );
+  position:relative;
+  overflow:hidden;
 }
 
 .hero:after{
-content:"G4";
-position:absolute;
-right:-30px;
-bottom:-90px;
-font-size:40vw;
-font-weight:900;
-color:#111;
-z-index:0
+  content:"G4";
+  position:absolute;
+  right:-30px;
+  bottom:-90px;
+  font-size:40vw;
+  font-weight:900;
+  color:#111;
+  z-index:0;
 }
 
 .hero-content{
-max-width:650px;
-position:relative;
-z-index:1
+  max-width:650px;
+  position:relative;
+  z-index:1;
 }
 
 .tag{
-font-size:13px;
-letter-spacing:4px;
-color:#aaa;
-margin-bottom:15px
+  font-size:13px;
+  letter-spacing:4px;
+  color:#aaa;
+  margin-bottom:15px;
 }
 
 h1{
-font-size:clamp(65px,13vw,150px);
-line-height:.82;
-letter-spacing:-7px;
-font-weight:1000
+  font-size:clamp(65px,13vw,150px);
+  line-height:.82;
+  letter-spacing:-7px;
+  font-weight:1000;
 }
 
-h1 span{color:#aaa}
+h1 span{
+  color:#aaa;
+}
 
 .hero p{
-margin:28px 0;
-color:#bbb;
-font-size:18px;
-max-width:500px
+  margin:28px 0;
+  color:#bbb;
+  font-size:18px;
+  max-width:500px;
 }
 
 .buttons{
-display:flex;
-gap:12px;
-flex-wrap:wrap
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
 }
 
 .btn{
-padding:14px 23px;
-border:1px solid #fff;
-color:#fff;
-text-decoration:none;
-font-weight:800;
-border-radius:4px
+  padding:14px 23px;
+  border:1px solid #fff;
+  color:#fff;
+  text-decoration:none;
+  font-weight:800;
+  border-radius:4px;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
 }
 
 .btn.light{
-background:#fff;
-color:#000
+  background:#fff;
+  color:#000;
 }
 
+/* =========================
+   SECTIONS
+========================= */
+
 section{
-padding:90px 7%;
-border-top:1px solid #1d1d1d
+  padding:90px 7%;
+  border-top:1px solid #1d1d1d;
 }
 
 .title{
-font-size:42px;
-margin-bottom:35px;
-letter-spacing:-2px
+  font-size:42px;
+  margin-bottom:35px;
+  letter-spacing:-2px;
 }
 
+/* =========================
+   G4
+========================= */
+
 .grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:16px
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
 }
 
 .card{
-background:#111;
-border:1px solid #222;
-padding:28px;
-border-radius:10px
+  background:#111;
+  border:1px solid #222;
+  padding:28px;
+  border-radius:10px;
+  transition:.25s;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  border-color:#444;
 }
 
 .card h3{
-font-size:20px;
-margin-bottom:10px
+  font-size:20px;
+  margin-bottom:10px;
 }
 
-.card p{color:#999}
+.card p{
+  color:#999;
+}
 
 .spec{
-font-size:35px;
-font-weight:900;
-margin-bottom:5px
+  font-size:35px;
+  font-weight:900;
+  margin-bottom:5px;
 }
 
 .spec small{
-font-size:13px;
-color:#777;
-font-weight:normal
+  font-size:13px;
+  color:#777;
+  font-weight:normal;
 }
 
+/* =========================
+   G2 CONFIGURATOR
+========================= */
+
+.configurator{
+  background:#0b0b0b;
+}
+
+.g2-box{
+  display:grid;
+  grid-template-columns:1.5fr 1fr;
+  gap:40px;
+  align-items:center;
+}
+
+/* Roller kép */
+
+.g2-display{
+  background:
+    radial-gradient(
+      circle at center,
+      #222 0,
+      #111 50%,
+      #080808 100%
+    );
+
+  border:1px solid #292929;
+  border-radius:15px;
+  padding:25px;
+  overflow:hidden;
+}
+
+.g2-canvas{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:10px;
+  background:#fff;
+}
+
+/* =========================
+   CONTROL
+========================= */
+
+.g2-control{
+  background:#111;
+  border:1px solid #292929;
+  border-radius:15px;
+  padding:28px;
+}
+
+.g2-control h3{
+  font-size:25px;
+  margin-bottom:8px;
+}
+
+.g2-control p{
+  color:#888;
+  margin-bottom:25px;
+}
+
+/* Színválasztó */
+
+.color-row{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+#yellowColor{
+  width:70px;
+  height:55px;
+  border:none;
+  background:#ff5a00;
+  border-radius:8px;
+  cursor:pointer;
+  padding:0;
+}
+
+.color-code{
+  background:#080808;
+  border:1px solid #333;
+  color:white;
+  padding:15px;
+  border-radius:7px;
+  width:100%;
+  font-size:16px;
+  outline:none;
+}
+
+.color-code:focus{
+  border-color:#fff;
+}
+
+.reset{
+  width:100%;
+  padding:15px;
+  background:white;
+  color:black;
+  border:0;
+  border-radius:7px;
+  font-weight:900;
+  cursor:pointer;
+  font-size:15px;
+  transition:.2s;
+}
+
+.reset:hover{
+  background:#ddd;
+  transform:translateY(-2px);
+}
+
+/* =========================
+   ABOUT
+========================= */
+
 .socials{
-display:flex;
-gap:15px;
-flex-wrap:wrap
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
 }
 
 .social{
-flex:1;
-min-width:220px;
-padding:28px;
-background:#111;
-border:1px solid #292929;
-color:#fff;
-text-decoration:none;
-border-radius:10px
+  flex:1;
+  min-width:220px;
+  padding:28px;
+  background:#111;
+  border:1px solid #292929;
+  color:#fff;
+  text-decoration:none;
+  border-radius:10px;
+  transition:.2s;
+}
+
+.social:hover{
+  transform:translateY(-4px);
+  border-color:#555;
 }
 
 .social strong{
-display:block;
-font-size:22px;
-margin-bottom:5px
+  display:block;
+  font-size:22px;
+  margin-bottom:5px;
 }
 
-.social span{color:#888}
+.social span{
+  color:#888;
+}
+
+/* =========================
+   FOOTER
+========================= */
 
 footer{
-text-align:center;
-padding:35px;
-color:#666;
-border-top:1px solid #1d1d1d;
-font-size:13px
+  text-align:center;
+  padding:35px;
+  color:#666;
+  border-top:1px solid #1d1d1d;
+  font-size:13px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:750px){
+
+  nav{
+    padding:15px 5%;
+  }
+
+  nav div:last-child{
+    display:none;
+  }
+
+  .hero{
+    padding-left:5%;
+    padding-right:5%;
+  }
+
+  section{
+    padding:70px 5%;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .title{
+    font-size:35px;
+  }
+
+  h1{
+    letter-spacing:-4px;
+  }
+
+  .g2-box{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+
+  .g2-control{
+    padding:22px;
+  }
+
+  .g2-display{
+    padding:12px;
+  }
+
 }
 
 
 /* =========================
-   G2 SZÍNVÁLTÓ
+   EXTRA SMALL
 ========================= */
 
-.configurator{
-background:#0b0b0b;
-}
+@media(max-width:450px){
 
-.g2-box{
-display:grid;
-grid-template-columns:1.5fr 1fr;
-gap:40px;
-align-items:center;
-}
+  .logo{
+    font-size:21px;
+  }
 
-.g2-display{
-background:
-radial-gradient(circle at center,#222 0,#111 50%,#080808 100%);
-border:1px solid #292929;
-border-radius:15px;
-padding:25px;
-overflow:hidden;
-}
+  h1{
+    font-size:70px;
+  }
 
-.g2-display svg{
-width:100%;
-height:auto;
-display:block;
-}
+  .hero p{
+    font-size:16px;
+  }
 
-.g2-yellow{
-fill:#ffd400;
-transition:fill .2s ease;
-}
-
-.g2-black{
-fill:#090909;
-}
-
-.g2-metal{
-fill:#777;
-}
-
-.g2-darkmetal{
-fill:#333;
-}
-
-.g2-tire{
-fill:#050505;
-}
-
-.g2-control{
-background:#111;
-border:1px solid #292929;
-border-radius:15px;
-padding:28px;
-}
-
-.g2-control h3{
-font-size:25px;
-margin-bottom:8px;
-}
-
-.g2-control p{
-color:#888;
-margin-bottom:25px;
-}
-
-.color-row{
-display:flex;
-align-items:center;
-gap:15px;
-margin-bottom:20px;
-}
-
-#yellowColor{
-width:70px;
-height:55px;
-border:none;
-background:#ffd400;
-border-radius:8px;
-cursor:pointer;
-}
-
-.color-code{
-background:#080808;
-border:1px solid #333;
-color:white;
-padding:15px;
-border-radius:7px;
-width:100%;
-font-size:16px;
-}
-
-.reset{
-width:100%;
-padding:15px;
-background:white;
-color:black;
-border:0;
-border-radius:7px;
-font-weight:900;
-cursor:pointer;
-font-size:15px;
-}
-
-.reset:hover{
-background:#ddd;
-}
-
-@media(max-width:750px){
-
-nav{
-padding:15px 5%
-}
-
-nav div:last-child{
-display:none
-}
-
-.hero{
-padding-left:5%;
-padding-right:5%
-}
-
-section{
-padding:70px 5%
-}
-
-.grid{
-grid-template-columns:1fr
-}
-
-.title{
-font-size:35px
-}
-
-h1{
-letter-spacing:-4px
-}
-
-.g2-box{
-grid-template-columns:1fr;
-gap:20px
-}
-
-.g2-control{
-padding:22px
-}
+  .g2-display{
+    padding:8px;
+  }
 
 }
+
 </style>
 </head>
 
+
 <body>
 
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
 <nav>
-  <div class="logo">TXNC1</div>
-  <div>
-    <a href="#roller">ROLLER</a>
-    <a href="#g2">G2 CONFIG</a>
-    <a href="#about">RÓLAM</a>
-    <a href="#social">SOCIAL</a>
+
+  <div class="logo">
+    TXNC1
   </div>
+
+  <div>
+
+    <a href="#roller">
+      ROLLER
+    </a>
+
+    <a href="#g2">
+      G2 CONFIG
+    </a>
+
+    <a href="#about">
+      RÓLAM
+    </a>
+
+    <a href="#social">
+      SOCIAL
+    </a>
+
+  </div>
+
 </nav>
 
+
+<!-- =========================
+     HERO
+========================= -->
 
 <header class="hero">
 
   <div class="hero-content">
 
-    <div class="tag">FREESTYLE / STREET / G4</div>
+    <div class="tag">
+      FREESTYLE / STREET / G4
+    </div>
 
-    <h1>TXNC<span>1</span></h1>
+    <h1>
+      TXNC<span>1</span>
+    </h1>
 
     <p>
       Kukirin rider. Trükkök, wheelie-k, street sessionök
@@ -370,8 +506,15 @@ padding:22px
     </p>
 
     <div class="buttons">
-      <a class="btn light" href="#roller">G4 ADATOK</a>
-      <a class="btn" href="#g2">G2 CONFIG</a>
+
+      <a class="btn light" href="#roller">
+        G4 ADATOK
+      </a>
+
+      <a class="btn" href="#g2">
+        G2 CONFIG
+      </a>
+
     </div>
 
   </div>
@@ -379,331 +522,74 @@ padding:22px
 </header>
 
 
+<!-- =========================
+     G4 ADATOK
+========================= -->
+
 <section id="roller">
 
-  <h2 class="title">A GÉP</h2>
+  <h2 class="title">
+    A GÉP
+  </h2>
 
   <div class="grid">
 
     <div class="card">
+
       <div class="spec">
         70<span style="font-size:18px"> km/h*</span>
       </div>
-      <p>Végsebesség</p>
+
+      <p>
+        Végsebesség
+      </p>
+
     </div>
 
-    <div class="card">
-      <div class="spec">2000W*</div>
-      <p>Motor teljesítmény</p>
-    </div>
 
     <div class="card">
-      <div class="spec">G4</div>
-      <p>Kukirin elektromos roller</p>
+
+      <div class="spec">
+        2000W*
+      </div>
+
+      <p>
+        Motor teljesítmény
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="spec">
+        G4
+      </div>
+
+      <p>
+        Kukirin elektromos roller
+      </p>
+
     </div>
 
   </div>
 
+
   <p style="color:#666;margin-top:20px;font-size:12px">
-    *A pontos értékek a roller verziójától és körülményektől függhetnek.
+
+    *A pontos értékek a roller verziójától
+    és körülményektől függhetnek.
+
   </p>
 
 </section>
 
 
 <!-- =========================
-     G2 SZÍNVÁLTÓ
+     G2 COLOR CONFIGURATOR
 ========================= -->
 
 <section id="g2" class="configurator">
 
-  <h2 class="title">G2 COLOR CONFIGURATOR</h2>
-
-  <div class="g2-box">
-
-    <div class="g2-display">
-
-      <!-- Egyszerű SVG G2 látvány -->
-      <svg viewBox="0 0 900 450">
-
-        <!-- Hátsó kerék -->
-        <circle
-          cx="680"
-          cy="330"
-          r="85"
-          class="g2-tire"/>
-
-        <circle
-          cx="680"
-          cy="330"
-          r="57"
-          class="g2-darkmetal"/>
-
-        <!-- Első kerék -->
-        <circle
-          cx="180"
-          cy="330"
-          r="85"
-          class="g2-tire"/>
-
-        <circle
-          cx="180"
-          cy="330"
-          r="57"
-          class="g2-darkmetal"/>
-
-        <!-- Fellépő -->
-        <rect
-          x="245"
-          y="275"
-          width="390"
-          height="45"
-          rx="18"
-          class="g2-black"/>
-
-        <!-- SÁRGA fellépő oldala -->
-        <rect
-          x="260"
-          y="282"
-          width="360"
-          height="18"
-          rx="8"
-          class="g2-yellow"/>
-
-        <!-- Első villa -->
-        <path
-          d="M180 245 L250 130 L280 145 L205 270 Z"
-          class="g2-black"/>
-
-        <!-- SÁRGA első burkolat -->
-        <path
-          d="M235 125 L285 105 L320 145 L275 170 Z"
-          class="g2-yellow"/>
-
-        <!-- Kormányrúd -->
-        <rect
-          x="270"
-          y="80"
-          width="22"
-          height="120"
-          rx="8"
-          class="g2-black"
-          transform="rotate(-12 270 80)"/>
-
-        <!-- Kormány -->
-        <rect
-          x="235"
-          y="65"
-          width="170"
-          height="22"
-          rx="10"
-          class="g2-black"/>
-
-        <!-- SÁRGA kormány/dekor -->
-        <rect
-          x="285"
-          y="65"
-          width="55"
-          height="22"
-          rx="10"
-          class="g2-yellow"/>
-
-        <!-- Hátsó rész -->
-        <path
-          d="M600 260 L690 220 L720 275 L625 295 Z"
-          class="g2-black"/>
-
-        <!-- SÁRGA hátsó dekoráció -->
-        <path
-          d="M600 255 L660 230 L680 250 L620 275 Z"
-          class="g2-yellow"/>
-
-        <!-- Lámpa -->
-        <circle
-          cx="220"
-          cy="125"
-          r="12"
-          class="g2-metal"/>
-
-        <!-- Fék -->
-        <path
-          d="M160 245 Q180 220 205 245"
-          fill="none"
-          stroke="#777"
-          stroke-width="7"/>
-
-      </svg>
-
-    </div>
-
-
-    <div class="g2-control">
-
-      <h3>🎨 G2 SZÍN</h3>
-
-      <p>
-        Csak a G2 sárga részeinek színét változtatod.
-        A fekete és fém részek változatlanok maradnak.
-      </p>
-
-      <div class="color-row">
-
-        <input
-          type="color"
-          id="yellowColor"
-          value="#ffd400"
-          aria-label="G2 színválasztó">
-
-        <strong id="colorName">
-          #FFD400
-        </strong>
-
-      </div>
-
-      <input
-        class="color-code"
-        id="colorText"
-        value="#FFD400"
-        maxlength="7"
-        placeholder="#FF0000">
-
-      <br><br>
-
-      <button class="reset" id="resetColor">
-        ↩ ALAPHELYZET — SÁRGA
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<section id="about">
-
-  <h2 class="title">RÓLAM</h2>
-
-  <div class="card">
-
-    <h3>TXNC1</h3>
-
-    <p>
-      Freestyle és street rider.
-      Ez az oldal a rideokról, videókról
-      és a következő sessionökről szól.
-    </p>
-
-  </div>
-
-</section>
-
-
-<section id="social">
-
-  <h2 class="title">KÖVESS</h2>
-
-  <div class="socials">
-
-    <a class="social"
-       href="https://www.tiktok.com/"
-       target="_blank">
-
-      <strong>♪ TikTok</strong>
-      <span>Videók és rideok</span>
-
-    </a>
-
-    <a class="social"
-       href="https://www.youtube.com/"
-       target="_blank">
-
-      <strong>▶ YouTube</strong>
-      <span>Hosszabb videók</span>
-
-    </a>
-
-  </div>
-
-</section>
-
-
-<footer>
-  © 2026 TXNC1 — G4 RIDER
-</footer>
-
-
-<script>
-
-/* =========================
-   G2 SZÍNVÁLTÓ JAVASCRIPT
-========================= */
-
-const colorPicker =
-document.getElementById("yellowColor");
-
-const colorText =
-document.getElementById("colorText");
-
-const colorName =
-document.getElementById("colorName");
-
-const yellowParts =
-document.querySelectorAll(".g2-yellow");
-
-const resetButton =
-document.getElementById("resetColor");
-
-
-function changeG2Color(color){
-
-  yellowParts.forEach(part => {
-    part.style.fill = color;
-  });
-
-  colorPicker.value = color;
-
-  colorText.value = color.toUpperCase();
-
-  colorName.textContent =
-    color.toUpperCase();
-}
-
-
-/* Színkerék */
-
-colorPicker.addEventListener("input", function(){
-
-  changeG2Color(this.value);
-
-});
-
-
-/* Hex kód */
-
-colorText.addEventListener("input", function(){
-
-  let value = this.value.trim();
-
-  if(/^#[0-9A-Fa-f]{6}$/.test(value)){
-
-    changeG2Color(value);
-
-  }
-
-});
-
-
-/* Alaphelyzet */
-
-resetButton.addEventListener("click", function(){
-
-  changeG2Color("#FFD400");
-
-});
-
-
-</script>
-
-</body>
-</html>
+  <h2 class="title">
+   
