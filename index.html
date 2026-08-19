@@ -419,7 +419,6 @@ footer{
 
 }
 
-
 /* =========================
    EXTRA SMALL
 ========================= */
@@ -592,4 +591,627 @@ footer{
 <section id="g2" class="configurator">
 
   <h2 class="title">
-   
+    G2 CONFIG
+  </h2>
+
+
+  <div class="g2-box">
+
+
+    <!-- =========================
+         ROLLER
+    ========================= -->
+
+    <div class="g2-display">
+
+      <canvas
+        id="rollerCanvas"
+        class="g2-canvas">
+      </canvas>
+
+      <!--
+        Az eredeti kép.
+        A JavaScript ebből készíti a
+        színezhető változatot.
+      -->
+
+      <img
+        id="rollerImage"
+        src="1000035270.webp"
+        alt="Kukirin G2 elektromos roller"
+        style="display:none;"
+      >
+
+    </div>
+
+
+    <!-- =========================
+         CONTROL
+    ========================= -->
+
+    <div class="g2-control">
+
+      <h3>
+        SZÍN KONFIGURÁTOR
+      </h3>
+
+      <p>
+        Válaszd ki a roller sárga/narancssárga
+        részeinek színét.
+      </p>
+
+
+      <div class="color-row">
+
+        <input
+          type="color"
+          id="yellowColor"
+          value="#ff5a00"
+          title="Roller színe"
+        >
+
+        <input
+          type="text"
+          id="colorCode"
+          class="color-code"
+          value="#FF5A00"
+          maxlength="7"
+          spellcheck="false"
+        >
+
+      </div>
+
+
+      <button
+        class="reset"
+        id="resetColor"
+        type="button">
+
+        EREDETI SZÍN
+
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section id="about">
+
+  <h2 class="title">
+    RÓLAM
+  </h2>
+
+  <div class="card">
+
+    <h3>
+      TXNC1 — G4 RIDER
+    </h3>
+
+    <p>
+      Freestyle, street, wheelie és minden,
+      ami elektromos rollerrel történik.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     SOCIAL
+========================= -->
+
+<section id="social">
+
+  <h2 class="title">
+    SOCIAL
+  </h2>
+
+
+  <div class="socials">
+
+
+    <a
+      class="social"
+      href="#"
+      target="_blank">
+
+      <strong>
+        TikTok
+      </strong>
+
+      <span>
+        Kövess a videókért
+      </span>
+
+    </a>
+
+
+    <a
+      class="social"
+      href="#"
+      target="_blank">
+
+      <strong>
+        Instagram
+      </strong>
+
+      <span>
+        Street sessionök és képek
+      </span>
+
+    </a>
+
+
+    <a
+      class="social"
+      href="#"
+      target="_blank">
+
+      <strong>
+        YouTube
+      </strong>
+
+      <span>
+        Hosszabb videók és projektek
+      </span>
+
+    </a>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  TXNC1 — G4 Rider © 2026
+
+</footer>
+
+
+<!-- =========================
+     COLOR CONFIGURATOR SCRIPT
+========================= -->
+
+<script>
+
+const image = document.getElementById("rollerImage");
+const canvas = document.getElementById("rollerCanvas");
+const ctx = canvas.getContext("2d", {
+  willReadFrequently: true
+});
+
+const colorPicker = document.getElementById("yellowColor");
+const colorCode = document.getElementById("colorCode");
+const resetButton = document.getElementById("resetColor");
+
+
+/* =========================
+   HEX → RGB
+========================= */
+
+function hexToRgb(hex){
+
+  hex = hex.replace("#","");
+
+  if(hex.length !== 6){
+    return null;
+  }
+
+  return {
+    r: parseInt(hex.substring(0,2),16),
+    g: parseInt(hex.substring(2,4),16),
+    b: parseInt(hex.substring(4,6),16)
+  };
+
+}
+
+
+/* =========================
+   RGB → HSV
+========================= */
+
+function rgbToHsv(r,g,b){
+
+  r /= 255;
+  g /= 255;
+  b /= 255;
+
+  const max = Math.max(r,g,b);
+  const min = Math.min(r,g,b);
+
+  const d = max - min;
+
+  let h = 0;
+
+  if(d !== 0){
+
+    if(max === r){
+      h = ((g-b) / d) % 6;
+    }
+
+    else if(max === g){
+      h = (b-r) / d + 2;
+    }
+
+    else{
+      h = (r-g) / d + 4;
+    }
+
+    h /= 6;
+
+    if(h < 0){
+      h += 1;
+    }
+
+  }
+
+  const s = max === 0 ? 0 : d / max;
+
+  const v = max;
+
+  return {
+    h:h,
+    s:s,
+    v:v
+  };
+
+}
+
+
+/* =========================
+   HSV → RGB
+========================= */
+
+function hsvToRgb(h,s,v){
+
+  const i = Math.floor(h * 6);
+
+  const f = h * 6 - i;
+
+  const p = v * (1-s);
+
+  const q = v * (1-f*s);
+
+  const t = v * (1-(1-f)*s);
+
+  let r,g,b;
+
+  switch(i % 6){
+
+    case 0:
+      r=v;
+      g=t;
+      b=p;
+      break;
+
+    case 1:
+      r=q;
+      g=v;
+      b=p;
+      break;
+
+    case 2:
+      r=p;
+      g=v;
+      b=t;
+      break;
+
+    case 3:
+      r=p;
+      g=q;
+      b=v;
+      break;
+
+    case 4:
+      r=t;
+      g=p;
+      b=v;
+      break;
+
+    case 5:
+      r=v;
+      g=p;
+      b=q;
+      break;
+
+  }
+
+  return {
+    r:Math.round(r*255),
+    g:Math.round(g*255),
+    b:Math.round(b*255)
+  };
+
+}
+
+
+/* =========================
+   ROLLER SZÍNEZÉSE
+========================= */
+
+function recolorRoller(hex){
+
+  const target = hexToRgb(hex);
+
+  if(!target){
+    return;
+  }
+
+
+  const targetHsv = rgbToHsv(
+    target.r,
+    target.g,
+    target.b
+  );
+
+
+  /*
+    Mindig az eredeti képből indulunk,
+    így a színezés nem halmozódik.
+  */
+
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+  ctx.drawImage(
+    image,
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+
+  const imageData = ctx.getImageData(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+  const data = imageData.data;
+
+
+  for(let i = 0; i < data.length; i += 4){
+
+    const r = data[i];
+    const g = data[i+1];
+    const b = data[i+2];
+
+
+    const hsv = rgbToHsv(r,g,b);
+
+
+    /*
+      CSAK a roller eredeti
+      narancssárga/sárga részeit keressük.
+
+      A fekete részek:
+      - alacsony telítettségűek vagy
+      - alacsony fényerejűek,
+
+      ezért nem kerülnek módosításra.
+
+      A fehér háttér:
+      - nagyon alacsony telítettségű,
+
+      ezért szintén változatlan marad.
+
+      A piros hátsó lámpa:
+      - más hue tartományban van,
+
+      ezért azt sem módosítjuk.
+    */
+
+    const isOrange =
+      hsv.h >= 0.005 &&
+      hsv.h <= 0.085 &&
+      hsv.s >= 0.35 &&
+      hsv.v >= 0.20;
+
+
+    if(isOrange){
+
+      /*
+        A kiválasztott szín hue + saturation értékét
+        használjuk, miközben az eredeti fényerőt
+        megtartjuk.
+
+        Emiatt a roller árnyékai és világos részei
+        továbbra is megmaradnak.
+      */
+
+      const newRgb = hsvToRgb(
+        targetHsv.h,
+        targetHsv.s,
+        hsv.v
+      );
+
+
+      data[i] = newRgb.r;
+      data[i+1] = newRgb.g;
+      data[i+2] = newRgb.b;
+
+    }
+
+  }
+
+
+  ctx.putImageData(
+    imageData,
+    0,
+    0
+  );
+
+}
+
+
+/* =========================
+   KÉP BETÖLTÉSE
+========================= */
+
+image.onload = function(){
+
+  canvas.width = image.naturalWidth;
+  canvas.height = image.naturalHeight;
+
+  recolorRoller(
+    colorPicker.value
+  );
+
+};
+
+
+/*
+  Ha a kép már cache-ből van betöltve,
+  azonnal inicializáljuk.
+*/
+
+if(image.complete){
+
+  canvas.width = image.naturalWidth;
+  canvas.height = image.naturalHeight;
+
+  if(canvas.width && canvas.height){
+
+    recolorRoller(
+      colorPicker.value
+    );
+
+  }
+
+}
+
+
+/* =========================
+   SZÍNVÁLASZTÓ
+========================= */
+
+colorPicker.addEventListener(
+  "input",
+  function(){
+
+    colorCode.value =
+      colorPicker.value.toUpperCase();
+
+    recolorRoller(
+      colorPicker.value
+    );
+
+  }
+);
+
+
+/* =========================
+   HEX KÓD BEÍRÁSA
+========================= */
+
+colorCode.addEventListener(
+  "input",
+  function(){
+
+    let value =
+      colorCode.value.trim();
+
+
+    if(!value.startsWith("#")){
+
+      value = "#" + value;
+
+    }
+
+
+    if(/^#[0-9A-Fa-f]{6}$/.test(value)){
+
+      colorPicker.value = value;
+
+      recolorRoller(value);
+
+    }
+
+  }
+);
+
+
+/* =========================
+   ENTER A HEX MEZŐBEN
+========================= */
+
+colorCode.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Enter"){
+
+      let value =
+        colorCode.value.trim();
+
+
+      if(!value.startsWith("#")){
+
+        value = "#" + value;
+
+      }
+
+
+      if(/^#[0-9A-Fa-f]{6}$/.test(value)){
+
+        colorPicker.value = value;
+
+        colorCode.value =
+          value.toUpperCase();
+
+        recolorRoller(value);
+
+      }
+
+    }
+
+  }
+);
+
+
+/* =========================
+   RESET
+========================= */
+
+resetButton.addEventListener(
+  "click",
+  function(){
+
+    colorPicker.value =
+      "#FF5A00";
+
+    colorCode.value =
+      "#FF5A00";
+
+    recolorRoller(
+      "#FF5A00"
+    );
+
+  }
+);
+
+</script>
+
+
+</body>
+      </html>
