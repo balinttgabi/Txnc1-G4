@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TXNC1 — G4 Rider</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#080808;color:#fff;line-height:1.5}
+nav{position:fixed;top:0;width:100%;z-index:10;background:rgba(8,8,8,.9);backdrop-filter:blur(10px);display:flex;justify-content:space-between;align-items:center;padding:18px 7%;border-bottom:1px solid #222}
+.logo{font-size:25px;font-weight:900;letter-spacing:3px}
+nav a{color:#fff;text-decoration:none;margin-left:24px;font-size:14px}
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 7% 70px;background:radial-gradient(circle at 75% 40%,#333 0,#111 25%,#080808 55%);position:relative;overflow:hidden}
+.hero:after{content:"G4";position:absolute;right:-30px;bottom:-90px;font-size:40vw;font-weight:900;color:#111;z-index:0}
+.hero-content{max-width:650px;position:relative;z-index:1}
+.tag{font-size:13px;letter-spacing:4px;color:#aaa;margin-bottom:15px}
+h1{font-size:clamp(65px,13vw,150px);line-height:.82;letter-spacing:-7px;font-weight:1000}
+h1 span{color:#aaa}
+.hero p{margin:28px 0;color:#bbb;font-size:18px;max-width:500px}
+.buttons{display:flex;gap:12px;flex-wrap:wrap}
+.btn{padding:14px 23px;border:1px solid #fff;color:#fff;text-decoration:none;font-weight:800;border-radius:4px}
+.btn.light{background:#fff;color:#000}
+section{padding:90px 7%;border-top:1px solid #1d1d1d}
+.title{font-size:42px;margin-bottom:35px;letter-spacing:-2px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:#111;border:1px solid #222;padding:28px;border-radius:10px}
+.card h3{font-size:20px;margin-bottom:10px}
+.card p{color:#999}
+.spec{font-size:35px;font-weight:900;margin-bottom:5px}
+.spec small{font-size:13px;color:#777;font-weight:normal}
+.socials{display:flex;gap:15px;flex-wrap:wrap}
+.social{flex:1;min-width:220px;padding:28px;background:#111;border:1px solid #292929;color:#fff;text-decoration:none;border-radius:10px}
+.social strong{display:block;font-size:22px;margin-bottom:5px}
+.social span{color:#888}
+footer{text-align:center;padding:35px;color:#666;border-top:1px solid #1d1d1d;font-size:13px}
+@media(max-width:750px){nav{padding:15px 5%}nav div:last-child{display:none}.hero{padding-left:5%;padding-right:5%}section{padding:70px 5%}.grid{grid-template-columns:1fr}.title{font-size:35px}h1{letter-spacing:-4px}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">TXNC1</div>
+  <div><a href="#roller">ROLLER</a><a href="#about">RÓLAM</a><a href="#social">SOCIAL</a></div>
+</nav>
+
+<header class="hero">
+  <div class="hero-content">
+    <div class="tag">FREESTYLE / STREET / G4</div>
+    <h1>TXNC<span>1</span></h1>
+    <p>Kukirin G4 rider. Trükkök, wheelie-k, street sessionök és minden, ami két keréken történik.</p>
+    <div class="buttons">
+      <a class="btn light" href="#roller">G4 ADATOK</a>
+      <a class="btn" href="#social">SOCIAL</a>
+    </div>
+  </div>
+</header>
+
+<section id="roller">
+  <h2 class="title">A GÉP</h2>
+  <div class="grid">
+    <div class="card"><div class="spec">70<span style="font-size:18px"> km/h*</span></div><p>Végsebesség</p></div>
+    <div class="card"><div class="spec">2000W*</div><p>Motor teljesítmény</p></div>
+    <div class="card"><div class="spec">G4</div><p>Kukirin elektromos roller</p></div>
+  </div>
+  <p style="color:#666;margin-top:20px;font-size:12px">*A pontos értékek a roller verziójától és körülményektől függhetnek.</p>
+</section>
+
+<section id="about">
+  <h2 class="title">RÓLAM</h2>
+  <div class="card">
+    <h3>TXNC1</h3>
+    <p>Freestyle és street rider. Ez az oldal a G4-es rideokról, videókról és a következő sessionökről szól.</p>
+  </div>
+</section>
+
+<section id="social">
+  <h2 class="title">KÖVESS</h2>
+  <div class="socials">
+    <a class="social" href="https://www.tiktok.com/" target="_blank"><strong>♪ TikTok</strong><span>Videók és rideok</span></a>
+    <a class="social" href="https://www.youtube.com/" target="_blank"><strong>▶ YouTube</strong><span>Hosszabb videók</span></a>
+  </div>
+</section>
+
+<footer>© 2026 TXNC1 — G4 RIDER</footer>
+</body>
+</html>
