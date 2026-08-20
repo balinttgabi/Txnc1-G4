@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TXNC1 — G4 Rider</title>
+<title>TXNC1 — KuKirin Rider</title>
 
 <style>
 
@@ -33,9 +33,9 @@ nav{
   position:fixed;
   top:0;
   width:100%;
-  z-index:10;
-  background:rgba(8,8,8,.9);
-  backdrop-filter:blur(10px);
+  z-index:100;
+  background:rgba(8,8,8,.92);
+  backdrop-filter:blur(12px);
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -93,7 +93,7 @@ nav a:hover{
 }
 
 .hero-content{
-  max-width:650px;
+  max-width:700px;
   position:relative;
   z-index:1;
 }
@@ -120,7 +120,7 @@ h1 span{
   margin:28px 0;
   color:#bbb;
   font-size:18px;
-  max-width:500px;
+  max-width:550px;
 }
 
 .buttons{
@@ -164,51 +164,197 @@ section{
 }
 
 /* =========================
-   G4
+   ROLLER SELECTOR
 ========================= */
 
-.grid{
+.roller-selector{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px;
+  margin-bottom:25px;
 }
 
-.card{
+.roller-button{
   background:#111;
-  border:1px solid #222;
-  padding:28px;
+  border:1px solid #292929;
+  color:#fff;
+  padding:22px 10px;
   border-radius:10px;
+  cursor:pointer;
   transition:.25s;
-}
-
-.card:hover{
-  transform:translateY(-4px);
-  border-color:#444;
-}
-
-.card h3{
-  font-size:20px;
-  margin-bottom:10px;
-}
-
-.card p{
-  color:#999;
-}
-
-.spec{
-  font-size:35px;
   font-weight:900;
-  margin-bottom:5px;
+  font-size:15px;
 }
 
-.spec small{
-  font-size:13px;
-  color:#777;
-  font-weight:normal;
+.roller-button:hover{
+  transform:translateY(-4px);
+  border-color:#777;
+  background:#171717;
+}
+
+.roller-button.active{
+  background:#fff;
+  color:#000;
+  border-color:#fff;
 }
 
 /* =========================
-   G2 CONFIGURATOR
+   SELECTED ROLLER
+========================= */
+
+.roller-showcase{
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:25px;
+  align-items:stretch;
+}
+
+.roller-image-box{
+  background:
+    radial-gradient(
+      circle at center,
+      #222 0,
+      #111 55%,
+      #080808 100%
+    );
+  border:1px solid #292929;
+  border-radius:15px;
+  min-height:430px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  position:relative;
+}
+
+.roller-image{
+  width:100%;
+  max-height:430px;
+  object-fit:contain;
+  display:block;
+  transition:.35s;
+}
+
+.image-placeholder{
+  text-align:center;
+  padding:40px;
+  color:#666;
+}
+
+.image-placeholder strong{
+  display:block;
+  color:#aaa;
+  font-size:28px;
+  margin-bottom:8px;
+}
+
+.roller-details{
+  background:#0e0e0e;
+  border:1px solid #292929;
+  border-radius:15px;
+  padding:28px;
+}
+
+.roller-details h3{
+  font-size:38px;
+  letter-spacing:-2px;
+  margin-bottom:5px;
+}
+
+.subtitle{
+  color:#777;
+  margin-bottom:25px;
+}
+
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.info-card{
+  background:#151515;
+  border:1px solid #252525;
+  border-radius:9px;
+  padding:16px;
+}
+
+.info-card .label{
+  color:#777;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  margin-bottom:4px;
+}
+
+.info-card .value{
+  font-size:19px;
+  font-weight:900;
+}
+
+.description{
+  margin-top:20px;
+  background:#111;
+  border:1px solid #252525;
+  padding:18px;
+  border-radius:9px;
+  color:#999;
+}
+
+.description strong{
+  color:#fff;
+  display:block;
+  margin-bottom:7px;
+}
+
+.spec-note{
+  margin-top:16px;
+  color:#555;
+  font-size:11px;
+}
+
+/* =========================
+   COMPARISON
+========================= */
+
+.comparison{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:800px;
+  background:#101010;
+  border:1px solid #292929;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+th,
+td{
+  padding:15px;
+  border-bottom:1px solid #252525;
+  text-align:left;
+}
+
+th{
+  background:#181818;
+  font-size:13px;
+}
+
+td{
+  color:#aaa;
+  font-size:14px;
+}
+
+td:first-child{
+  color:#fff;
+  font-weight:900;
+}
+
+/* =========================
+   G2 CONFIG
 ========================= */
 
 .configurator{
@@ -222,8 +368,6 @@ section{
   align-items:center;
 }
 
-/* Roller kép */
-
 .g2-display{
   background:
     radial-gradient(
@@ -232,7 +376,6 @@ section{
       #111 50%,
       #080808 100%
     );
-
   border:1px solid #292929;
   border-radius:15px;
   padding:25px;
@@ -246,10 +389,6 @@ section{
   border-radius:10px;
   background:#fff;
 }
-
-/* =========================
-   CONTROL
-========================= */
 
 .g2-control{
   background:#111;
@@ -267,8 +406,6 @@ section{
   color:#888;
   margin-bottom:25px;
 }
-
-/* Színválasztó */
 
 .color-row{
   display:flex;
@@ -324,6 +461,32 @@ section{
    ABOUT
 ========================= */
 
+.card{
+  background:#111;
+  border:1px solid #222;
+  padding:28px;
+  border-radius:10px;
+  transition:.25s;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  border-color:#444;
+}
+
+.card h3{
+  font-size:20px;
+  margin-bottom:10px;
+}
+
+.card p{
+  color:#999;
+}
+
+/* =========================
+   SOCIAL
+========================= */
+
 .socials{
   display:flex;
   gap:15px;
@@ -373,6 +536,18 @@ footer{
    MOBILE
 ========================= */
 
+@media(max-width:1000px){
+
+  .roller-selector{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .roller-showcase{
+    grid-template-columns:1fr;
+  }
+
+}
+
 @media(max-width:750px){
 
   nav{
@@ -392,16 +567,16 @@ footer{
     padding:70px 5%;
   }
 
-  .grid{
-    grid-template-columns:1fr;
-  }
-
   .title{
     font-size:35px;
   }
 
   h1{
     letter-spacing:-4px;
+  }
+
+  .roller-selector{
+    grid-template-columns:repeat(2,1fr);
   }
 
   .g2-box{
@@ -419,10 +594,6 @@ footer{
 
 }
 
-/* =========================
-   EXTRA SMALL
-========================= */
-
 @media(max-width:450px){
 
   .logo{
@@ -437,8 +608,29 @@ footer{
     font-size:16px;
   }
 
-  .g2-display{
-    padding:8px;
+  .roller-selector{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .roller-button{
+    font-size:13px;
+    padding:18px 5px;
+  }
+
+  .roller-details{
+    padding:20px;
+  }
+
+  .roller-details h3{
+    font-size:30px;
+  }
+
+  .info-grid{
+    grid-template-columns:1fr;
+  }
+
+  .roller-image-box{
+    min-height:300px;
   }
 
 }
@@ -462,21 +654,11 @@ footer{
 
   <div>
 
-    <a href="#roller">
-      ROLLER
-    </a>
-
-    <a href="#g2">
-      G2 CONFIG
-    </a>
-
-    <a href="#about">
-      RÓLAM
-    </a>
-
-    <a href="#social">
-      SOCIAL
-    </a>
+    <a href="#rollerek">ROLLEREK</a>
+    <a href="#osszehasonlitas">ÖSSZEHASONLÍTÁS</a>
+    <a href="#g2">G2 CONFIG</a>
+    <a href="#about">RÓLAM</a>
+    <a href="#social">SOCIAL</a>
 
   </div>
 
@@ -492,7 +674,7 @@ footer{
   <div class="hero-content">
 
     <div class="tag">
-      FREESTYLE / STREET / G4
+      FREESTYLE / STREET / KUKIRIN
     </div>
 
     <h1>
@@ -500,18 +682,18 @@ footer{
     </h1>
 
     <p>
-      Kukirin rider. Trükkök, wheelie-k, street sessionök
+      KuKirin rider. Trükkök, wheelie-k, street sessionök
       és minden, ami két keréken történik.
     </p>
 
     <div class="buttons">
 
-      <a class="btn light" href="#roller">
-        G4 ADATOK
+      <a class="btn light" href="#rollerek">
+        ROLLEREK
       </a>
 
-      <a class="btn" href="#g2">
-        G2 CONFIG
+      <a class="btn" href="#osszehasonlitas">
+        ÖSSZEHASONLÍTÁS
       </a>
 
     </div>
@@ -522,70 +704,366 @@ footer{
 
 
 <!-- =========================
-     G4 ADATOK
+     ROLLER VÁLASZTÓ
 ========================= -->
 
-<section id="roller">
+<section id="rollerek">
 
   <h2 class="title">
-    A GÉP
+    KUKIRIN ROLLEREK
   </h2>
 
-  <div class="grid">
+  <div class="roller-selector">
 
-    <div class="card">
+    <button
+      class="roller-button active"
+      data-model="g2">
+      G2
+    </button>
 
-      <div class="spec">
-        70<span style="font-size:18px"> km/h*</span>
+    <button
+      class="roller-button"
+      data-model="g2pro">
+      G2 PRO
+    </button>
+
+    <button
+      class="roller-button"
+      data-model="g2max">
+      G2 MAX
+    </button>
+
+    <button
+      class="roller-button"
+      data-model="g2master">
+      G2 MASTER
+    </button>
+
+    <button
+      class="roller-button"
+      data-model="g4">
+      G4
+    </button>
+
+  </div>
+
+
+  <div class="roller-showcase">
+
+
+    <!-- =========================
+         ROLLER KÉP
+    ========================= -->
+
+    <div class="roller-image-box">
+
+      <img
+        id="selectedRollerImage"
+        class="roller-image"
+        src="g2.webp"
+        alt="KuKirin G2">
+
+      <div
+        id="imagePlaceholder"
+        class="image-placeholder"
+        style="display:none;">
+
+        <strong id="placeholderName">
+          KuKirin G2
+        </strong>
+
+        <span>
+          A roller képe itt fog megjelenni.
+        </span>
+
       </div>
-
-      <p>
-        Végsebesség
-      </p>
 
     </div>
 
 
-    <div class="card">
+    <!-- =========================
+         ADATOK
+    ========================= -->
 
-      <div class="spec">
-        2000W*
-      </div>
+    <div class="roller-details">
 
-      <p>
-        Motor teljesítmény
+      <h3 id="modelName">
+        KuKirin G2
+      </h3>
+
+      <p
+        class="subtitle"
+        id="modelSubtitle">
+        800 W-os off-road elektromos roller
       </p>
 
-    </div>
+
+      <div class="info-grid">
+
+        <div class="info-card">
+          <div class="label">Motor</div>
+          <div
+            class="value"
+            id="motor">
+            800 W
+          </div>
+        </div>
 
 
-    <div class="card">
+        <div class="info-card">
+          <div class="label">Akkumulátor</div>
+          <div
+            class="value"
+            id="battery">
+            48 V / 15 Ah
+          </div>
+        </div>
 
-      <div class="spec">
-        G4
+
+        <div class="info-card">
+          <div class="label">Végsebesség</div>
+          <div
+            class="value"
+            id="speed">
+            45 km/h
+          </div>
+        </div>
+
+
+        <div class="info-card">
+          <div class="label">Hatótáv</div>
+          <div
+            class="value"
+            id="range">
+            55 km
+          </div>
+        </div>
+
+
+        <div class="info-card">
+          <div class="label">Kerékméret</div>
+          <div
+            class="value"
+            id="tires">
+            10"
+          </div>
+        </div>
+
+
+        <div class="info-card">
+          <div class="label">Max. terhelés</div>
+          <div
+            class="value"
+            id="load">
+            120 kg
+          </div>
+        </div>
+
+
+        <div class="info-card">
+          <div class="label">Emelkedő</div>
+          <div
+            class="value"
+            id="climb">
+            20°
+          </div>
+        </div>
+
+
+        <div class="info-card">
+          <div class="label">Töltési idő</div>
+          <div
+            class="value"
+            id="charge">
+            8–9 óra
+          </div>
+        </div>
+
+
+        <div class="info-card">
+          <div class="label">Tömeg</div>
+          <div
+            class="value"
+            id="weight">
+            25,3 kg
+          </div>
+        </div>
+
+
+        <div class="info-card">
+          <div class="label">Vízállóság</div>
+          <div
+            class="value"
+            id="water">
+            IP54
+          </div>
+        </div>
+
+
+        <div class="info-card">
+          <div class="label">Fék</div>
+          <div
+            class="value"
+            id="brake">
+            Tárcsafék
+          </div>
+        </div>
+
+
+        <div class="info-card">
+          <div class="label">Váz</div>
+          <div
+            class="value"
+            id="frame">
+            Alumínium
+          </div>
+        </div>
+
       </div>
 
-      <p>
-        Kukirin elektromos roller
-      </p>
+
+      <div class="description">
+
+        <strong>
+          Részletes információ
+        </strong>
+
+        <span id="description">
+          A KuKirin G2 egy 800 W-os elektromos roller.
+        </span>
+
+      </div>
+
+
+      <div class="spec-note">
+
+        * A hatótáv és a végsebesség használati
+        körülményektől függhet.
+
+      </div>
 
     </div>
 
   </div>
 
+</section>
 
-  <p style="color:#666;margin-top:20px;font-size:12px">
 
-    *A pontos értékek a roller verziójától
-    és körülményektől függhetnek.
+<!-- =========================
+     ÖSSZEHASONLÍTÁS
+========================= -->
 
-  </p>
+<section id="osszehasonlitas">
+
+  <h2 class="title">
+    ÖSSZEHASONLÍTÁS
+  </h2>
+
+  <div class="comparison">
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>Adat</th>
+          <th>G2</th>
+          <th>G2 Pro</th>
+          <th>G2 Max</th>
+          <th>G2 Master</th>
+          <th>G4</th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+        <tr>
+          <td>Motor</td>
+          <td>800 W</td>
+          <td>600 W</td>
+          <td>1000 W</td>
+          <td>2×1000 W</td>
+          <td>2000 W</td>
+        </tr>
+
+        <tr>
+          <td>Akkumulátor</td>
+          <td>48 V 15 Ah</td>
+          <td>48 V 15,6 Ah</td>
+          <td>48 V 20,8 Ah</td>
+          <td>52 V 20,8 Ah</td>
+          <td>60 V 20 Ah</td>
+        </tr>
+
+        <tr>
+          <td>Végsebesség</td>
+          <td>45 km/h</td>
+          <td>45 km/h</td>
+          <td>55 km/h</td>
+          <td>60 km/h</td>
+          <td>70 km/h</td>
+        </tr>
+
+        <tr>
+          <td>Max. hatótáv</td>
+          <td>55 km</td>
+          <td>58 km</td>
+          <td>70 km</td>
+          <td>70 km</td>
+          <td>75 km</td>
+        </tr>
+
+        <tr>
+          <td>Kerék</td>
+          <td>10"</td>
+          <td>9"</td>
+          <td>10"</td>
+          <td>10"</td>
+          <td>11"</td>
+        </tr>
+
+        <tr>
+          <td>Max. terhelés</td>
+          <td>120 kg</td>
+          <td>120 kg</td>
+          <td>120 kg</td>
+          <td>120 kg</td>
+          <td>120 kg</td>
+        </tr>
+
+        <tr>
+          <td>Emelkedő</td>
+          <td>20°</td>
+          <td>19°</td>
+          <td>22°</td>
+          <td>28°</td>
+          <td>30°</td>
+        </tr>
+
+        <tr>
+          <td>Vízállóság</td>
+          <td>IP54</td>
+          <td>IP54</td>
+          <td>IP54</td>
+          <td>IP54</td>
+          <td>IP54</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
 
 </section>
 
 
 <!-- =========================
-     G2 COLOR CONFIGURATOR
+     G2 CONFIGURÁTOR
 ========================= -->
 
 <section id="g2" class="configurator">
@@ -598,10 +1076,6 @@ footer{
   <div class="g2-box">
 
 
-    <!-- =========================
-         ROLLER
-    ========================= -->
-
     <div class="g2-display">
 
       <canvas
@@ -609,25 +1083,15 @@ footer{
         class="g2-canvas">
       </canvas>
 
-      <!--
-        Az eredeti kép.
-        A JavaScript ebből készíti a
-        színezhető változatot.
-      -->
 
       <img
         id="rollerImage"
-        src="1000035270.webp"
-        alt="Kukirin G2 elektromos roller"
-        style="display:none;"
-      >
+        src="g2.webp"
+        alt="KuKirin G2"
+        style="display:none;">
 
     </div>
 
-
-    <!-- =========================
-         CONTROL
-    ========================= -->
 
     <div class="g2-control">
 
@@ -636,7 +1100,7 @@ footer{
       </h3>
 
       <p>
-        Válaszd ki a roller sárga/narancssárga
+        Válaszd ki a roller narancssárga/sárga
         részeinek színét.
       </p>
 
@@ -646,9 +1110,9 @@ footer{
         <input
           type="color"
           id="yellowColor"
-          value="#ff5a00"
-          title="Roller színe"
-        >
+          value="#FF5A00"
+          title="Roller színe">
+
 
         <input
           type="text"
@@ -656,8 +1120,7 @@ footer{
           class="color-code"
           value="#FF5A00"
           maxlength="7"
-          spellcheck="false"
-        >
+          spellcheck="false">
 
       </div>
 
@@ -679,7 +1142,7 @@ footer{
 
 
 <!-- =========================
-     ABOUT
+     RÓLAM
 ========================= -->
 
 <section id="about">
@@ -691,7 +1154,7 @@ footer{
   <div class="card">
 
     <h3>
-      TXNC1 — G4 RIDER
+      TXNC1 — KUKIRIN RIDER
     </h3>
 
     <p>
@@ -716,7 +1179,6 @@ footer{
 
 
   <div class="socials">
-
 
     <a
       class="social"
@@ -765,132 +1227,482 @@ footer{
 
     </a>
 
-
   </div>
 
 </section>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
-
 <footer>
 
-  TXNC1 — G4 Rider © 2026
+  TXNC1 — KuKirin Rider © 2026
 
 </footer>
 
 
-<!-- =========================
-     COLOR CONFIGURATOR SCRIPT
-========================= -->
-
 <script>
 
-const image = document.getElementById("rollerImage");
-const canvas = document.getElementById("rollerCanvas");
-const ctx = canvas.getContext("2d", {
-  willReadFrequently: true
+/* =========================================================
+   ROLLER ADATOK
+========================================================= */
+
+const rollers = {
+
+  g2:{
+    name:"KuKirin G2",
+    subtitle:"800 W-os off-road elektromos roller",
+    image:"g2.webp",
+
+    motor:"800 W",
+    battery:"48 V / 15 Ah",
+    speed:"45 km/h",
+    range:"55 km",
+    tires:'10"',
+    load:"120 kg",
+    climb:"20°",
+    charge:"8–9 óra",
+    weight:"25,3 kg",
+    water:"IP54",
+    brake:"Tárcsafék",
+    frame:"Alumínium",
+
+    description:
+    "A KuKirin G2 egy 800 W-os brushless motorral és 48 V 15 Ah akkumulátorral szerelt elektromos roller. Gyári adatok szerint akár 45 km/h végsebességre és 55 km maximális hatótávra képes. 10 colos off-road gumikkal és rugózással rendelkezik."
+  },
+
+
+  g2pro:{
+    name:"KuKirin G2 Pro",
+    subtitle:"600 W-os off-road elektromos roller",
+    image:"g2pro.webp",
+
+    motor:"600 W",
+    battery:"48 V / 15,6 Ah",
+    speed:"45 km/h",
+    range:"58 km",
+    tires:'9"',
+    load:"120 kg",
+    climb:"19°",
+    charge:"7–8 óra",
+    weight:"25 kg",
+    water:"IP54",
+    brake:"Első + hátsó tárcsafék",
+    frame:"Alumínium",
+
+    description:
+    "A KuKirin G2 Pro 600 W-os brushless motorral és 48 V 15,6 Ah akkumulátorral rendelkezik. Maximális sebessége 45 km/h, a gyári maximális hatótáv pedig akár 58 km. 9 colos off-road gumikat és rugózást használ."
+  },
+
+
+  g2max:{
+    name:"KuKirin G2 Max",
+    subtitle:"1000 W-os, nagy akkumulátoros roller",
+    image:"g2max.webp",
+
+    motor:"1000 W",
+    battery:"48 V / 20,8 Ah",
+    speed:"55 km/h",
+    range:"70 km",
+    tires:'10"',
+    load:"120 kg",
+    climb:"22°",
+    charge:"10–11 óra",
+    weight:"31,72 kg",
+    water:"IP54",
+    brake:"Tárcsafék",
+    frame:"Alumínium",
+
+    description:
+    "A KuKirin G2 Max 1000 W-os brushless motorral és 48 V 20,8 Ah akkumulátorral rendelkezik. Akár 55 km/h sebességre és 70 km maximális hatótávra képes. 10 colos off-road pneumatikus gumikat használ."
+  },
+
+
+  g2master:{
+    name:"KuKirin G2 Master",
+    subtitle:"Kétmotoros, 2000 W összteljesítmény",
+    image:"g2master.webp",
+
+    motor:"2×1000 W",
+    battery:"52 V / 20,8 Ah",
+    speed:"60 km/h",
+    range:"70 km",
+    tires:'10"',
+    load:"120 kg",
+    climb:"28°",
+    charge:"7–8 óra",
+    weight:"33,1 kg",
+    water:"IP54",
+    brake:"Első + hátsó tárcsafék",
+    frame:"Alumínium",
+
+    description:
+    "A KuKirin G2 Master két darab 1000 W-os motorral, összesen 2000 W teljesítménnyel rendelkezik. 52 V 20,8 Ah akkumulátora akár 70 km maximális hatótávot biztosít. Maximális sebessége 60 km/h."
+  },
+
+
+  g4:{
+    name:"KuKirin G4",
+    subtitle:"2000 W-os, 60 V-os nagy teljesítményű roller",
+    image:"g4.webp",
+
+    motor:"2000 W",
+    battery:"60 V / 20 Ah",
+    speed:"70 km/h",
+    range:"75 km",
+    tires:'11"',
+    load:"120 kg",
+    climb:"30°",
+    charge:"10–11 óra",
+    weight:"35,5 kg",
+    water:"IP54",
+    brake:"Tárcsafék",
+    frame:"Alumínium",
+
+    description:
+    "A KuKirin G4 egy 2000 W-os brushless motorral és 60 V 20 Ah akkumulátorral szerelt nagy teljesítményű elektromos roller. A gyártó adatai szerint akár 70 km/h végsebességre és 75 km maximális hatótávra képes. 11 colos tubeless gumikat és első-hátsó rugózást használ."
+  }
+
+};
+
+
+/* =========================================================
+   ELEMEK
+========================================================= */
+
+const buttons =
+document.querySelectorAll(".roller-button");
+
+const selectedImage =
+document.getElementById("selectedRollerImage");
+
+const placeholder =
+document.getElementById("imagePlaceholder");
+
+const placeholderName =
+document.getElementById("placeholderName");
+
+const modelName =
+document.getElementById("modelName");
+
+const modelSubtitle =
+document.getElementById("modelSubtitle");
+
+const motor =
+document.getElementById("motor");
+
+const battery =
+document.getElementById("battery");
+
+const speed =
+document.getElementById("speed");
+
+const range =
+document.getElementById("range");
+
+const tires =
+document.getElementById("tires");
+
+const load =
+document.getElementById("load");
+
+const climb =
+document.getElementById("climb");
+
+const charge =
+document.getElementById("charge");
+
+const weight =
+document.getElementById("weight");
+
+const water =
+document.getElementById("water");
+
+const brake =
+document.getElementById("brake");
+
+const frame =
+document.getElementById("frame");
+
+const description =
+document.getElementById("description");
+
+
+/* =========================================================
+   ROLLER MEGJELENÍTÉSE
+========================================================= */
+
+function showRoller(model){
+
+  const data =
+    rollers[model];
+
+  if(!data){
+    return;
+  }
+
+
+  modelName.textContent =
+    data.name;
+
+  modelSubtitle.textContent =
+    data.subtitle;
+
+  motor.textContent =
+    data.motor;
+
+  battery.textContent =
+    data.battery;
+
+  speed.textContent =
+    data.speed;
+
+  range.textContent =
+    data.range;
+
+  tires.textContent =
+    data.tires;
+
+  load.textContent =
+    data.load;
+
+  climb.textContent =
+    data.climb;
+
+  charge.textContent =
+    data.charge;
+
+  weight.textContent =
+    data.weight;
+
+  water.textContent =
+    data.water;
+
+  brake.textContent =
+    data.brake;
+
+  frame.textContent =
+    data.frame;
+
+  description.textContent =
+    data.description;
+
+
+  /* KÉP VÁLTÁSA */
+
+  selectedImage.style.display =
+    "block";
+
+  placeholder.style.display =
+    "none";
+
+  selectedImage.style.opacity =
+    "0";
+
+  selectedImage.src =
+    data.image;
+
+  selectedImage.alt =
+    data.name;
+
+
+  selectedImage.onload =
+    function(){
+
+      selectedImage.style.opacity =
+        "1";
+
+    };
+
+
+  selectedImage.onerror =
+    function(){
+
+      selectedImage.style.display =
+        "none";
+
+      placeholder.style.display =
+        "block";
+
+      placeholderName.textContent =
+        data.name;
+
+    };
+
+}
+
+
+/* =========================================================
+   GOMBOK
+========================================================= */
+
+buttons.forEach(button => {
+
+  button.addEventListener(
+    "click",
+    function(){
+
+      buttons.forEach(btn => {
+
+        btn.classList.remove(
+          "active"
+        );
+
+      });
+
+      this.classList.add(
+        "active"
+      );
+
+      showRoller(
+        this.dataset.model
+      );
+
+    }
+  );
+
 });
 
-const colorPicker = document.getElementById("yellowColor");
-const colorCode = document.getElementById("colorCode");
-const resetButton = document.getElementById("resetColor");
 
+/* =========================================================
+   G2 SZÍN KONFIGURÁTOR
+========================================================= */
 
-/* =========================
-   HEX → RGB
-========================= */
+const image =
+document.getElementById("rollerImage");
+
+const canvas =
+document.getElementById("rollerCanvas");
+
+const ctx =
+canvas.getContext(
+  "2d",
+  {
+    willReadFrequently:true
+  }
+);
+
+const colorPicker =
+document.getElementById("yellowColor");
+
+const colorCode =
+document.getElementById("colorCode");
+
+const resetButton =
+document.getElementById("resetColor");
+
 
 function hexToRgb(hex){
 
-  hex = hex.replace("#","");
+  hex =
+    hex.replace("#","");
 
   if(hex.length !== 6){
     return null;
   }
 
-  return {
-    r: parseInt(hex.substring(0,2),16),
-    g: parseInt(hex.substring(2,4),16),
-    b: parseInt(hex.substring(4,6),16)
+  return{
+
+    r:parseInt(
+      hex.substring(0,2),
+      16
+    ),
+
+    g:parseInt(
+      hex.substring(2,4),
+      16
+    ),
+
+    b:parseInt(
+      hex.substring(4,6),
+      16
+    )
+
   };
 
 }
 
 
-/* =========================
-   RGB → HSV
-========================= */
-
 function rgbToHsv(r,g,b){
 
-  r /= 255;
-  g /= 255;
-  b /= 255;
+  r/=255;
+  g/=255;
+  b/=255;
 
-  const max = Math.max(r,g,b);
-  const min = Math.min(r,g,b);
+  const max =
+    Math.max(r,g,b);
 
-  const d = max - min;
+  const min =
+    Math.min(r,g,b);
 
-  let h = 0;
+  const d =
+    max-min;
 
-  if(d !== 0){
+  let h=0;
 
-    if(max === r){
-      h = ((g-b) / d) % 6;
+  if(d!==0){
+
+    if(max===r){
+
+      h=
+        ((g-b)/d)%6;
+
     }
 
-    else if(max === g){
-      h = (b-r) / d + 2;
+    else if(max===g){
+
+      h=
+        (b-r)/d+2;
+
     }
 
     else{
-      h = (r-g) / d + 4;
+
+      h=
+        (r-g)/d+4;
+
     }
 
-    h /= 6;
+    h/=6;
 
-    if(h < 0){
-      h += 1;
+    if(h<0){
+      h+=1;
     }
 
   }
 
-  const s = max === 0 ? 0 : d / max;
+  const s =
+    max===0
+      ? 0
+      : d/max;
 
-  const v = max;
-
-  return {
+  return{
     h:h,
     s:s,
-    v:v
+    v:max
   };
 
 }
 
 
-/* =========================
-   HSV → RGB
-========================= */
-
 function hsvToRgb(h,s,v){
 
-  const i = Math.floor(h * 6);
+  const i =
+    Math.floor(h*6);
 
-  const f = h * 6 - i;
+  const f =
+    h*6-i;
 
-  const p = v * (1-s);
+  const p =
+    v*(1-s);
 
-  const q = v * (1-f*s);
+  const q =
+    v*(1-f*s);
 
-  const t = v * (1-(1-f)*s);
+  const t =
+    v*(1-(1-f)*s);
 
   let r,g,b;
 
-  switch(i % 6){
+  switch(i%6){
 
     case 0:
       r=v;
@@ -930,39 +1742,41 @@ function hsvToRgb(h,s,v){
 
   }
 
-  return {
+  return{
+
     r:Math.round(r*255),
     g:Math.round(g*255),
     b:Math.round(b*255)
+
   };
 
 }
 
 
-/* =========================
-   ROLLER SZÍNEZÉSE
-========================= */
-
 function recolorRoller(hex){
 
-  const target = hexToRgb(hex);
+  const target =
+    hexToRgb(hex);
 
   if(!target){
     return;
   }
 
+  if(
+    !image.naturalWidth ||
+    !image.naturalHeight
+  ){
+    return;
+  }
 
-  const targetHsv = rgbToHsv(
-    target.r,
-    target.g,
-    target.b
-  );
 
+  const targetHsv =
+    rgbToHsv(
+      target.r,
+      target.g,
+      target.b
+    );
 
-  /*
-    Mindig az eredeti képből indulunk,
-    így a színezés nem halmozódik.
-  */
 
   ctx.clearRect(
     0,
@@ -970,6 +1784,7 @@ function recolorRoller(hex){
     canvas.width,
     canvas.height
   );
+
 
   ctx.drawImage(
     image,
@@ -980,46 +1795,42 @@ function recolorRoller(hex){
   );
 
 
-  const imageData = ctx.getImageData(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-
-  const data = imageData.data;
-
-
-  for(let i = 0; i < data.length; i += 4){
-
-    const r = data[i];
-    const g = data[i+1];
-    const b = data[i+2];
+  const imageData =
+    ctx.getImageData(
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
 
 
-    const hsv = rgbToHsv(r,g,b);
+  const data =
+    imageData.data;
 
 
-    /*
-      CSAK a roller eredeti
-      narancssárga/sárga részeit keressük.
+  for(
+    let i=0;
+    i<data.length;
+    i+=4
+  ){
 
-      A fekete részek:
-      - alacsony telítettségűek vagy
-      - alacsony fényerejűek,
+    const r =
+      data[i];
 
-      ezért nem kerülnek módosításra.
+    const g =
+      data[i+1];
 
-      A fehér háttér:
-      - nagyon alacsony telítettségű,
+    const b =
+      data[i+2];
 
-      ezért szintén változatlan marad.
 
-      A piros hátsó lámpa:
-      - más hue tartományban van,
+    const hsv =
+      rgbToHsv(
+        r,
+        g,
+        b
+      );
 
-      ezért azt sem módosítjuk.
-    */
 
     const isOrange =
       hsv.h >= 0.005 &&
@@ -1030,25 +1841,22 @@ function recolorRoller(hex){
 
     if(isOrange){
 
-      /*
-        A kiválasztott szín hue + saturation értékét
-        használjuk, miközben az eredeti fényerőt
-        megtartjuk.
-
-        Emiatt a roller árnyékai és világos részei
-        továbbra is megmaradnak.
-      */
-
-      const newRgb = hsvToRgb(
-        targetHsv.h,
-        targetHsv.s,
-        hsv.v
-      );
+      const newRgb =
+        hsvToRgb(
+          targetHsv.h,
+          targetHsv.s,
+          hsv.v
+        );
 
 
-      data[i] = newRgb.r;
-      data[i+1] = newRgb.g;
-      data[i+2] = newRgb.b;
+      data[i] =
+        newRgb.r;
+
+      data[i+1] =
+        newRgb.g;
+
+      data[i+2] =
+        newRgb.b;
 
     }
 
@@ -1065,13 +1873,17 @@ function recolorRoller(hex){
 
 
 /* =========================
-   KÉP BETÖLTÉSE
+   G2 KÉP BETÖLTÉSE
 ========================= */
 
-image.onload = function(){
+image.onload =
+function(){
 
-  canvas.width = image.naturalWidth;
-  canvas.height = image.naturalHeight;
+  canvas.width =
+    image.naturalWidth;
+
+  canvas.height =
+    image.naturalHeight;
 
   recolorRoller(
     colorPicker.value
@@ -1080,17 +1892,18 @@ image.onload = function(){
 };
 
 
-/*
-  Ha a kép már cache-ből van betöltve,
-  azonnal inicializáljuk.
-*/
-
 if(image.complete){
 
-  canvas.width = image.naturalWidth;
-  canvas.height = image.naturalHeight;
+  canvas.width =
+    image.naturalWidth;
 
-  if(canvas.width && canvas.height){
+  canvas.height =
+    image.naturalHeight;
+
+  if(
+    canvas.width &&
+    canvas.height
+  ){
 
     recolorRoller(
       colorPicker.value
@@ -1121,7 +1934,7 @@ colorPicker.addEventListener(
 
 
 /* =========================
-   HEX KÓD BEÍRÁSA
+   HEX
 ========================= */
 
 colorCode.addEventListener(
@@ -1131,19 +1944,26 @@ colorCode.addEventListener(
     let value =
       colorCode.value.trim();
 
+    if(
+      !value.startsWith("#")
+    ){
 
-    if(!value.startsWith("#")){
-
-      value = "#" + value;
+      value =
+        "#" + value;
 
     }
 
+    if(
+      /^#[0-9A-Fa-f]{6}$/
+      .test(value)
+    ){
 
-    if(/^#[0-9A-Fa-f]{6}$/.test(value)){
+      colorPicker.value =
+        value;
 
-      colorPicker.value = value;
-
-      recolorRoller(value);
+      recolorRoller(
+        value
+      );
 
     }
 
@@ -1152,34 +1972,43 @@ colorCode.addEventListener(
 
 
 /* =========================
-   ENTER A HEX MEZŐBEN
+   ENTER
 ========================= */
 
 colorCode.addEventListener(
   "keydown",
   function(event){
 
-    if(event.key === "Enter"){
+    if(
+      event.key === "Enter"
+    ){
 
       let value =
         colorCode.value.trim();
 
+      if(
+        !value.startsWith("#")
+      ){
 
-      if(!value.startsWith("#")){
-
-        value = "#" + value;
+        value =
+          "#" + value;
 
       }
 
+      if(
+        /^#[0-9A-Fa-f]{6}$/
+        .test(value)
+      ){
 
-      if(/^#[0-9A-Fa-f]{6}$/.test(value)){
-
-        colorPicker.value = value;
+        colorPicker.value =
+          value;
 
         colorCode.value =
           value.toUpperCase();
 
-        recolorRoller(value);
+        recolorRoller(
+          value
+        );
 
       }
 
@@ -1210,8 +2039,15 @@ resetButton.addEventListener(
   }
 );
 
+
+/* =========================
+   KEZDŐ ROLLER
+========================= */
+
+showRoller("g2");
+
 </script>
 
 
 </body>
-      </html>
+</html>
