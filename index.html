@@ -14,131 +14,143 @@
   padding:0;
 }
 
-html{
-  scroll-behavior:smooth;
+html,body{
+  width:100%;
+  height:100%;
+  overflow:hidden;
 }
 
 body{
   font-family:Arial,Helvetica,sans-serif;
   background:#070707;
   color:#fff;
-  min-height:100vh;
 }
 
-/* =========================
-   BAL OLDALI MENU GOMB
-========================= */
+/* =========================================================
+   BAL OLDALI MENÜ
+========================================================= */
 
 .menu-button{
   position:fixed;
-  left:20px;
   top:20px;
+  left:20px;
   width:52px;
   height:52px;
-  border-radius:12px;
   background:#111;
   border:1px solid #333;
-  color:#fff;
-  font-size:25px;
+  border-radius:12px;
+  z-index:9999;
   cursor:pointer;
-  z-index:2000;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:5px;
   transition:.25s;
 }
 
 .menu-button:hover{
   background:#fff;
-  color:#000;
-  transform:scale(1.05);
 }
 
-/* =========================
-   OLDALSÓ MENÜ
-========================= */
+.menu-button span{
+  width:23px;
+  height:2px;
+  background:#fff;
+  transition:.25s;
+}
+
+.menu-button:hover span{
+  background:#000;
+}
+
+
+/* =========================================================
+   OLDAL MENÜ
+========================================================= */
 
 .side-menu{
   position:fixed;
-  left:-290px;
+  left:0;
   top:0;
-  width:270px;
+  width:280px;
   height:100vh;
-  background:#0c0c0c;
+  background:#0b0b0b;
   border-right:1px solid #292929;
-  z-index:1500;
-  padding:90px 20px 20px;
-  transition:.3s ease;
-  box-shadow:10px 0 40px rgba(0,0,0,.5);
+  z-index:9998;
+  transform:translateX(-100%);
+  transition:.3s;
+  padding:95px 20px 20px;
+  overflow-y:auto;
 }
 
 .side-menu.open{
-  left:0;
+  transform:translateX(0);
 }
 
-.menu-title{
+.side-menu h2{
+  font-size:12px;
   color:#666;
-  font-size:11px;
   letter-spacing:3px;
-  margin-bottom:15px;
+  margin:0 0 15px 10px;
 }
 
-.menu-link{
+.menu-item{
   width:100%;
-  display:block;
   padding:15px;
   margin-bottom:8px;
-  border:1px solid #222;
-  border-radius:9px;
   background:#111;
   color:#fff;
-  text-decoration:none;
-  font-weight:800;
+  border:1px solid #222;
+  border-radius:9px;
+  text-align:left;
   cursor:pointer;
+  font-size:14px;
+  font-weight:900;
   transition:.2s;
 }
 
-.menu-link:hover{
+.menu-item:hover{
   background:#1c1c1c;
   border-color:#555;
-  transform:translateX(4px);
 }
 
-.menu-link.active{
+.menu-item.active{
   background:#fff;
   color:#000;
 }
 
-/* =========================
-   OLDAL
-========================= */
+
+/* =========================================================
+   OLDAL TARTALOM
+========================================================= */
+
+#app{
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+}
 
 .page{
   display:none;
-  min-height:100vh;
-  padding:100px 7% 70px;
-  animation:pageIn .25s ease;
+  width:100%;
+  height:100vh;
+  overflow-y:auto;
+  overflow-x:hidden;
+  padding:90px 7% 60px;
 }
 
 .page.active{
   display:block;
 }
 
-@keyframes pageIn{
-  from{
-    opacity:0;
-    transform:translateY(10px);
-  }
 
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-/* =========================
+/* =========================================================
    KEZDŐLAP
-========================= */
+========================================================= */
 
 .home{
-  min-height:100vh;
+  min-height:100%;
   display:flex;
   align-items:center;
   position:relative;
@@ -146,7 +158,7 @@ body{
   background:
     radial-gradient(
       circle at 75% 35%,
-      #353535 0,
+      #363636 0,
       #151515 25%,
       #070707 60%
     );
@@ -155,12 +167,12 @@ body{
 .home:after{
   content:"G4";
   position:absolute;
-  right:-30px;
+  right:-40px;
   bottom:-100px;
   font-size:40vw;
   font-weight:1000;
   color:#101010;
-  z-index:0;
+  pointer-events:none;
 }
 
 .home-content{
@@ -169,19 +181,11 @@ body{
   max-width:700px;
 }
 
-.logo{
-  font-size:15px;
-  letter-spacing:6px;
-  color:#777;
-  font-weight:900;
-  margin-bottom:20px;
-}
-
 .tag{
   color:#888;
   letter-spacing:5px;
   font-size:12px;
-  margin-bottom:15px;
+  margin-bottom:18px;
 }
 
 h1{
@@ -198,31 +202,32 @@ h1 span{
 .home p{
   color:#aaa;
   font-size:18px;
-  max-width:560px;
+  max-width:570px;
   margin:30px 0;
 }
 
-.home-button{
+.btn{
   display:inline-block;
-  padding:15px 24px;
-  background:#fff;
-  color:#000;
-  border-radius:6px;
-  border:0;
-  font-weight:900;
-  cursor:pointer;
+  padding:14px 22px;
   margin-right:8px;
   margin-bottom:8px;
-  transition:.2s;
+  border:1px solid #fff;
+  border-radius:5px;
+  color:#fff;
+  text-decoration:none;
+  font-weight:900;
+  cursor:pointer;
 }
 
-.home-button:hover{
-  transform:translateY(-3px);
+.btn.light{
+  background:#fff;
+  color:#000;
 }
 
-/* =========================
+
+/* =========================================================
    CÍMEK
-========================= */
+========================================================= */
 
 .title{
   font-size:43px;
@@ -230,14 +235,10 @@ h1 span{
   margin-bottom:30px;
 }
 
-.subtitle{
-  color:#777;
-  margin-bottom:25px;
-}
 
-/* =========================
+/* =========================================================
    ROLLEREK
-========================= */
+========================================================= */
 
 .roller-selector{
   display:grid;
@@ -252,15 +253,14 @@ h1 span{
   color:#fff;
   border:1px solid #292929;
   border-radius:10px;
-  font-size:14px;
   font-weight:900;
   cursor:pointer;
-  transition:.25s;
+  transition:.2s;
 }
 
 .roller-button:hover{
-  transform:translateY(-4px);
   border-color:#777;
+  transform:translateY(-3px);
 }
 
 .roller-button.active{
@@ -279,12 +279,7 @@ h1 span{
   border:1px solid #292929;
   border-radius:15px;
   background:
-    radial-gradient(
-      circle,
-      #252525,
-      #111 55%,
-      #080808
-    );
+    radial-gradient(circle,#292929,#111 55%,#080808);
   display:flex;
   justify-content:center;
   align-items:center;
@@ -298,14 +293,14 @@ h1 span{
 }
 
 .placeholder{
-  text-align:center;
   color:#666;
+  text-align:center;
 }
 
 .placeholder strong{
   display:block;
-  font-size:30px;
   color:#aaa;
+  font-size:30px;
 }
 
 .roller-details{
@@ -318,7 +313,11 @@ h1 span{
 .roller-details h3{
   font-size:38px;
   letter-spacing:-2px;
-  margin-bottom:5px;
+}
+
+.subtitle{
+  color:#777;
+  margin-bottom:25px;
 }
 
 .info-grid{
@@ -331,7 +330,7 @@ h1 span{
   background:#151515;
   border:1px solid #252525;
   border-radius:9px;
-  padding:16px;
+  padding:15px;
 }
 
 .label{
@@ -361,9 +360,16 @@ h1 span{
   margin-bottom:7px;
 }
 
-/* =========================
+.note{
+  color:#555;
+  font-size:11px;
+  margin-top:15px;
+}
+
+
+/* =========================================================
    ÖSSZEHASONLÍTÁS
-========================= */
+========================================================= */
 
 .compare-wrap{
   overflow-x:auto;
@@ -376,8 +382,7 @@ table{
   background:#101010;
 }
 
-th,
-td{
+th,td{
   padding:15px;
   border:1px solid #252525;
   text-align:center;
@@ -396,12 +401,16 @@ td:first-child{
   font-weight:bold;
 }
 
-/* =========================
+
+/* =========================================================
    TESZT
-========================= */
+========================================================= */
+
+.finder{
+  max-width:850px;
+}
 
 .question{
-  max-width:850px;
   background:#111;
   border:1px solid #292929;
   padding:25px;
@@ -435,7 +444,6 @@ td:first-child{
 }
 
 .find-result{
-  max-width:850px;
   margin-top:20px;
   background:#fff;
   color:#000;
@@ -448,18 +456,19 @@ td:first-child{
   font-size:28px;
 }
 
-/* =========================
-   SPEED
-========================= */
 
-.speed-section{
+/* =========================================================
+   SPEED
+========================================================= */
+
+.speed-page{
   text-align:center;
 }
 
 .speedometer{
-  width:280px;
-  height:280px;
-  margin:30px auto;
+  width:300px;
+  height:300px;
+  margin:50px auto 30px;
   border-radius:50%;
   border:14px solid #222;
   position:relative;
@@ -467,30 +476,25 @@ td:first-child{
   justify-content:center;
   align-items:center;
   background:
-    radial-gradient(
-      circle,
-      #151515 0,
-      #090909 65%
-    );
-  box-shadow:0 0 40px #000;
+    radial-gradient(circle,#181818,#080808 65%);
 }
 
-.speedometer:before{
-  content:"";
+.needle{
   position:absolute;
   width:4px;
   height:105px;
   background:#fff;
-  bottom:50%;
   left:50%;
+  bottom:50%;
   transform-origin:bottom;
   transform:
-    rotate(var(--rotation,-65deg));
-  transition:.3s;
+    translateX(-50%)
+    rotate(-65deg);
+  transition:.15s;
 }
 
 .speed-number{
-  font-size:55px;
+  font-size:58px;
   font-weight:1000;
   margin-top:35px;
 }
@@ -505,11 +509,13 @@ td:first-child{
 .speed-controls input{
   width:80%;
   max-width:600px;
+  accent-color:#fff;
 }
 
-/* =========================
+
+/* =========================================================
    CONFIG
-========================= */
+========================================================= */
 
 .config-box{
   display:grid;
@@ -539,7 +545,7 @@ td:first-child{
 
 .config-control p{
   color:#777;
-  margin:15px 0 20px;
+  margin:10px 0 20px;
 }
 
 .color-row{
@@ -575,29 +581,22 @@ td:first-child{
   cursor:pointer;
 }
 
-/* =========================
-   RÓLAM
-========================= */
+
+/* =========================================================
+   RÓLAM / SOCIAL
+========================================================= */
 
 .card{
   background:#111;
   border:1px solid #292929;
   border-radius:12px;
   padding:28px;
-  max-width:800px;
-}
-
-.card h3{
-  margin-bottom:10px;
 }
 
 .card p{
   color:#888;
+  margin-top:8px;
 }
-
-/* =========================
-   SOCIAL
-========================= */
 
 .socials{
   display:flex;
@@ -614,38 +613,21 @@ td:first-child{
   border-radius:10px;
   color:#fff;
   text-decoration:none;
-  transition:.2s;
-}
-
-.social:hover{
-  transform:translateY(-4px);
-  border-color:#555;
 }
 
 .social strong{
   display:block;
   font-size:22px;
-  margin-bottom:5px;
 }
 
 .social span{
   color:#777;
 }
 
-/* =========================
-   FOOTER
-========================= */
 
-footer{
-  text-align:center;
-  padding:30px;
-  color:#555;
-  border-top:1px solid #1d1d1d;
-}
-
-/* =========================
+/* =========================================================
    MOBIL
-========================= */
+========================================================= */
 
 @media(max-width:1000px){
 
@@ -657,13 +639,12 @@ footer{
   .config-box{
     grid-template-columns:1fr;
   }
-
 }
 
 @media(max-width:750px){
 
   .page{
-    padding:90px 5% 50px;
+    padding:85px 5% 50px;
   }
 
   .roller-selector{
@@ -691,14 +672,12 @@ footer{
     height:240px;
   }
 
+  .side-menu{
+    width:250px;
+  }
 }
 
 @media(max-width:450px){
-
-  .menu-button{
-    left:12px;
-    top:12px;
-  }
 
   h1{
     font-size:70px;
@@ -714,114 +693,104 @@ footer{
 </style>
 </head>
 
+
 <body>
 
 
-<!-- =========================
-     MENU GOMB
-========================= -->
+<!-- =========================================================
+     BAL OLDALI IKON
+========================================================= -->
 
 <button
   class="menu-button"
   id="menuButton">
 
-  ☰
+  <span></span>
+  <span></span>
+  <span></span>
 
 </button>
 
 
-<!-- =========================
+<!-- =========================================================
      OLDALSÓ MENÜ
-========================= -->
+========================================================= -->
 
 <div
   class="side-menu"
   id="sideMenu">
 
-  <div class="menu-title">
+  <h2>
     TXNC1 MENU
-  </div>
+  </h2>
 
   <button
-    class="menu-link active"
+    class="menu-item active"
     data-page="home">
-
     🏠 Kezdőlap
-
   </button>
 
   <button
-    class="menu-link"
+    class="menu-item"
     data-page="rollerek">
-
     🛴 Rollerek
-
   </button>
 
   <button
-    class="menu-link"
+    class="menu-item"
     data-page="compare">
-
-    ⚖️ Összehasonlítás
-
+    📊 Összehasonlítás
   </button>
 
   <button
-    class="menu-link"
+    class="menu-item"
     data-page="finder">
-
     🎯 Melyik kell?
-
   </button>
 
   <button
-    class="menu-link"
+    class="menu-item"
     data-page="speed">
-
-    🏁 Speedometer
-
+    ⚡ Speedometer
   </button>
 
   <button
-    class="menu-link"
+    class="menu-item"
     data-page="config">
-
-    ⚙️ G2 Config
-
+    🎨 G2 Config
   </button>
 
   <button
-    class="menu-link"
+    class="menu-item"
     data-page="about">
-
     👤 Rólam
-
   </button>
 
   <button
-    class="menu-link"
+    class="menu-item"
     data-page="social">
-
     📱 Social
-
   </button>
 
 </div>
 
 
-<!-- =========================
-     KEZDŐLAP
-========================= -->
+<!-- =========================================================
+     APP
+========================================================= -->
 
-<div
+<div id="app">
+
+
+<!-- =========================================================
+     KEZDŐLAP
+========================================================= -->
+
+<section
   class="page home active"
   id="page-home">
 
   <div class="home-content">
-
-    <div class="logo">
-      TXNC1
-    </div>
 
     <div class="tag">
       FREESTYLE / STREET / KUKIRIN
@@ -837,29 +806,25 @@ footer{
     </p>
 
     <button
-      class="home-button"
+      class="btn light"
       onclick="openPage('rollerek')">
-
-      🛴 ROLLEREK
-
+      ROLLEREK
     </button>
 
     <button
-      class="home-button"
+      class="btn"
       onclick="openPage('finder')">
-
-      🎯 MELYIK KELL?
-
+      MELYIK KELL?
     </button>
 
   </div>
 
-</div>
+</section>
 
 
-<!-- =========================
+<!-- =========================================================
      ROLLEREK
-========================= -->
+========================================================= -->
 
 <section
   class="page"
@@ -869,51 +834,26 @@ footer{
     KUKIRIN ROLLEREK
   </h2>
 
-  <p class="subtitle">
-    Válaszd ki, melyik rollerről szeretnél információt.
-  </p>
-
-
   <div class="roller-selector">
 
-    <button
-      class="roller-button active"
-      data-model="g2">
-
+    <button class="roller-button active" data-model="g2">
       G2
-
     </button>
 
-    <button
-      class="roller-button"
-      data-model="g2pro">
-
+    <button class="roller-button" data-model="g2pro">
       G2 PRO
-
     </button>
 
-    <button
-      class="roller-button"
-      data-model="g2max">
-
+    <button class="roller-button" data-model="g2max">
       G2 MAX
-
     </button>
 
-    <button
-      class="roller-button"
-      data-model="g2master">
-
+    <button class="roller-button" data-model="g2master">
       G2 MASTER
-
     </button>
 
-    <button
-      class="roller-button"
-      data-model="g4">
-
+    <button class="roller-button" data-model="g4">
       G4
-
     </button>
 
   </div>
@@ -954,11 +894,8 @@ footer{
       <p
         class="subtitle"
         id="subtitle">
-
         800 W-os off-road elektromos roller
-
       </p>
-
 
       <div class="info-grid">
 
@@ -1024,17 +961,18 @@ footer{
 
       </div>
 
-
       <div class="description">
 
-        <strong>
-          Részletes leírás
-        </strong>
+        <strong>Részletes leírás</strong>
 
         <span id="description">
           A KuKirin G2 egy 800 W-os elektromos roller.
         </span>
 
+      </div>
+
+      <div class="note">
+        * Az adatok verziótól és használati körülményektől függhetnek.
       </div>
 
     </div>
@@ -1044,9 +982,9 @@ footer{
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      ÖSSZEHASONLÍTÁS
-========================= -->
+========================================================= -->
 
 <section
   class="page"
@@ -1139,9 +1077,9 @@ footer{
 </section>
 
 
-<!-- =========================
-     MELYIK KELL
-========================= -->
+<!-- =========================================================
+     TESZT
+========================================================= -->
 
 <section
   class="page"
@@ -1151,167 +1089,125 @@ footer{
     MELYIK KUKIRIN KELL?
   </h2>
 
-  <div class="question">
+  <div class="finder">
 
-    <h3>
-      1. Mire használnád leginkább?
-    </h3>
+    <div class="question">
 
-    <div class="options">
+      <h3>
+        1. Mire használnád?
+      </h3>
 
-      <button
-        class="option"
-        data-q="use"
-        data-v="city">
+      <div class="options">
 
-        🏙️ Város
+        <button class="option" data-q="use" data-v="city">
+          🏙️ Város
+        </button>
 
-      </button>
+        <button class="option" data-q="use" data-v="speed">
+          🏁 Sebesség
+        </button>
 
-      <button
-        class="option"
-        data-q="use"
-        data-v="speed">
+        <button class="option" data-q="use" data-v="offroad">
+          🏔️ Terep
+        </button>
 
-        🏁 Sebesség
-
-      </button>
-
-      <button
-        class="option"
-        data-q="use"
-        data-v="offroad">
-
-        🏔️ Terep
-
-      </button>
+      </div>
 
     </div>
 
-  </div>
 
+    <div class="question">
 
-  <div class="question">
+      <h3>
+        2. Mi a legfontosabb?
+      </h3>
 
-    <h3>
-      2. Mi a legfontosabb?
-    </h3>
+      <div class="options">
 
-    <div class="options">
+        <button class="option" data-q="power" data-v="range">
+          🔋 Hatótáv
+        </button>
 
-      <button
-        class="option"
-        data-q="power"
-        data-v="range">
+        <button class="option" data-q="power" data-v="power">
+          ⚡ Erő
+        </button>
 
-        🔋 Hatótáv
+        <button class="option" data-q="power" data-v="light">
+          🪶 Könnyebb súly
+        </button>
 
-      </button>
-
-      <button
-        class="option"
-        data-q="power"
-        data-v="power">
-
-        ⚡ Erő
-
-      </button>
-
-      <button
-        class="option"
-        data-q="power"
-        data-v="light">
-
-        🪶 Könnyebb súly
-
-      </button>
+      </div>
 
     </div>
 
-  </div>
 
+    <div class="question">
 
-  <div class="question">
+      <h3>
+        3. Mennyire fontos a sebesség?
+      </h3>
 
-    <h3>
-      3. Mennyire fontos a sebesség?
-    </h3>
+      <div class="options">
 
-    <div class="options">
+        <button class="option" data-q="speed" data-v="low">
+          🙂 Nem nagyon
+        </button>
 
-      <button
-        class="option"
-        data-q="speed"
-        data-v="low">
+        <button class="option" data-q="speed" data-v="medium">
+          😎 Fontos
+        </button>
 
-        🙂 Nem nagyon
+        <button class="option" data-q="speed" data-v="high">
+          🔥 Nagyon
+        </button>
 
-      </button>
-
-      <button
-        class="option"
-        data-q="speed"
-        data-v="medium">
-
-        😎 Fontos
-
-      </button>
-
-      <button
-        class="option"
-        data-q="speed"
-        data-v="high">
-
-        🔥 Nagyon
-
-      </button>
+      </div>
 
     </div>
 
-  </div>
 
+    <div
+      class="find-result"
+      id="findResult">
 
-  <div
-    class="find-result"
-    id="findResult">
+      <h3 id="resultTitle">
+        Neked a G4 való.
+      </h3>
 
-    <h3 id="resultTitle">
-      Neked a G4 való.
-    </h3>
+      <p id="resultText">
+        Nagy teljesítményű gépet keresel.
+      </p>
 
-    <p id="resultText">
-      Nagy teljesítményű gépet keresel.
-    </p>
+    </div>
 
   </div>
 
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      SPEEDOMETER
-========================= -->
+========================================================= -->
 
 <section
-  class="page speed-section"
+  class="page speed-page"
   id="page-speed">
 
   <h2 class="title">
     SPEEDOMETER
   </h2>
 
-  <p class="subtitle">
-    Állítsd be a sebességet.
-  </p>
-
   <div class="speedometer">
+
+    <div
+      class="needle"
+      id="needle">
+    </div>
 
     <div
       class="speed-number"
       id="speedNumber">
-
       0
-
     </div>
 
     <div class="speed-unit">
@@ -1334,9 +1230,9 @@ footer{
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      CONFIG
-========================= -->
+========================================================= -->
 
 <section
   class="page"
@@ -1401,9 +1297,9 @@ footer{
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      RÓLAM
-========================= -->
+========================================================= -->
 
 <section
   class="page"
@@ -1429,9 +1325,9 @@ footer{
 </section>
 
 
-<!-- =========================
+<!-- =========================================================
      SOCIAL
-========================= -->
+========================================================= -->
 
 <section
   class="page"
@@ -1448,9 +1344,7 @@ footer{
       href="#"
       target="_blank">
 
-      <strong>
-        TikTok
-      </strong>
+      <strong>TikTok</strong>
 
       <span>
         Kövess a videókért
@@ -1458,15 +1352,12 @@ footer{
 
     </a>
 
-
     <a
       class="social"
       href="#"
       target="_blank">
 
-      <strong>
-        Instagram
-      </strong>
+      <strong>Instagram</strong>
 
       <span>
         Street sessionök és képek
@@ -1474,15 +1365,12 @@ footer{
 
     </a>
 
-
     <a
       class="social"
       href="#"
       target="_blank">
 
-      <strong>
-        YouTube
-      </strong>
+      <strong>YouTube</strong>
 
       <span>
         Hosszabb videók és projektek
@@ -1495,29 +1383,20 @@ footer{
 </section>
 
 
-<footer>
-  TXNC1 — KuKirin Rider © 2026
-</footer>
+</div>
 
 
 <script>
 
 /* =========================================================
-   OLDALVÁLTÁS
+   MENÜ
 ========================================================= */
 
-const menuButton =
-  document.getElementById("menuButton");
+const menuButton=
+document.getElementById("menuButton");
 
-const sideMenu =
-  document.getElementById("sideMenu");
-
-const menuLinks =
-  document.querySelectorAll(".menu-link");
-
-const pages =
-  document.querySelectorAll(".page");
-
+const sideMenu=
+document.getElementById("sideMenu");
 
 menuButton.addEventListener("click",()=>{
 
@@ -1526,45 +1405,53 @@ menuButton.addEventListener("click",()=>{
 });
 
 
-function openPage(page){
+/* =========================================================
+   OLDALVÁLTÁS
+========================================================= */
 
-  pages.forEach(p=>{
-    p.classList.remove("active");
+const menuItems=
+document.querySelectorAll(".menu-item");
+
+const pages=
+document.querySelectorAll(".page");
+
+
+function openPage(pageName){
+
+  pages.forEach(page=>{
+    page.classList.remove("active");
+    page.scrollTop=0;
   });
 
-  const selected =
+  const selected=
     document.getElementById(
-      "page-"+page
+      "page-"+pageName
     );
 
   if(selected){
     selected.classList.add("active");
   }
 
-  menuLinks.forEach(link=>{
-    link.classList.remove("active");
+  menuItems.forEach(item=>{
 
-    if(link.dataset.page===page){
-      link.classList.add("active");
-    }
+    item.classList.toggle(
+      "active",
+      item.dataset.page===pageName
+    );
+
   });
 
   sideMenu.classList.remove("open");
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
 }
 
 
-menuLinks.forEach(link=>{
+menuItems.forEach(item=>{
 
-  link.addEventListener("click",()=>{
+  item.addEventListener("click",()=>{
 
     openPage(
-      link.dataset.page
+      item.dataset.page
     );
 
   });
@@ -1620,7 +1507,7 @@ const rollers={
 
   g2max:{
     name:"KuKirin G2 Max",
-    subtitle:"1000 W-os, nagy hatótávú roller",
+    subtitle:"1000 W-os nagy hatótávú roller",
     image:"g2max.webp",
     motor:"1000 W",
     battery:"48 V / 20,8 Ah",
@@ -1635,12 +1522,12 @@ const rollers={
     brake:"Tárcsafék",
     frame:"Alumínium",
     description:
-    "A G2 Max nagyobb akkumulátort és erősebb 1000 W-os motort kapott."
+    "A G2 Max nagyobb akkumulátorral és 1000 W-os motorral készült, ezért hosszabb utakhoz is jó választás lehet."
   },
 
   g2master:{
     name:"KuKirin G2 Master",
-    subtitle:"Kétmotoros 2000 W-os gép",
+    subtitle:"Kétmotoros 2000 W-os roller",
     image:"g2master.webp",
     motor:"2×1000 W",
     battery:"52 V / 20,8 Ah",
@@ -1655,7 +1542,7 @@ const rollers={
     brake:"Első + hátsó tárcsafék",
     frame:"Alumínium",
     description:
-    "A G2 Master két 1000 W-os motorral rendelkezik, ezért nagyobb gyorsulásra és emelkedőkre is képes."
+    "A G2 Master két 1000 W-os motorral rendelkezik, ezért erős gyorsulást és jó emelkedőképességet kínál."
   },
 
   g4:{
@@ -1675,7 +1562,7 @@ const rollers={
     brake:"Tárcsafék",
     frame:"Alumínium",
     description:
-    "A G4 nagy teljesítményű modell 2000 W-os motorral, 60 V 20 Ah akkumulátorral és 11 colos gumikkal."
+    "A G4 a KuKirin nagy teljesítményű modelljei közé tartozik, 2000 W-os motorral és 60 V-os rendszerrel."
   }
 
 };
@@ -1685,17 +1572,17 @@ const rollers={
    ROLLER VÁLTÁS
 ========================================================= */
 
-const rollerButtons =
-  document.querySelectorAll(".roller-button");
+const rollerButtons=
+document.querySelectorAll(".roller-button");
 
-const selectedImage =
-  document.getElementById("selectedImage");
+const selectedImage=
+document.getElementById("selectedImage");
 
-const placeholder =
-  document.getElementById("placeholder");
+const placeholder=
+document.getElementById("placeholder");
 
-const placeholderName =
-  document.getElementById("placeholderName");
+const placeholderName=
+document.getElementById("placeholderName");
 
 
 function showRoller(model){
@@ -1739,9 +1626,9 @@ rollerButtons.forEach(button=>{
 
   button.addEventListener("click",()=>{
 
-    rollerButtons.forEach(b=>{
-      b.classList.remove("active");
-    });
+    rollerButtons.forEach(b=>
+      b.classList.remove("active")
+    );
 
     button.classList.add("active");
 
@@ -1776,9 +1663,9 @@ document.querySelectorAll(".option")
       .querySelectorAll(
         `.option[data-q="${q}"]`
       )
-      .forEach(x=>{
-        x.classList.remove("selected");
-      });
+      .forEach(x=>
+        x.classList.remove("selected")
+      );
 
     option.classList.add("selected");
 
@@ -1814,7 +1701,7 @@ function calculateRecommendation(){
     result="g4";
 
     text=
-      "Neked a G4 lehet a megfelelő választás, ha nagy teljesítményt keresel.";
+      "Nagy teljesítményt és magas végsebességet keresel.";
 
   }
 
@@ -1826,7 +1713,7 @@ function calculateRecommendation(){
     result="g2master";
 
     text=
-      "A G2 Master kétmotoros rendszere miatt erősebb választás lehet terepre.";
+      "A kétmotoros G2 Master lehet számodra a legjobb választás.";
 
   }
 
@@ -1837,7 +1724,7 @@ function calculateRecommendation(){
     result="g2max";
 
     text=
-      "A G2 Max nagyobb akkumulátora miatt jó választás lehet hosszabb utakhoz.";
+      "A G2 Max jó választás lehet, ha a hatótáv fontos.";
 
   }
 
@@ -1848,7 +1735,7 @@ function calculateRecommendation(){
     result="g2pro";
 
     text=
-      "A G2 Pro lehet megfelelőbb, ha könnyebb és kezelhetőbb rollert szeretnél.";
+      "A G2 Pro lehet megfelelőbb, ha könnyebb gépet szeretnél.";
 
   }
 
@@ -1870,61 +1757,56 @@ function calculateRecommendation(){
    SPEEDOMETER
 ========================================================= */
 
-const slider =
-  document.getElementById("speedSlider");
+const slider=
+document.getElementById("speedSlider");
 
-const speedNumber =
-  document.getElementById("speedNumber");
+const speedNumber=
+document.getElementById("speedNumber");
 
-const speedometer =
-  document.querySelector(".speedometer");
+const needle=
+document.getElementById("needle");
 
 
 slider.addEventListener("input",()=>{
 
-  const value =
+  const value=
     Number(slider.value);
 
-  speedNumber.textContent =
-    value;
+  speedNumber.textContent=value;
 
-  const rotation =
+  const rotation=
     -65+(value/70)*130;
 
-  speedometer.style.setProperty(
-    "--rotation",
-    rotation+"deg"
-  );
+  needle.style.transform=
+    `translateX(-50%) rotate(${rotation}deg)`;
 
 });
 
 
 /* =========================================================
-   SZÍN KONFIGURÁTOR
+   CONFIGURÁTOR
 ========================================================= */
 
-const configImage =
-  document.getElementById("configImage");
+const configImage=
+document.getElementById("configImage");
 
-const canvas =
-  document.getElementById("canvas");
+const canvas=
+document.getElementById("canvas");
 
-const ctx =
-  canvas.getContext(
-    "2d",
-    {
-      willReadFrequently:true
-    }
-  );
+const ctx=
+canvas.getContext(
+  "2d",
+  {willReadFrequently:true}
+);
 
-const colorPicker =
-  document.getElementById("colorPicker");
+const colorPicker=
+document.getElementById("colorPicker");
 
-const colorCode =
-  document.getElementById("colorCode");
+const colorCode=
+document.getElementById("colorCode");
 
-const resetColor =
-  document.getElementById("resetColor");
+const resetColor=
+document.getElementById("resetColor");
 
 
 function hexToRgb(hex){
@@ -1949,8 +1831,12 @@ function rgbToHsv(r,g,b){
   g/=255;
   b/=255;
 
-  const max=Math.max(r,g,b);
-  const min=Math.min(r,g,b);
+  const max=
+    Math.max(r,g,b);
+
+  const min=
+    Math.min(r,g,b);
+
   const d=max-min;
 
   let h=0;
@@ -1985,10 +1871,13 @@ function rgbToHsv(r,g,b){
 function hsvToRgb(h,s,v){
 
   const i=Math.floor(h*6);
+
   const f=h*6-i;
 
   const p=v*(1-s);
+
   const q=v*(1-f*s);
+
   const t=v*(1-(1-f)*s);
 
   let r,g,b;
@@ -2044,7 +1933,7 @@ function hsvToRgb(h,s,v){
 
 function recolor(hex){
 
-  const target =
+  const target=
     hexToRgb(hex);
 
   if(!target)
@@ -2056,10 +1945,10 @@ function recolor(hex){
   )
     return;
 
-  canvas.width =
+  canvas.width=
     configImage.naturalWidth;
 
-  canvas.height =
+  canvas.height=
     configImage.naturalHeight;
 
   ctx.drawImage(
@@ -2070,7 +1959,7 @@ function recolor(hex){
     canvas.height
   );
 
-  const imageData =
+  const imageData=
     ctx.getImageData(
       0,
       0,
@@ -2078,16 +1967,14 @@ function recolor(hex){
       canvas.height
     );
 
-  const data =
-    imageData.data;
+  const data=imageData.data;
 
-  const targetHsv =
+  const targetHsv=
     rgbToHsv(
       target.r,
       target.g,
       target.b
     );
-
 
   for(
     let i=0;
@@ -2095,14 +1982,14 @@ function recolor(hex){
     i+=4
   ){
 
-    const hsv =
+    const hsv=
       rgbToHsv(
         data[i],
         data[i+1],
         data[i+2]
       );
 
-    const orange =
+    const orange=
       hsv.h>=0.005 &&
       hsv.h<=0.085 &&
       hsv.s>=0.35 &&
@@ -2110,7 +1997,7 @@ function recolor(hex){
 
     if(orange){
 
-      const rgb =
+      const rgb=
         hsvToRgb(
           targetHsv.h,
           targetHsv.s,
@@ -2156,7 +2043,7 @@ colorPicker.addEventListener(
   "input",
   ()=>{
 
-    colorCode.value =
+    colorCode.value=
       colorPicker.value.toUpperCase();
 
     recolor(
@@ -2171,15 +2058,14 @@ colorCode.addEventListener(
   "input",
   ()=>{
 
-    let value =
+    let value=
       colorCode.value.trim();
 
     if(!value.startsWith("#"))
       value="#"+value;
 
     if(
-      /^#[0-9A-Fa-f]{6}$/
-      .test(value)
+      /^#[0-9A-Fa-f]{6}$/.test(value)
     ){
 
       colorPicker.value=value;
@@ -2207,7 +2093,7 @@ resetColor.addEventListener(
 
 
 /* =========================================================
-   KEZDŐ ÁLLAPOT
+   KEZDŐÁLLAPOT
 ========================================================= */
 
 showRoller("g2");
