@@ -4,460 +4,217 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TXNC1 — KuKirin Rider</title>
+<title>TXNC1 — G2 Sticker Shop</title>
 
 <style>
-
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
 }
 
-html,body{
-  width:100%;
-  height:100%;
-  overflow:hidden;
-}
-
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#070707;
+  background:#080808;
   color:#fff;
 }
 
-/* =========================
-   BAL OLDALI MENÜ IKON
-========================= */
-
-.menu-button{
-  position:fixed;
-  left:18px;
-  top:18px;
-  width:48px;
-  height:48px;
-  z-index:2000;
-  border:1px solid #333;
-  border-radius:10px;
-  background:#111;
-  color:#fff;
-  font-size:24px;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transition:.2s;
-}
-
-.menu-button:hover{
-  background:#222;
-  transform:scale(1.05);
-}
-
-/* =========================
-   OLDALSÓ MENÜ
-========================= */
-
-.sidebar{
-  position:fixed;
-  left:-290px;
-  top:0;
-  width:270px;
-  height:100vh;
+header{
   background:#0b0b0b;
-  border-right:1px solid #292929;
-  z-index:1500;
-  padding:90px 20px 20px;
-  transition:.3s ease;
-  box-shadow:10px 0 40px rgba(0,0,0,.5);
+  border-bottom:1px solid #222;
+  position:sticky;
+  top:0;
+  z-index:10;
 }
 
-.sidebar.open{
-  left:0;
-}
-
-.sidebar-title{
-  font-size:25px;
-  font-weight:900;
-  letter-spacing:3px;
-  margin-bottom:25px;
-}
-
-.menu-item{
-  width:100%;
-  padding:15px;
-  margin-bottom:9px;
-  background:#111;
-  color:#fff;
-  border:1px solid #292929;
-  border-radius:8px;
-  text-align:left;
-  cursor:pointer;
-  font-size:15px;
-  font-weight:800;
-  transition:.2s;
-}
-
-.menu-item:hover{
-  background:#1b1b1b;
-  border-color:#555;
-}
-
-.menu-item.active{
-  background:#fff;
-  color:#000;
-}
-
-.overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  z-index:1400;
-  display:none;
-}
-
-.overlay.show{
-  display:block;
-}
-
-/* =========================
-   OLDALAK
-========================= */
-
-.page{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100vh;
-  display:none;
-  overflow-y:auto;
-  overflow-x:hidden;
-  padding:90px 7% 50px;
-}
-
-.page.active{
-  display:block;
-}
-
-/* =========================
-   FEJLÉC
-========================= */
-
-.page-header{
-  margin-bottom:30px;
-}
-
-.page-header .small{
-  color:#777;
-  font-size:12px;
-  letter-spacing:4px;
-  margin-bottom:8px;
-}
-
-.page-header h1{
-  font-size:clamp(40px,7vw,75px);
-  letter-spacing:-4px;
-  line-height:.9;
-}
-
-.page-header p{
-  color:#888;
-  margin-top:12px;
-  max-width:650px;
-}
-
-/* =========================
-   ROLLEREK
-========================= */
-
-.roller-selector{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:12px;
-  margin-bottom:25px;
-}
-
-.roller-button{
-  padding:20px 10px;
-  background:#111;
-  color:#fff;
-  border:1px solid #292929;
-  border-radius:10px;
-  font-size:15px;
-  font-weight:900;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.roller-button:hover{
-  transform:translateY(-3px);
-  border-color:#666;
-}
-
-.roller-button.active{
-  background:#fff;
-  color:#000;
-}
-
-.roller-showcase{
-  display:grid;
-  grid-template-columns:1.2fr 1fr;
-  gap:25px;
-}
-
-.roller-image-box{
-  min-height:450px;
-  border:1px solid #292929;
-  border-radius:15px;
-  background:
-    radial-gradient(
-      circle,
-      #292929,
-      #111 55%,
-      #080808
-    );
+.nav{
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
   display:flex;
+  justify-content:space-between;
   align-items:center;
-  justify-content:center;
-  overflow:hidden;
 }
 
-.roller-image{
-  width:100%;
-  max-height:450px;
-  object-fit:contain;
-}
-
-.placeholder{
-  text-align:center;
-  color:#666;
-}
-
-.placeholder strong{
-  display:block;
-  color:#aaa;
-  font-size:30px;
-  margin-bottom:5px;
-}
-
-.roller-details{
-  background:#0e0e0e;
-  border:1px solid #292929;
-  border-radius:15px;
-  padding:28px;
-}
-
-.roller-details h2{
-  font-size:38px;
-  letter-spacing:-2px;
-}
-
-.subtitle{
-  color:#777;
-  margin:5px 0 25px;
-}
-
-.info-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-}
-
-.info-card{
-  background:#151515;
-  border:1px solid #252525;
-  border-radius:8px;
-  padding:14px;
-}
-
-.label{
-  color:#666;
-  font-size:10px;
-  text-transform:uppercase;
-  letter-spacing:1px;
-}
-
-.value{
-  font-size:18px;
+.logo{
+  font-size:26px;
   font-weight:900;
+  letter-spacing:4px;
 }
 
-.description{
-  margin-top:18px;
-  padding:17px;
-  background:#111;
-  border:1px solid #252525;
-  border-radius:8px;
-  color:#999;
-}
-
-.description strong{
-  display:block;
-  color:#fff;
-  margin-bottom:6px;
-}
-
-.note{
-  color:#555;
-  font-size:11px;
-  margin-top:12px;
-}
-
-/* =========================
-   ÖSSZEHASONLÍTÁS
-========================= */
-
-.compare-wrap{
-  overflow:auto;
-}
-
-table{
-  width:100%;
-  min-width:800px;
-  border-collapse:collapse;
-  background:#101010;
-}
-
-th,td{
-  padding:15px;
-  border:1px solid #292929;
-  text-align:center;
-}
-
-th{
-  background:#181818;
-}
-
-td{
-  color:#999;
-}
-
-td:first-child{
-  color:#fff;
-  font-weight:bold;
-}
-
-/* =========================
-   TESZT
-========================= */
-
-.finder{
-  max-width:850px;
-}
-
-.question{
-  background:#111;
-  border:1px solid #292929;
-  border-radius:12px;
-  padding:22px;
-  margin-bottom:15px;
-}
-
-.question h3{
-  margin-bottom:15px;
-}
-
-.options{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
-
-.option{
-  padding:12px 18px;
-  background:#181818;
-  color:#fff;
-  border:1px solid #333;
+.cart{
+  background:#fff;
+  color:#000;
+  border:0;
+  padding:11px 17px;
   border-radius:7px;
+  font-weight:900;
   cursor:pointer;
-  font-weight:bold;
 }
 
-.option.selected{
-  background:#fff;
-  color:#000;
+.hero{
+  max-width:1200px;
+  margin:auto;
+  padding:80px 20px 55px;
 }
 
-.find-result{
-  display:none;
+.hero h1{
+  font-size:clamp(45px,8vw,90px);
+  line-height:.9;
+  letter-spacing:-5px;
+}
+
+.hero p{
   margin-top:20px;
-  padding:25px;
-  background:#fff;
-  color:#000;
-  border-radius:12px;
+  color:#888;
+  font-size:18px;
 }
 
-.find-result h2{
-  margin-bottom:8px;
-}
-
-/* =========================
-   CONFIG
-========================= */
-
-.config-box{
-  display:grid;
-  grid-template-columns:1.5fr 1fr;
-  gap:25px;
-}
-
-.config-image{
-  background:#111;
-  border:1px solid #292929;
-  border-radius:15px;
+.shop{
+  max-width:1200px;
+  margin:auto;
   padding:20px;
 }
 
-.config-image canvas{
-  display:block;
-  width:100%;
-  background:#fff;
-  border-radius:10px;
+.products{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
 }
 
-.config-control{
+.product{
   background:#111;
-  border:1px solid #292929;
-  border-radius:15px;
-  padding:25px;
+  border:1px solid #252525;
+  border-radius:14px;
+  overflow:hidden;
+  transition:.2s;
 }
 
-.config-control h2{
+.product:hover{
+  transform:translateY(-5px);
+  border-color:#555;
+}
+
+.product-image{
+  height:260px;
+  background:#181818;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:70px;
+}
+
+.product-info{
+  padding:22px;
+}
+
+.product h2{
+  font-size:21px;
   margin-bottom:8px;
 }
 
-.config-control p{
+.description{
   color:#777;
-  margin-bottom:20px;
+  font-size:14px;
+  min-height:42px;
 }
 
-.color-row{
-  display:flex;
-  gap:12px;
+.price{
+  font-size:25px;
+  font-weight:900;
+  margin:18px 0;
 }
 
-#colorPicker{
-  width:70px;
-  height:55px;
+.buy{
+  width:100%;
+  padding:14px;
+  background:#fff;
+  color:#000;
   border:0;
-  border-radius:8px;
+  border-radius:7px;
+  font-weight:900;
+  cursor:pointer;
+  font-size:15px;
+}
+
+.buy:hover{
+  background:#ddd;
+}
+
+footer{
+  margin-top:80px;
+  padding:35px;
+  text-align:center;
+  border-top:1px solid #222;
+  color:#555;
+}
+
+
+/* KOSÁR */
+
+.cart-panel{
+  position:fixed;
+  right:-420px;
+  top:0;
+  width:400px;
+  max-width:90%;
+  height:100vh;
+  background:#101010;
+  border-left:1px solid #333;
+  z-index:20;
+  padding:25px;
+  transition:.3s;
+  box-shadow:-10px 0 30px rgba(0,0,0,.5);
+}
+
+.cart-panel.open{
+  right:0;
+}
+
+.cart-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
+}
+
+.close{
+  background:none;
+  border:0;
+  color:#fff;
+  font-size:25px;
   cursor:pointer;
 }
 
-#colorCode{
-  width:100%;
-  background:#080808;
-  border:1px solid #333;
-  color:#fff;
-  border-radius:7px;
-  padding:15px;
-  font-size:16px;
+.cart-item{
+  border-bottom:1px solid #292929;
+  padding:15px 0;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
 }
 
-.reset{
+.cart-item small{
+  color:#888;
+}
+
+.remove{
+  background:none;
+  border:0;
+  color:#888;
+  cursor:pointer;
+}
+
+.total{
+  margin-top:25px;
+  font-size:25px;
+  font-weight:900;
+}
+
+.checkout{
   width:100%;
+  margin-top:20px;
   padding:15px;
-  margin-top:15px;
   border:0;
   border-radius:7px;
   background:#fff;
@@ -466,1718 +223,323 @@ td:first-child{
   cursor:pointer;
 }
 
-/* =========================
-   RÓLAM
-========================= */
-
-.about-card{
-  max-width:800px;
-  padding:35px;
-  background:#111;
-  border:1px solid #292929;
-  border-radius:15px;
-}
-
-.about-card h2{
-  font-size:35px;
-  margin-bottom:10px;
-}
-
-.about-card p{
-  color:#888;
-  font-size:17px;
-}
-
-/* =========================
-   SOCIAL
-========================= */
-
-.socials{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-}
-
-.social{
-  padding:30px;
-  background:#111;
-  border:1px solid #292929;
-  border-radius:12px;
-  color:#fff;
-  text-decoration:none;
-  transition:.2s;
-}
-
-.social:hover{
-  transform:translateY(-4px);
-  border-color:#666;
-}
-
-.social strong{
-  display:block;
-  font-size:24px;
-  margin-bottom:7px;
-}
-
-.social span{
+.empty{
   color:#777;
+  margin-top:20px;
 }
 
-/* =========================
-   MOBILE
-========================= */
 
-@media(max-width:1000px){
+/* MOBIL */
 
-  .roller-selector{
-    grid-template-columns:repeat(3,1fr);
-  }
+@media(max-width:800px){
 
-  .roller-showcase,
-  .config-box{
+  .products{
     grid-template-columns:1fr;
   }
 
-  .socials{
-    grid-template-columns:1fr;
-  }
-}
-
-@media(max-width:750px){
-
-  .page{
-    padding:85px 5% 35px;
+  .product-image{
+    height:230px;
   }
 
-  .roller-selector{
-    grid-template-columns:repeat(2,1fr);
+  .hero{
+    padding-top:55px;
   }
 
-  .roller-showcase{
-    gap:15px;
-  }
-
-  .roller-image-box{
-    min-height:280px;
-  }
-
-  .roller-details{
-    padding:20px;
-  }
-
-  .roller-details h2{
-    font-size:30px;
-  }
-
-  .info-grid{
-    grid-template-columns:1fr 1fr;
+  .hero h1{
+    letter-spacing:-3px;
   }
 
 }
-
-@media(max-width:450px){
-
-  .roller-button{
-    padding:16px 5px;
-    font-size:13px;
-  }
-
-  .info-grid{
-    grid-template-columns:1fr;
-  }
-
-  .sidebar{
-    width:250px;
-  }
-
-}
-
 </style>
 </head>
+
 
 <body>
 
 
-<!-- =========================
-     MENÜ GOMB
-========================= -->
+<header>
 
-<button
-  class="menu-button"
-  id="menuButton">
-  ☰
-</button>
+  <div class="nav">
 
-
-<!-- =========================
-     OLDALSÁV
-========================= -->
-
-<div
-  class="sidebar"
-  id="sidebar">
-
-  <div class="sidebar-title">
-    TXNC1
-  </div>
-
-  <button
-    class="menu-item active"
-    data-page="rollerek">
-    🛴 ROLLEREK
-  </button>
-
-  <button
-    class="menu-item"
-    data-page="compare">
-    ⚖️ ÖSSZEHASONLÍTÁS
-  </button>
-
-  <button
-    class="menu-item"
-    data-page="finder">
-    🔍 MELYIK KELL?
-  </button>
-
-  <button
-    class="menu-item"
-    data-page="config">
-    🎨 G2 CONFIG
-  </button>
-
-  <button
-    class="menu-item"
-    data-page="about">
-    👤 RÓLAM
-  </button>
-
-  <button
-    class="menu-item"
-    data-page="social">
-    📱 SOCIAL
-  </button>
-
-</div>
-
-<div
-  class="overlay"
-  id="overlay">
-</div>
-
-
-<!-- =====================================================
-     ROLLEREK OLDAL
-===================================================== -->
-
-<section
-  class="page active"
-  id="page-rollerek">
-
-  <div class="page-header">
-
-    <div class="small">
-      TXNC1 / KUKIRIN
-    </div>
-
-    <h1>
-      ROLLEREK
-    </h1>
-
-    <p>
-      Válassz ki egy KuKirin modellt, és nézd meg
-      a legfontosabb adatokat.
-    </p>
-
-  </div>
-
-
-  <div class="roller-selector">
-
-    <button
-      class="roller-button active"
-      data-model="g2">
-      G2
-    </button>
-
-    <button
-      class="roller-button"
-      data-model="g2pro">
-      G2 PRO
-    </button>
-
-    <button
-      class="roller-button"
-      data-model="g2max">
-      G2 MAX
-    </button>
-
-    <button
-      class="roller-button"
-      data-model="g2master">
-      G2 MASTER
-    </button>
-
-    <button
-      class="roller-button"
-      data-model="g4">
-      G4
-    </button>
-
-  </div>
-
-
-  <div class="roller-showcase">
-
-    <div class="roller-image-box">
-
-      <img
-        id="selectedImage"
-        class="roller-image"
-        src="g2.webp"
-        alt="KuKirin G2">
-
-      <div
-        id="placeholder"
-        class="placeholder"
-        style="display:none;">
-
-        <strong id="placeholderName">
-          G2
-        </strong>
-
-        A kép nem található.
-
-      </div>
-
-    </div>
-
-
-    <div class="roller-details">
-
-      <h2 id="modelName">
-        KuKirin G2
-      </h2>
-
-      <p
-        class="subtitle"
-        id="subtitle">
-        800 W-os off-road elektromos roller
-      </p>
-
-
-      <div class="info-grid">
-
-        <div class="info-card">
-          <div class="label">Motor</div>
-          <div class="value" id="motor">800 W</div>
-        </div>
-
-        <div class="info-card">
-          <div class="label">Akkumulátor</div>
-          <div class="value" id="battery">48 V / 15 Ah</div>
-        </div>
-
-        <div class="info-card">
-          <div class="label">Végsebesség</div>
-          <div class="value" id="speedValue">45 km/h</div>
-        </div>
-
-        <div class="info-card">
-          <div class="label">Hatótáv</div>
-          <div class="value" id="range">55 km</div>
-        </div>
-
-        <div class="info-card">
-          <div class="label">Kerék</div>
-          <div class="value" id="tires">10"</div>
-        </div>
-
-        <div class="info-card">
-          <div class="label">Tömeg</div>
-          <div class="value" id="weight">25,3 kg</div>
-        </div>
-
-        <div class="info-card">
-          <div class="label">Terhelés</div>
-          <div class="value" id="load">120 kg</div>
-        </div>
-
-        <div class="info-card">
-          <div class="label">Emelkedő</div>
-          <div class="value" id="climb">20°</div>
-        </div>
-
-        <div class="info-card">
-          <div class="label">Töltés</div>
-          <div class="value" id="charge">8–9 óra</div>
-        </div>
-
-        <div class="info-card">
-          <div class="label">Fék</div>
-          <div class="value" id="brake">Tárcsafék</div>
-        </div>
-
-        <div class="info-card">
-          <div class="label">Vízállóság</div>
-          <div class="value" id="water">IP54</div>
-        </div>
-
-        <div class="info-card">
-          <div class="label">Váz</div>
-          <div class="value" id="frame">Alumínium</div>
-        </div>
-
-      </div>
-
-
-      <div class="description">
-
-        <strong>Részletes leírás</strong>
-
-        <span id="description">
-          A KuKirin G2 egy 800 W-os elektromos roller.
-        </span>
-
-      </div>
-
-
-      <div class="note">
-        * Az adatok modell- és verziófüggők lehetnek.
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     ÖSSZEHASONLÍTÁS
-===================================================== -->
-
-<section
-  class="page"
-  id="page-compare">
-
-  <div class="page-header">
-
-    <div class="small">
-      TXNC1 / KUKIRIN
-    </div>
-
-    <h1>
-      COMPARE
-    </h1>
-
-    <p>
-      Hasonlítsd össze a KuKirin modelleket.
-    </p>
-
-  </div>
-
-
-  <div class="compare-wrap">
-
-    <table>
-
-      <tr>
-        <th>Adat</th>
-        <th>G2</th>
-        <th>G2 Pro</th>
-        <th>G2 Max</th>
-        <th>G2 Master</th>
-        <th>G4</th>
-      </tr>
-
-      <tr>
-        <td>Motor</td>
-        <td>800 W</td>
-        <td>600 W</td>
-        <td>1000 W</td>
-        <td>2×1000 W</td>
-        <td>2000 W</td>
-      </tr>
-
-      <tr>
-        <td>Feszültség</td>
-        <td>48 V</td>
-        <td>48 V</td>
-        <td>48 V</td>
-        <td>52 V</td>
-        <td>60 V</td>
-      </tr>
-
-      <tr>
-        <td>Akkumulátor</td>
-        <td>15 Ah</td>
-        <td>15,6 Ah</td>
-        <td>20,8 Ah</td>
-        <td>20,8 Ah</td>
-        <td>20 Ah</td>
-      </tr>
-
-      <tr>
-        <td>Végsebesség</td>
-        <td>45 km/h</td>
-        <td>45 km/h</td>
-        <td>55 km/h</td>
-        <td>60 km/h</td>
-        <td>70 km/h</td>
-      </tr>
-
-      <tr>
-        <td>Hatótáv</td>
-        <td>55 km</td>
-        <td>58 km</td>
-        <td>70 km</td>
-        <td>70 km</td>
-        <td>75 km</td>
-      </tr>
-
-      <tr>
-        <td>Kerék</td>
-        <td>10"</td>
-        <td>9"</td>
-        <td>10"</td>
-        <td>10"</td>
-        <td>11"</td>
-      </tr>
-
-      <tr>
-        <td>Tömeg</td>
-        <td>25,3 kg</td>
-        <td>25 kg</td>
-        <td>31,72 kg</td>
-        <td>33,1 kg</td>
-        <td>35,5 kg</td>
-      </tr>
-
-    </table>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     TESZT
-===================================================== -->
-
-<section
-  class="page"
-  id="page-finder">
-
-  <div class="page-header">
-
-    <div class="small">
-      TXNC1 / TEST
-    </div>
-
-    <h1>
-      MELYIK KELL?
-    </h1>
-
-    <p>
-      Válaszolj három kérdésre, és az oldal ajánl egy modellt.
-    </p>
-
-  </div>
-
-
-  <div class="finder">
-
-    <div class="question">
-
-      <h3>
-        1. Mire használnád?
-      </h3>
-
-      <div class="options">
-
-        <button
-          class="option"
-          data-q="use"
-          data-v="city">
-          🏙️ Város
-        </button>
-
-        <button
-          class="option"
-          data-q="use"
-          data-v="speed">
-          🏁 Sebesség
-        </button>
-
-        <button
-          class="option"
-          data-q="use"
-          data-v="offroad">
-          🏔️ Terep
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <div class="question">
-
-      <h3>
-        2. Mi a legfontosabb?
-      </h3>
-
-      <div class="options">
-
-        <button
-          class="option"
-          data-q="power"
-          data-v="range">
-          🔋 Hatótáv
-        </button>
-
-        <button
-          class="option"
-          data-q="power"
-          data-v="power">
-          ⚡ Erő
-        </button>
-
-        <button
-          class="option"
-          data-q="power"
-          data-v="light">
-          🪶 Könnyebb súly
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <div class="question">
-
-      <h3>
-        3. Mennyire fontos a sebesség?
-      </h3>
-
-      <div class="options">
-
-        <button
-          class="option"
-          data-q="speed"
-          data-v="low">
-          🙂 Nem nagyon
-        </button>
-
-        <button
-          class="option"
-          data-q="speed"
-          data-v="medium">
-          😎 Fontos
-        </button>
-
-        <button
-          class="option"
-          data-q="speed"
-          data-v="high">
-          🔥 Nagyon
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <div
-      class="find-result"
-      id="findResult">
-
-      <h2 id="resultTitle">
-        Neked a G4 ajánlott.
-      </h2>
-
-      <p id="resultText">
-        Nagy teljesítményű gépet keresel.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     CONFIG
-===================================================== -->
-
-<section
-  class="page"
-  id="page-config">
-
-  <div class="page-header">
-
-    <div class="small">
-      TXNC1 / CONFIG
-    </div>
-
-    <h1>
-      G2 CONFIG
-    </h1>
-
-    <p>
-      Válaszd ki, milyen színű legyen a roller.
-    </p>
-
-  </div>
-
-
-  <div class="config-box">
-
-    <div class="config-image">
-
-      <canvas id="canvas"></canvas>
-
-      <img
-        id="configImage"
-        src="g2.webp"
-        style="display:none"
-        alt="KuKirin G2">
-
-    </div>
-
-
-    <div class="config-control">
-
-      <h2>
-        SZÍN
-      </h2>
-
-      <p>
-        A roller narancssárga részeit tudod átszínezni.
-      </p>
-
-      <div class="color-row">
-
-        <input
-          type="color"
-          id="colorPicker"
-          value="#FF5A00">
-
-        <input
-          type="text"
-          id="colorCode"
-          value="#FF5A00"
-          maxlength="7">
-
-      </div>
-
-
-      <button
-        class="reset"
-        id="resetColor">
-        EREDETI SZÍN
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     RÓLAM
-===================================================== -->
-
-<section
-  class="page"
-  id="page-about">
-
-  <div class="page-header">
-
-    <div class="small">
+    <div class="logo">
       TXNC1
     </div>
 
-    <h1>
-      RÓLAM
-    </h1>
+    <button class="cart" onclick="openCart()">
+      🛒 KOSÁR (<span id="cartCount">0</span>)
+    </button>
 
   </div>
 
+</header>
 
-  <div class="about-card">
 
-    <h2>
-      TXNC1 — KUKIRIN RIDER
-    </h2>
+<section class="hero">
 
-    <p>
-      Freestyle, street, wheelie és minden,
-      ami elektromos rollerrel történik.
-    </p>
+  <h1>
+    G2<br>
+    STICKERS
+  </h1>
 
-  </div>
+  <p>
+    Matricák KuKirin G2-höz.
+  </p>
 
 </section>
 
 
-<!-- =====================================================
-     SOCIAL
-===================================================== -->
+<main class="shop">
 
-<section
-  class="page"
-  id="page-social">
+  <div class="products">
 
-  <div class="page-header">
 
-    <div class="small">
-      TXNC1 / SOCIAL
+    <!-- TERMÉK 1 -->
+
+    <div class="product">
+
+      <div class="product-image">
+        🛴
+      </div>
+
+      <div class="product-info">
+
+        <h2>G2 Street Sticker</h2>
+
+        <p class="description">
+          Fekete-fehér TXNC1 stílusú matrica.
+        </p>
+
+        <div class="price">
+          4 990 Ft
+        </div>
+
+        <button class="buy"
+          onclick="addToCart('G2 Street Sticker',4990)">
+          KOSÁRBA
+        </button>
+
+      </div>
+
     </div>
 
-    <h1>
-      SOCIAL
-    </h1>
 
-    <p>
-      Kövess a videókért és új projektekért.
-    </p>
+    <!-- TERMÉK 2 -->
+
+    <div class="product">
+
+      <div class="product-image">
+        ⚡
+      </div>
+
+      <div class="product-info">
+
+        <h2>G2 Racing Sticker</h2>
+
+        <p class="description">
+          Sportos racing dizájn KuKirin G2-höz.
+        </p>
+
+        <div class="price">
+          5 490 Ft
+        </div>
+
+        <button class="buy"
+          onclick="addToCart('G2 Racing Sticker',5490)">
+          KOSÁRBA
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- TERMÉK 3 -->
+
+    <div class="product">
+
+      <div class="product-image">
+        🔥
+      </div>
+
+      <div class="product-info">
+
+        <h2>G2 Custom Sticker</h2>
+
+        <p class="description">
+          Egyedi TXNC1 jellegű G2 matrica.
+        </p>
+
+        <div class="price">
+          6 490 Ft
+        </div>
+
+        <button class="buy"
+          onclick="addToCart('G2 Custom Sticker',6490)">
+          KOSÁRBA
+        </button>
+
+      </div>
+
+    </div>
+
 
   </div>
 
-
-  <div class="socials">
-
-    <a
-      class="social"
-      href="#"
-      target="_blank">
-
-      <strong>
-        TikTok
-      </strong>
-
-      <span>
-        Kövess a videókért
-      </span>
-
-    </a>
+</main>
 
 
-    <a
-      class="social"
-      href="#"
-      target="_blank">
+<!-- KOSÁR -->
 
-      <strong>
-        Instagram
-      </strong>
+<div class="cart-panel" id="cartPanel">
 
-      <span>
-        Street sessionök és képek
-      </span>
+  <div class="cart-header">
 
-    </a>
+    <h2>KOSÁR</h2>
 
-
-    <a
-      class="social"
-      href="#"
-      target="_blank">
-
-      <strong>
-        YouTube
-      </strong>
-
-      <span>
-        Hosszabb videók és projektek
-      </span>
-
-    </a>
+    <button class="close" onclick="closeCart()">
+      ×
+    </button>
 
   </div>
 
-</section>
+  <div id="cartItems"></div>
+
+  <div class="total">
+    Összesen: <span id="total">0</span> Ft
+  </div>
+
+  <button class="checkout" onclick="checkout()">
+    TOVÁBB A RENDELÉSHEZ
+  </button>
+
+</div>
+
+
+<footer>
+
+  © 2026 TXNC1 — G2 STICKER SHOP
+
+</footer>
 
 
 <script>
 
-/* =========================================================
-   MENÜ
-========================================================= */
-
-const menuButton =
-document.getElementById("menuButton");
-
-const sidebar =
-document.getElementById("sidebar");
-
-const overlay =
-document.getElementById("overlay");
-
-const menuItems =
-document.querySelectorAll(".menu-item");
-
-const pages =
-document.querySelectorAll(".page");
+let cart = [];
 
 
-function openMenu(){
+function addToCart(name,price){
 
-  sidebar.classList.add("open");
-  overlay.classList.add("show");
+  cart.push({
+    name:name,
+    price:price
+  });
+
+  updateCart();
 
 }
 
 
-function closeMenu(){
+function removeFromCart(index){
 
-  sidebar.classList.remove("open");
-  overlay.classList.remove("show");
+  cart.splice(index,1);
+
+  updateCart();
 
 }
 
 
-menuButton.addEventListener(
-  "click",
-  openMenu
-);
+function updateCart(){
+
+  document.getElementById("cartCount").textContent =
+    cart.length;
+
+  const items =
+    document.getElementById("cartItems");
+
+  const total =
+    document.getElementById("total");
+
+  items.innerHTML = "";
+
+  let sum = 0;
 
 
-overlay.addEventListener(
-  "click",
-  closeMenu
-);
+  if(cart.length === 0){
+
+    items.innerHTML =
+      '<p class="empty">A kosár üres.</p>';
+
+  }
 
 
-/* =========================================================
-   OLDALVÁLTÁS
-========================================================= */
+  cart.forEach((item,index)=>{
 
-menuItems.forEach(item=>{
+    sum += item.price;
 
-  item.addEventListener("click",()=>{
+    const div =
+      document.createElement("div");
 
-    const pageName =
-      item.dataset.page;
+    div.className = "cart-item";
 
+    div.innerHTML = `
+      <div>
+        <strong>${item.name}</strong><br>
+        <small>${item.price.toLocaleString("hu-HU")} Ft</small>
+      </div>
 
-    pages.forEach(page=>{
+      <button class="remove"
+        onclick="removeFromCart(${index})">
+        Törlés
+      </button>
+    `;
 
-      page.classList.remove("active");
-
-    });
-
-
-    const selectedPage =
-      document.getElementById(
-        "page-"+pageName
-      );
-
-
-    if(selectedPage){
-
-      selectedPage.classList.add("active");
-
-      /*
-        Mindig az oldal tetejére ugrunk.
-      */
-
-      selectedPage.scrollTop=0;
-
-    }
-
-
-    menuItems.forEach(button=>{
-
-      button.classList.remove("active");
-
-    });
-
-
-    item.classList.add("active");
-
-    closeMenu();
+    items.appendChild(div);
 
   });
 
-});
 
-
-/* =========================================================
-   ROLLER ADATOK
-========================================================= */
-
-const rollers={
-
-  g2:{
-    name:"KuKirin G2",
-    subtitle:"800 W-os off-road elektromos roller",
-    image:"g2.webp",
-    motor:"800 W",
-    battery:"48 V / 15 Ah",
-    speed:"45 km/h",
-    range:"55 km",
-    tires:'10"',
-    load:"120 kg",
-    climb:"20°",
-    charge:"8–9 óra",
-    weight:"25,3 kg",
-    water:"IP54",
-    brake:"Tárcsafék",
-    frame:"Alumínium",
-    description:
-    "A KuKirin G2 egy 800 W-os elektromos roller. Kompaktabb kialakítása miatt városi és könnyebb terepes használatra is alkalmas."
-  },
-
-  g2pro:{
-    name:"KuKirin G2 Pro",
-    subtitle:"600 W-os elektromos roller",
-    image:"g2pro.webp",
-    motor:"600 W",
-    battery:"48 V / 15,6 Ah",
-    speed:"45 km/h",
-    range:"58 km",
-    tires:'9"',
-    load:"120 kg",
-    climb:"19°",
-    charge:"7–8 óra",
-    weight:"25 kg",
-    water:"IP54",
-    brake:"Első + hátsó tárcsafék",
-    frame:"Alumínium",
-    description:
-    "A G2 Pro a G2 család egyik praktikus modellje. 600 W-os motorral és 48 V-os akkumulátorral rendelkezik."
-  },
-
-  g2max:{
-    name:"KuKirin G2 Max",
-    subtitle:"1000 W-os nagy hatótávú roller",
-    image:"g2max.webp",
-    motor:"1000 W",
-    battery:"48 V / 20,8 Ah",
-    speed:"55 km/h",
-    range:"70 km",
-    tires:'10"',
-    load:"120 kg",
-    climb:"22°",
-    charge:"10–11 óra",
-    weight:"31,72 kg",
-    water:"IP54",
-    brake:"Tárcsafék",
-    frame:"Alumínium",
-    description:
-    "A G2 Max erősebb motorral és nagyobb akkumulátorral rendelkezik, ezért hosszabb utakhoz és erősebb használathoz is érdekes választás."
-  },
-
-  g2master:{
-    name:"KuKirin G2 Master",
-    subtitle:"Kétmotoros 2000 W-os roller",
-    image:"g2master.webp",
-    motor:"2×1000 W",
-    battery:"52 V / 20,8 Ah",
-    speed:"60 km/h",
-    range:"70 km",
-    tires:'10"',
-    load:"120 kg",
-    climb:"28°",
-    charge:"7–8 óra",
-    weight:"33,1 kg",
-    water:"IP54",
-    brake:"Első + hátsó tárcsafék",
-    frame:"Alumínium",
-    description:
-    "A G2 Master két 1000 W-os motorral rendelkezik. A kétmotoros rendszer erősebb gyorsulást és jobb emelkedőképességet biztosít."
-  },
-
-  g4:{
-    name:"KuKirin G4",
-    subtitle:"2000 W-os nagy teljesítményű roller",
-    image:"g4.webp",
-    motor:"2000 W",
-    battery:"60 V / 20 Ah",
-    speed:"70 km/h",
-    range:"75 km",
-    tires:'11"',
-    load:"120 kg",
-    climb:"30°",
-    charge:"10–11 óra",
-    weight:"35,5 kg",
-    water:"IP54",
-    brake:"Tárcsafék",
-    frame:"Alumínium",
-    description:
-    "A G4 nagy teljesítményű KuKirin modell. 2000 W-os motorral, 60 V-os akkumulátorral és nagy méretű gumikkal rendelkezik."
-  }
-
-};
-
-
-/* =========================================================
-   ROLLER VÁLTÁS
-========================================================= */
-
-const rollerButtons =
-document.querySelectorAll(".roller-button");
-
-const selectedImage =
-document.getElementById("selectedImage");
-
-const placeholder =
-document.getElementById("placeholder");
-
-const placeholderName =
-document.getElementById("placeholderName");
-
-
-function showRoller(model){
-
-  const d =
-    rollers[model];
-
-  if(!d) return;
-
-
-  document.getElementById(
-    "modelName"
-  ).textContent=d.name;
-
-  document.getElementById(
-    "subtitle"
-  ).textContent=d.subtitle;
-
-  document.getElementById(
-    "motor"
-  ).textContent=d.motor;
-
-  document.getElementById(
-    "battery"
-  ).textContent=d.battery;
-
-  document.getElementById(
-    "speedValue"
-  ).textContent=d.speed;
-
-  document.getElementById(
-    "range"
-  ).textContent=d.range;
-
-  document.getElementById(
-    "tires"
-  ).textContent=d.tires;
-
-  document.getElementById(
-    "weight"
-  ).textContent=d.weight;
-
-  document.getElementById(
-    "load"
-  ).textContent=d.load;
-
-  document.getElementById(
-    "climb"
-  ).textContent=d.climb;
-
-  document.getElementById(
-    "charge"
-  ).textContent=d.charge;
-
-  document.getElementById(
-    "brake"
-  ).textContent=d.brake;
-
-  document.getElementById(
-    "water"
-  ).textContent=d.water;
-
-  document.getElementById(
-    "frame"
-  ).textContent=d.frame;
-
-  document.getElementById(
-    "description"
-  ).textContent=d.description;
-
-
-  selectedImage.style.display="block";
-  placeholder.style.display="none";
-
-  selectedImage.src=d.image;
-  selectedImage.alt=d.name;
-
-
-  selectedImage.onerror=()=>{
-
-    selectedImage.style.display="none";
-
-    placeholder.style.display="block";
-
-    placeholderName.textContent=d.name;
-
-  };
+  total.textContent =
+    sum.toLocaleString("hu-HU");
 
 }
 
 
-rollerButtons.forEach(button=>{
+function openCart(){
 
-  button.addEventListener(
-    "click",
-    ()=>{
-
-      rollerButtons.forEach(b=>{
-        b.classList.remove("active");
-      });
-
-      button.classList.add("active");
-
-      showRoller(
-        button.dataset.model
-      );
-
-    }
-  );
-
-});
-
-
-/* =========================================================
-   ROLLER TESZT
-========================================================= */
-
-const answers={
-  use:null,
-  power:null,
-  speed:null
-};
-
-
-document
-.querySelectorAll(".option")
-.forEach(option=>{
-
-  option.addEventListener(
-    "click",
-    ()=>{
-
-      const q =
-        option.dataset.q;
-
-
-      document
-      .querySelectorAll(
-        `.option[data-q="${q}"]`
-      )
-      .forEach(x=>{
-        x.classList.remove(
-          "selected"
-        );
-      });
-
-
-      option.classList.add(
-        "selected"
-      );
-
-
-      answers[q] =
-        option.dataset.v;
-
-
-      calculateRecommendation();
-
-    }
-  );
-
-});
-
-
-function calculateRecommendation(){
-
-  if(
-    !answers.use ||
-    !answers.power ||
-    !answers.speed
-  ){
-    return;
-  }
-
-
-  let result="g2";
-
-  let text=
-    "Jó választás lehet városi és hétköznapi használatra.";
-
-
-  if(
-    answers.speed==="high" ||
-    answers.power==="power"
-  ){
-
-    result="g4";
-
-    text=
-      "Nagy teljesítményű és gyors modellt keresel, ezért a G4 lehet számodra érdekes.";
-
-  }
-
-  else if(
-    answers.use==="offroad" &&
-    answers.power==="power"
-  ){
-
-    result="g2master";
-
-    text=
-      "Terepre és nagyobb erőre keresel rollert. A G2 Master kétmotoros rendszere miatt jó jelölt.";
-
-  }
-
-  else if(
-    answers.power==="range"
-  ){
-
-    result="g2max";
-
-    text=
-      "A nagyobb akkumulátor és hatótáv fontos számodra, ezért a G2 Max lehet jó választás.";
-
-  }
-
-  else if(
-    answers.power==="light"
-  ){
-
-    result="g2pro";
-
-    text=
-      "Ha fontosabb a könnyebb és kezelhetőbb gép, akkor a G2 Pro lehet megfelelőbb.";
-
-  }
-
-
-  const d =
-    rollers[result];
-
-
-  document.getElementById(
-    "resultTitle"
-  ).textContent=
-    "Neked a "+d.name+" ajánlott.";
-
-
-  document.getElementById(
-    "resultText"
-  ).textContent=text;
-
-
-  document.getElementById(
-    "findResult"
-  ).style.display="block";
+  document
+    .getElementById("cartPanel")
+    .classList.add("open");
 
 }
 
 
-/* =========================================================
-   G2 SZÍN CONFIG
-========================================================= */
+function closeCart(){
 
-const configImage =
-document.getElementById(
-  "configImage"
-);
-
-const canvas =
-document.getElementById(
-  "canvas"
-);
-
-const ctx =
-canvas.getContext(
-  "2d",
-  {willReadFrequently:true}
-);
-
-const colorPicker =
-document.getElementById(
-  "colorPicker"
-);
-
-const colorCode =
-document.getElementById(
-  "colorCode"
-);
-
-const resetColor =
-document.getElementById(
-  "resetColor"
-);
-
-
-function hexToRgb(hex){
-
-  hex =
-    hex.replace("#","");
-
-  if(hex.length!==6)
-    return null;
-
-
-  return{
-
-    r:parseInt(
-      hex.slice(0,2),
-      16
-    ),
-
-    g:parseInt(
-      hex.slice(2,4),
-      16
-    ),
-
-    b:parseInt(
-      hex.slice(4,6),
-      16
-    )
-
-  };
+  document
+    .getElementById("cartPanel")
+    .classList.remove("open");
 
 }
 
 
-function rgbToHsv(r,g,b){
+function checkout(){
 
-  r/=255;
-  g/=255;
-  b/=255;
+  if(cart.length === 0){
 
+    alert("A kosár üres!");
 
-  const max =
-    Math.max(r,g,b);
-
-  const min =
-    Math.min(r,g,b);
-
-  const d =
-    max-min;
-
-  let h=0;
-
-
-  if(d!==0){
-
-    if(max===r)
-      h=((g-b)/d)%6;
-
-    else if(max===g)
-      h=(b-r)/d+2;
-
-    else
-      h=(r-g)/d+4;
-
-
-    h/=6;
-
-
-    if(h<0)
-      h+=1;
-
-  }
-
-
-  return{
-
-    h:h,
-
-    s:
-      max===0
-      ?0
-      :d/max,
-
-    v:max
-
-  };
-
-}
-
-
-function hsvToRgb(h,s,v){
-
-  const i =
-    Math.floor(h*6);
-
-  const f =
-    h*6-i;
-
-  const p =
-    v*(1-s);
-
-  const q =
-    v*(1-f*s);
-
-  const t =
-    v*(1-(1-f)*s);
-
-
-  let r,g,b;
-
-
-  switch(i%6){
-
-    case 0:
-      r=v;
-      g=t;
-      b=p;
-      break;
-
-    case 1:
-      r=q;
-      g=v;
-      b=p;
-      break;
-
-    case 2:
-      r=p;
-      g=v;
-      b=t;
-      break;
-
-    case 3:
-      r=p;
-      g=q;
-      b=v;
-      break;
-
-    case 4:
-      r=t;
-      g=p;
-      b=v;
-      break;
-
-    case 5:
-      r=v;
-      g=p;
-      b=q;
-      break;
-
-  }
-
-
-  return{
-
-    r:Math.round(r*255),
-
-    g:Math.round(g*255),
-
-    b:Math.round(b*255)
-
-  };
-
-}
-
-
-function recolor(hex){
-
-  const target =
-    hexToRgb(hex);
-
-  if(!target)
     return;
 
-
-  if(
-    !configImage.naturalWidth ||
-    !configImage.naturalHeight
-  )
-    return;
-
-
-  canvas.width =
-    configImage.naturalWidth;
-
-  canvas.height =
-    configImage.naturalHeight;
-
-
-  ctx.clearRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-
-
-  ctx.drawImage(
-    configImage,
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-
-
-  const imageData =
-    ctx.getImageData(
-      0,
-      0,
-      canvas.width,
-      canvas.height
-    );
-
-
-  const data =
-    imageData.data;
-
-
-  const targetHsv =
-    rgbToHsv(
-      target.r,
-      target.g,
-      target.b
-    );
-
-
-  for(
-    let i=0;
-    i<data.length;
-    i+=4
-  ){
-
-    const hsv =
-      rgbToHsv(
-        data[i],
-        data[i+1],
-        data[i+2]
-      );
-
-
-    const orange =
-      hsv.h>=0.005 &&
-      hsv.h<=0.085 &&
-      hsv.s>=0.35 &&
-      hsv.v>=0.20;
-
-
-    if(orange){
-
-      const rgb =
-        hsvToRgb(
-          targetHsv.h,
-          targetHsv.s,
-          hsv.v
-        );
-
-
-      data[i]=rgb.r;
-      data[i+1]=rgb.g;
-      data[i+2]=rgb.b;
-
-    }
-
   }
 
-
-  ctx.putImageData(
-    imageData,
-    0,
-    0
+  alert(
+    "A rendelési folyamat itt indulna el."
   );
 
 }
 
 
-configImage.onload=()=>{
-
-  recolor(
-    colorPicker.value
-  );
-
-};
-
-
-if(configImage.complete){
-
-  recolor(
-    colorPicker.value
-  );
-
-}
-
-
-colorPicker.addEventListener(
-  "input",
-  ()=>{
-
-    colorCode.value =
-      colorPicker.value.toUpperCase();
-
-    recolor(
-      colorPicker.value
-    );
-
-  }
-);
-
-
-colorCode.addEventListener(
-  "input",
-  ()=>{
-
-    let value =
-      colorCode.value.trim();
-
-
-    if(
-      !value.startsWith("#")
-    ){
-
-      value="#"+value;
-
-    }
-
-
-    if(
-      /^#[0-9A-Fa-f]{6}$/
-      .test(value)
-    ){
-
-      colorPicker.value =
-        value;
-
-      recolor(value);
-
-    }
-
-  }
-);
-
-
-resetColor.addEventListener(
-  "click",
-  ()=>{
-
-    colorPicker.value =
-      "#FF5A00";
-
-    colorCode.value =
-      "#FF5A00";
-
-    recolor(
-      "#FF5A00"
-    );
-
-  }
-);
-
-
-/* =========================================================
-   KEZDŐ ÁLLAPOT
-========================================================= */
-
-showRoller("g2");
+updateCart();
 
 </script>
 
