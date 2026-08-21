@@ -167,41 +167,16 @@ body {
     line-height: 0;
 }
 
-.scooter-base {
+#scooterCanvas {
     display: block;
     width: 100%;
     height: auto;
-}
-
-/* CSAK A G2+ MATRICÁT SZÍNEZZÜK */
-
-.sticker-color {
-    position: absolute;
-    inset: 0;
-
-    background: #6A0DAD;
-
-    -webkit-mask-image: url("g2_sticker_mask.png");
-    mask-image: url("g2_sticker_mask.png");
-
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
-
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-
-    mix-blend-mode: color;
-
-    pointer-events: none;
-
-    transition: background 0.25s ease;
 }
 
 /* TERMÉK */
 
 .product-info {
     margin-top: 25px;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -351,21 +326,10 @@ footer {
 
     <div class="nav-links">
 
-        <a href="#">
-            Home
-        </a>
-
-        <a href="#">
-            Stickers
-        </a>
-
-        <a href="#">
-            About
-        </a>
-
-        <a href="#">
-            Contact
-        </a>
+        <a href="#">Home</a>
+        <a href="#">Stickers</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
 
     </div>
 
@@ -395,7 +359,6 @@ footer {
 
     <div class="shop">
 
-
         <!-- BAL OLDAL -->
 
         <section>
@@ -404,9 +367,7 @@ footer {
                 Choose your sticker color
             </div>
 
-
             <div class="color-grid">
-
 
                 <div
                     class="color active"
@@ -415,14 +376,12 @@ footer {
                     data-name="Royal Purple">
                 </div>
 
-
                 <div
                     class="color"
                     style="background:#ff003c"
                     data-color="#ff003c"
                     data-name="Red">
                 </div>
-
 
                 <div
                     class="color"
@@ -431,14 +390,12 @@ footer {
                     data-name="Orange">
                 </div>
 
-
                 <div
                     class="color"
                     style="background:#ffd000"
                     data-color="#ffd000"
                     data-name="Yellow">
                 </div>
-
 
                 <div
                     class="color"
@@ -447,14 +404,12 @@ footer {
                     data-name="Green">
                 </div>
 
-
                 <div
                     class="color"
                     style="background:#00d5ff"
                     data-color="#00d5ff"
                     data-name="Cyan">
                 </div>
-
 
                 <div
                     class="color"
@@ -463,7 +418,6 @@ footer {
                     data-name="Blue">
                 </div>
 
-
                 <div
                     class="color"
                     style="background:#ffffff"
@@ -471,14 +425,12 @@ footer {
                     data-name="White">
                 </div>
 
-
                 <div
                     class="color"
                     style="background:#111111"
                     data-color="#111111"
                     data-name="Black">
                 </div>
-
 
                 <div
                     class="color"
@@ -488,7 +440,6 @@ footer {
                 </div>
 
             </div>
-
 
             <div class="color-name">
 
@@ -512,25 +463,9 @@ footer {
                     ● LIVE PREVIEW
                 </div>
 
-
                 <div class="scooter-preview">
 
-
-                    <!-- AZ ÁLTALAD KÜLDÖTT ROLLERKÉP -->
-
-                    <img
-                        src="1000035270.jpg"
-                        class="scooter-base"
-                        alt="KuKirin G2"
-                    >
-
-
-                    <!-- CSAK A G2+ MATRICÁT SZÍNEZZÜK -->
-
-                    <div
-                        id="stickerColor"
-                        class="sticker-color">
-                    </div>
+                    <canvas id="scooterCanvas"></canvas>
 
                 </div>
 
@@ -552,7 +487,6 @@ footer {
                     </div>
 
                 </div>
-
 
                 <div class="price">
                     €30
@@ -607,63 +541,233 @@ footer {
 
 <script>
 
-/* VÁLTOZÓK */
+/*
+    A KÉP KÖZVETLENÜL A HTML-BEN VAN.
+    NEM KELL KÜLÖN JPG FÁJL.
+*/
+
+const imageData = "data:image/jpeg;base64,REPLACE_WITH_IMAGE_DATA";
+
+
+const canvas =
+    document.getElementById("scooterCanvas");
+
+const ctx =
+    canvas.getContext("2d", {
+        willReadFrequently: true
+    });
+
+const img =
+    new Image();
+
+let original = null;
 
 let cart = 0;
 
-const colors =
-    document.querySelectorAll(".color");
 
-const stickerColor =
-    document.getElementById("stickerColor");
+/* KÉP BETÖLTÉSE */
 
-const colorName =
-    document.getElementById("colorName");
+img.onload = function() {
 
-const cartCount =
-    document.getElementById("cartCount");
+    canvas.width =
+        img.naturalWidth;
 
-const cartMessage =
-    document.getElementById("cartMessage");
+    canvas.height =
+        img.naturalHeight;
+
+    ctx.drawImage(
+        img,
+        0,
+        0
+    );
+
+    original =
+        ctx.getImageData(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+    recolor("#6A0DAD");
+
+};
+
+img.src = imageData;
 
 
-/* KEZDŐ SZÍN */
+/* HEX → RGB */
 
-stickerColor.style.background =
-    "#6A0DAD";
+function hexToRgb(hex) {
+
+    hex =
+        hex.replace("#", "");
+
+    return {
+
+        r: parseInt(
+            hex.substring(0, 2),
+            16
+        ),
+
+        g: parseInt(
+            hex.substring(2, 4),
+            16
+        ),
+
+        b: parseInt(
+            hex.substring(4, 6),
+            16
+        )
+
+    };
+
+}
+
+
+/*
+    A FOTÓN LÉVŐ NARANCS SZÍNŰ
+    G2 MATRICA FELISMERÉSE
+*/
+
+function recolor(hex) {
+
+    if (!original)
+        return;
+
+
+    const target =
+        hexToRgb(hex);
+
+
+    const data =
+        new Uint8ClampedArray(
+            original.data
+        );
+
+
+    for (
+        let i = 0;
+        i < data.length;
+        i += 4
+    ) {
+
+        const r =
+            data[i];
+
+        const g =
+            data[i + 1];
+
+        const b =
+            data[i + 2];
+
+
+        const orange =
+            r > 145 &&
+            g > 35 &&
+            g < 185 &&
+            b < 100 &&
+            (r - g) > 35 &&
+            (g - b) > 20;
+
+
+        if (orange) {
+
+            const brightness =
+                Math.max(
+                    r,
+                    g,
+                    b
+                ) / 255;
+
+
+            const multiplier =
+                0.55 +
+                brightness * 0.55;
+
+
+            data[i] =
+                Math.min(
+                    255,
+                    target.r * multiplier
+                );
+
+
+            data[i + 1] =
+                Math.min(
+                    255,
+                    target.g * multiplier
+                );
+
+
+            data[i + 2] =
+                Math.min(
+                    255,
+                    target.b * multiplier
+                );
+
+        }
+
+    }
+
+
+    ctx.putImageData(
+
+        new ImageData(
+            data,
+            canvas.width,
+            canvas.height
+        ),
+
+        0,
+        0
+
+    );
+
+}
 
 
 /* SZÍNVÁLTÁS */
 
-colors.forEach(color => {
+document
+    .querySelectorAll(".color")
+    .forEach(color => {
 
-    color.addEventListener("click", () => {
+        color.addEventListener(
+            "click",
+            () => {
 
+                document
+                    .querySelectorAll(".color")
+                    .forEach(c => {
 
-        colors.forEach(c => {
+                        c.classList
+                            .remove("active");
 
-            c.classList.remove("active");
-
-        });
-
-
-        color.classList.add("active");
-
-
-        const selectedColor =
-            color.dataset.color;
-
-
-        stickerColor.style.background =
-            selectedColor;
+                    });
 
 
-        colorName.textContent =
-            color.dataset.name;
+                color.classList
+                    .add("active");
+
+
+                document
+                    .getElementById(
+                        "colorName"
+                    )
+                    .textContent =
+                    color.dataset.name;
+
+
+                recolor(
+                    color.dataset.color
+                );
+
+            }
+
+        );
 
     });
-
-});
 
 
 /* KOSÁRBA RAKÁS */
@@ -672,17 +776,34 @@ function addToCart() {
 
     cart++;
 
-    cartCount.textContent =
+
+    document
+        .getElementById(
+            "cartCount"
+        )
+        .textContent =
         cart;
 
-    cartMessage.classList.add("show");
+
+    const message =
+        document.getElementById(
+            "cartMessage"
+        );
 
 
-    setTimeout(() => {
+    message.classList
+        .add("show");
 
-        cartMessage.classList.remove("show");
 
-    }, 2500);
+    setTimeout(
+        () => {
+
+            message.classList
+                .remove("show");
+
+        },
+        2500
+    );
 
 }
 
