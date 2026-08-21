@@ -4,542 +4,647 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TXNC1 — G2 Sticker Shop</title>
+<title>TXNC1 — Build Your G2 Set</title>
 
 <style>
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#080808;
-  color:#fff;
+    background:#050505;
+    color:#fff;
+    font-family:Arial, Helvetica, sans-serif;
+    min-height:100vh;
 }
+
+/* HEADER */
 
 header{
-  background:#0b0b0b;
-  border-bottom:1px solid #222;
-  position:sticky;
-  top:0;
-  z-index:10;
-}
-
-.nav{
-  max-width:1200px;
-  margin:auto;
-  padding:20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+    height:75px;
+    border-bottom:1px solid #202020;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6%;
+    background:#050505;
+    position:sticky;
+    top:0;
+    z-index:20;
 }
 
 .logo{
-  font-size:26px;
-  font-weight:900;
-  letter-spacing:4px;
+    font-size:23px;
+    font-weight:900;
+    letter-spacing:4px;
+}
+
+nav{
+    display:flex;
+    gap:30px;
+}
+
+nav a{
+    color:#888;
+    text-decoration:none;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+nav a:hover{
+    color:white;
 }
 
 .cart{
-  background:#fff;
-  color:#000;
-  border:0;
-  padding:11px 17px;
-  border-radius:7px;
-  font-weight:900;
-  cursor:pointer;
+    border:1px solid #333;
+    padding:11px 17px;
+    border-radius:8px;
+    font-size:13px;
 }
 
-.hero{
-  max-width:1200px;
-  margin:auto;
-  padding:80px 20px 55px;
+/* MAIN */
+
+.container{
+    max-width:1400px;
+    margin:auto;
+    padding:70px 6%;
 }
 
-.hero h1{
-  font-size:clamp(45px,8vw,90px);
-  line-height:.9;
-  letter-spacing:-5px;
+.top-text{
+    margin-bottom:45px;
 }
 
-.hero p{
-  margin-top:20px;
-  color:#888;
-  font-size:18px;
+.small-title{
+    color:#666;
+    font-size:10px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    margin-bottom:15px;
 }
 
-.shop{
-  max-width:1200px;
-  margin:auto;
-  padding:20px;
-}
-
-.products{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-
-.product{
-  background:#111;
-  border:1px solid #252525;
-  border-radius:14px;
-  overflow:hidden;
-  transition:.2s;
-}
-
-.product:hover{
-  transform:translateY(-5px);
-  border-color:#555;
-}
-
-.product-image{
-  height:260px;
-  background:#181818;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:70px;
-}
-
-.product-info{
-  padding:22px;
-}
-
-.product h2{
-  font-size:21px;
-  margin-bottom:8px;
+h1{
+    font-size:clamp(40px,6vw,76px);
+    line-height:.95;
+    letter-spacing:-4px;
 }
 
 .description{
-  color:#777;
-  font-size:14px;
-  min-height:42px;
+    color:#777;
+    max-width:500px;
+    margin-top:20px;
+    line-height:1.6;
+}
+
+/* SHOP */
+
+.shop{
+    display:grid;
+    grid-template-columns:45% 55%;
+    gap:45px;
+}
+
+/* LEFT */
+
+.panel{
+    background:#090909;
+    border:1px solid #1e1e1e;
+    border-radius:16px;
+    padding:30px;
+}
+
+.panel-title{
+    font-size:12px;
+    color:#555;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:10px;
+}
+
+.panel h2{
+    font-size:34px;
+    margin-bottom:30px;
+}
+
+.search{
+    width:100%;
+    background:#111;
+    border:1px solid #242424;
+    border-radius:8px;
+    padding:15px;
+    color:white;
+    outline:none;
+    margin-bottom:25px;
+}
+
+.search:focus{
+    border-color:#555;
+}
+
+/* COLORS */
+
+.colors{
+    display:grid;
+    grid-template-columns:repeat(8,1fr);
+    gap:13px;
+    margin-bottom:30px;
+}
+
+.color{
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    border:2px solid #222;
+    cursor:pointer;
+    transition:.2s;
+    position:relative;
+}
+
+.color:hover{
+    transform:scale(1.12);
+}
+
+.color.selected{
+    outline:2px solid white;
+    outline-offset:4px;
+}
+
+/* SELECTED */
+
+.selected-box{
+    border-top:1px solid #222;
+    padding-top:25px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.selected-name{
+    color:#aaa;
+}
+
+.hex{
+    font-family:monospace;
+    color:white;
+}
+
+/* RIGHT PREVIEW */
+
+.preview{
+    background:#eee;
+    min-height:500px;
+    border-radius:16px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.preview-label{
+    position:absolute;
+    top:20px;
+    left:25px;
+    color:#888;
+    font-size:10px;
+    letter-spacing:3px;
+}
+
+.preview-size{
+    position:absolute;
+    top:20px;
+    right:25px;
+    color:#888;
+    font-size:10px;
+}
+
+/* STICKER */
+
+.sticker{
+    width:82%;
+    height:180px;
+    position:relative;
+    transition:.3s;
+}
+
+.g2{
+    position:absolute;
+    right:0;
+    top:15px;
+    font-size:100px;
+    font-weight:1000;
+    letter-spacing:-10px;
+    color:var(--sticker-color);
+}
+
+.square{
+    position:absolute;
+    background:var(--sticker-color);
+}
+
+.s1{
+    width:32px;
+    height:32px;
+    left:0;
+    top:80px;
+}
+
+.s2{
+    width:45px;
+    height:45px;
+    left:55px;
+    top:65px;
+}
+
+.s3{
+    width:25px;
+    height:25px;
+    left:120px;
+    top:105px;
+}
+
+.s4{
+    width:70px;
+    height:25px;
+    left:150px;
+    top:40px;
+    transform:skew(-25deg);
+}
+
+/* PRODUCT */
+
+.product-info{
+    margin-top:35px;
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.product-info h3{
+    font-size:25px;
+}
+
+.product-info p{
+    color:#666;
+    margin-top:8px;
+    font-size:13px;
 }
 
 .price{
-  font-size:25px;
-  font-weight:900;
-  margin:18px 0;
+    font-size:28px;
+    font-weight:bold;
 }
 
+/* BUTTON */
+
 .buy{
-  width:100%;
-  padding:14px;
-  background:#fff;
-  color:#000;
-  border:0;
-  border-radius:7px;
-  font-weight:900;
-  cursor:pointer;
-  font-size:15px;
+    width:100%;
+    margin-top:25px;
+    background:white;
+    color:black;
+    border:none;
+    padding:18px;
+    border-radius:9px;
+    font-size:14px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
 }
 
 .buy:hover{
-  background:#ddd;
+    background:#ccc;
+    transform:translateY(-2px);
 }
 
-footer{
-  margin-top:80px;
-  padding:35px;
-  text-align:center;
-  border-top:1px solid #222;
-  color:#555;
+/* MESSAGE */
+
+.message{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    background:white;
+    color:black;
+    padding:15px 20px;
+    border-radius:8px;
+    font-size:13px;
+    transform:translateY(100px);
+    transition:.3s;
+    z-index:50;
 }
 
-
-/* KOSÁR */
-
-.cart-panel{
-  position:fixed;
-  right:-420px;
-  top:0;
-  width:400px;
-  max-width:90%;
-  height:100vh;
-  background:#101010;
-  border-left:1px solid #333;
-  z-index:20;
-  padding:25px;
-  transition:.3s;
-  box-shadow:-10px 0 30px rgba(0,0,0,.5);
+.message.show{
+    transform:translateY(0);
 }
 
-.cart-panel.open{
-  right:0;
-}
+/* MOBILE */
 
-.cart-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:25px;
-}
+@media(max-width:850px){
 
-.close{
-  background:none;
-  border:0;
-  color:#fff;
-  font-size:25px;
-  cursor:pointer;
-}
+    header{
+        padding:0 20px;
+    }
 
-.cart-item{
-  border-bottom:1px solid #292929;
-  padding:15px 0;
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-}
+    nav{
+        display:none;
+    }
 
-.cart-item small{
-  color:#888;
-}
+    .container{
+        padding:45px 20px;
+    }
 
-.remove{
-  background:none;
-  border:0;
-  color:#888;
-  cursor:pointer;
-}
+    .shop{
+        grid-template-columns:1fr;
+    }
 
-.total{
-  margin-top:25px;
-  font-size:25px;
-  font-weight:900;
-}
+    .colors{
+        grid-template-columns:repeat(6,1fr);
+    }
 
-.checkout{
-  width:100%;
-  margin-top:20px;
-  padding:15px;
-  border:0;
-  border-radius:7px;
-  background:#fff;
-  color:#000;
-  font-weight:900;
-  cursor:pointer;
-}
+    .preview{
+        min-height:350px;
+    }
 
-.empty{
-  color:#777;
-  margin-top:20px;
-}
+    .sticker{
+        transform:scale(.75);
+    }
 
-
-/* MOBIL */
-
-@media(max-width:800px){
-
-  .products{
-    grid-template-columns:1fr;
-  }
-
-  .product-image{
-    height:230px;
-  }
-
-  .hero{
-    padding-top:55px;
-  }
-
-  .hero h1{
-    letter-spacing:-3px;
-  }
-
+    h1{
+        letter-spacing:-2px;
+    }
 }
 </style>
 </head>
 
-
 <body>
-
 
 <header>
 
-  <div class="nav">
+    <div class="logo">TXNC1</div>
 
-    <div class="logo">
-      TXNC1
+    <nav>
+        <a href="#">Shop</a>
+        <a href="#">G2</a>
+        <a href="#">About</a>
+    </nav>
+
+    <div class="cart">
+        🛒 CART <span id="cartCount">0</span>
     </div>
-
-    <button class="cart" onclick="openCart()">
-      🛒 KOSÁR (<span id="cartCount">0</span>)
-    </button>
-
-  </div>
 
 </header>
 
 
-<section class="hero">
+<main class="container">
 
-  <h1>
-    G2<br>
-    STICKERS
-  </h1>
+    <div class="top-text">
 
-  <p>
-    Matricák KuKirin G2-höz.
-  </p>
-
-</section>
-
-
-<main class="shop">
-
-  <div class="products">
-
-
-    <!-- TERMÉK 1 -->
-
-    <div class="product">
-
-      <div class="product-image">
-        🛴
-      </div>
-
-      <div class="product-info">
-
-        <h2>G2 Street Sticker</h2>
-
-        <p class="description">
-          Fekete-fehér TXNC1 stílusú matrica.
-        </p>
-
-        <div class="price">
-          4 990 Ft
+        <div class="small-title">
+            01 / Customize
         </div>
 
-        <button class="buy"
-          onclick="addToCart('G2 Street Sticker',4990)">
-          KOSÁRBA
-        </button>
+        <h1>
+            Build your<br>
+            G2 set.
+        </h1>
 
-      </div>
+        <p class="description">
+            Válaszd ki a matricád színét, és készítsd el
+            a saját Kukirin G2 sticker szetted.
+        </p>
 
     </div>
 
 
-    <!-- TERMÉK 2 -->
+    <section class="shop">
 
-    <div class="product">
+        <!-- BAL OLDAL -->
 
-      <div class="product-image">
-        ⚡
-      </div>
+        <div class="panel">
 
-      <div class="product-info">
+            <div class="panel-title">
+                Build your set
+            </div>
 
-        <h2>G2 Racing Sticker</h2>
+            <h2>
+                Choose your color.
+            </h2>
 
-        <p class="description">
-          Sportos racing dizájn KuKirin G2-höz.
-        </p>
+            <input
+                class="search"
+                id="search"
+                type="text"
+                placeholder="Search a color..."
+            >
 
-        <div class="price">
-          5 490 Ft
+            <div class="colors" id="colors">
+
+                <div class="color selected" data-name="Royal Purple" data-hex="#6A0DAD" style="background:#6A0DAD"></div>
+
+                <div class="color" data-name="White" data-hex="#FFFFFF" style="background:#FFFFFF"></div>
+
+                <div class="color" data-name="Red" data-hex="#E50914" style="background:#E50914"></div>
+
+                <div class="color" data-name="Orange" data-hex="#FF5A00" style="background:#FF5A00"></div>
+
+                <div class="color" data-name="Yellow" data-hex="#FFD600" style="background:#FFD600"></div>
+
+                <div class="color" data-name="Lime" data-hex="#7CFC00" style="background:#7CFC00"></div>
+
+                <div class="color" data-name="Green" data-hex="#00A651" style="background:#00A651"></div>
+
+                <div class="color" data-name="Cyan" data-hex="#00D9FF" style="background:#00D9FF"></div>
+
+                <div class="color" data-name="Blue" data-hex="#0066FF" style="background:#0066FF"></div>
+
+                <div class="color" data-name="Pink" data-hex="#FF1493" style="background:#FF1493"></div>
+
+                <div class="color" data-name="Hot Pink" data-hex="#FF007F" style="background:#FF007F"></div>
+
+                <div class="color" data-name="Purple" data-hex="#8A2BE2" style="background:#8A2BE2"></div>
+
+                <div class="color" data-name="Black" data-hex="#050505" style="background:#050505"></div>
+
+                <div class="color" data-name="Grey" data-hex="#777777" style="background:#777"></div>
+
+                <div class="color" data-name="Gold" data-hex="#D4AF37" style="background:#D4AF37"></div>
+
+                <div class="color" data-name="Brown" data-hex="#704214" style="background:#704214"></div>
+
+            </div>
+
+
+            <div class="selected-box">
+
+                <div>
+                    <div class="small-title">
+                        Selected
+                    </div>
+
+                    <div class="selected-name" id="selectedName">
+                        Royal Purple
+                    </div>
+                </div>
+
+                <div class="hex" id="hex">
+                    #6A0DAD
+                </div>
+
+            </div>
+
         </div>
 
-        <button class="buy"
-          onclick="addToCart('G2 Racing Sticker',5490)">
-          KOSÁRBA
-        </button>
 
-      </div>
+        <!-- JOBB OLDAL -->
 
-    </div>
+        <div>
+
+            <div class="preview">
+
+                <div class="preview-label">
+                    LIVE PREVIEW
+                </div>
+
+                <div class="preview-size">
+                    145 × 30 mm
+                </div>
 
 
-    <!-- TERMÉK 3 -->
+                <div class="sticker" id="sticker">
 
-    <div class="product">
+                    <div class="square s1"></div>
+                    <div class="square s2"></div>
+                    <div class="square s3"></div>
+                    <div class="square s4"></div>
 
-      <div class="product-image">
-        🔥
-      </div>
+                    <div class="g2">
+                        G2
+                    </div>
 
-      <div class="product-info">
+                </div>
 
-        <h2>G2 Custom Sticker</h2>
+            </div>
 
-        <p class="description">
-          Egyedi TXNC1 jellegű G2 matrica.
-        </p>
 
-        <div class="price">
-          6 490 Ft
+            <div class="product-info">
+
+                <div>
+                    <h3>
+                        Full Kukirin G2 sticker set
+                    </h3>
+
+                    <p>
+                        Egyedi szín • 145 × 30 mm
+                    </p>
+                </div>
+
+                <div class="price">
+                    €30
+                </div>
+
+            </div>
+
+
+            <button class="buy" onclick="addToCart()">
+                ADD TO CART — €30
+            </button>
+
         </div>
 
-        <button class="buy"
-          onclick="addToCart('G2 Custom Sticker',6490)">
-          KOSÁRBA
-        </button>
-
-      </div>
-
-    </div>
-
-
-  </div>
+    </section>
 
 </main>
 
 
-<!-- KOSÁR -->
-
-<div class="cart-panel" id="cartPanel">
-
-  <div class="cart-header">
-
-    <h2>KOSÁR</h2>
-
-    <button class="close" onclick="closeCart()">
-      ×
-    </button>
-
-  </div>
-
-  <div id="cartItems"></div>
-
-  <div class="total">
-    Összesen: <span id="total">0</span> Ft
-  </div>
-
-  <button class="checkout" onclick="checkout()">
-    TOVÁBB A RENDELÉSHEZ
-  </button>
-
+<div class="message" id="message">
+    ✓ A matrica bekerült a kosárba!
 </div>
-
-
-<footer>
-
-  © 2026 TXNC1 — G2 STICKER SHOP
-
-</footer>
 
 
 <script>
 
-let cart = [];
+let selectedColor = "#6A0DAD";
+
+const colors = document.querySelectorAll(".color");
+
+colors.forEach(color => {
+
+    color.addEventListener("click", () => {
+
+        colors.forEach(c => c.classList.remove("selected"));
+
+        color.classList.add("selected");
+
+        selectedColor = color.dataset.hex;
+
+        document.getElementById("selectedName").textContent =
+            color.dataset.name;
+
+        document.getElementById("hex").textContent =
+            color.dataset.hex;
+
+        document.documentElement.style.setProperty(
+            "--sticker-color",
+            color.dataset.hex
+        );
+
+    });
+
+});
 
 
-function addToCart(name,price){
+/* Keresés */
 
-  cart.push({
-    name:name,
-    price:price
-  });
+document.getElementById("search").addEventListener("input", function(){
 
-  updateCart();
+    const value = this.value.toLowerCase();
 
-}
+    colors.forEach(color => {
 
+        const name = color.dataset.name.toLowerCase();
 
-function removeFromCart(index){
+        if(name.includes(value)){
+            color.style.display = "block";
+        }else{
+            color.style.display = "none";
+        }
 
-  cart.splice(index,1);
+    });
 
-  updateCart();
-
-}
-
-
-function updateCart(){
-
-  document.getElementById("cartCount").textContent =
-    cart.length;
-
-  const items =
-    document.getElementById("cartItems");
-
-  const total =
-    document.getElementById("total");
-
-  items.innerHTML = "";
-
-  let sum = 0;
+});
 
 
-  if(cart.length === 0){
+/* Kosár */
 
-    items.innerHTML =
-      '<p class="empty">A kosár üres.</p>';
+function addToCart(){
 
-  }
+    let cart =
+        Number(document.getElementById("cartCount").textContent);
 
+    cart++;
 
-  cart.forEach((item,index)=>{
+    document.getElementById("cartCount").textContent = cart;
 
-    sum += item.price;
+    const message =
+        document.getElementById("message");
 
-    const div =
-      document.createElement("div");
+    message.classList.add("show");
 
-    div.className = "cart-item";
-
-    div.innerHTML = `
-      <div>
-        <strong>${item.name}</strong><br>
-        <small>${item.price.toLocaleString("hu-HU")} Ft</small>
-      </div>
-
-      <button class="remove"
-        onclick="removeFromCart(${index})">
-        Törlés
-      </button>
-    `;
-
-    items.appendChild(div);
-
-  });
-
-
-  total.textContent =
-    sum.toLocaleString("hu-HU");
+    setTimeout(() => {
+        message.classList.remove("show");
+    },2500);
 
 }
 
 
-function openCart(){
+/* Alap szín */
 
-  document
-    .getElementById("cartPanel")
-    .classList.add("open");
-
-}
-
-
-function closeCart(){
-
-  document
-    .getElementById("cartPanel")
-    .classList.remove("open");
-
-}
-
-
-function checkout(){
-
-  if(cart.length === 0){
-
-    alert("A kosár üres!");
-
-    return;
-
-  }
-
-  alert(
-    "A rendelési folyamat itt indulna el."
-  );
-
-}
-
-
-updateCart();
+document.documentElement.style.setProperty(
+    "--sticker-color",
+    "#6A0DAD"
+);
 
 </script>
 
