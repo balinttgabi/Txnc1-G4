@@ -3,376 +3,287 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>TXNC1 — Build Your G2 Set</title>
+<title>Custom G2 Sticker Shop</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-body{
-    background:#050505;
-    color:#fff;
-    font-family:Arial, Helvetica, sans-serif;
-    min-height:100vh;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #080808;
+    color: white;
 }
 
-/* HEADER */
-
-header{
-    height:75px;
-    border-bottom:1px solid #202020;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 6%;
-    background:#050505;
-    position:sticky;
-    top:0;
-    z-index:20;
+/* NAVBAR */
+.navbar {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    border-bottom: 1px solid #242424;
+    background: #090909;
 }
 
-.logo{
-    font-size:23px;
-    font-weight:900;
-    letter-spacing:4px;
+.logo {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 2px;
 }
 
-nav{
-    display:flex;
-    gap:30px;
+.logo span {
+    color: #8b5cf6;
 }
 
-nav a{
-    color:#888;
-    text-decoration:none;
-    font-size:13px;
-    text-transform:uppercase;
-    letter-spacing:2px;
+.nav-links {
+    display: flex;
+    gap: 30px;
 }
 
-nav a:hover{
-    color:white;
+.nav-links a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 14px;
 }
 
-.cart{
-    border:1px solid #333;
-    padding:11px 17px;
-    border-radius:8px;
-    font-size:13px;
+.nav-links a:hover {
+    color: white;
+}
+
+.cart {
+    background: white;
+    color: black;
+    padding: 10px 17px;
+    border-radius: 20px;
+    font-weight: bold;
 }
 
 /* MAIN */
-
-.container{
-    max-width:1400px;
-    margin:auto;
-    padding:70px 6%;
+.container {
+    width: 90%;
+    max-width: 1250px;
+    margin: 50px auto;
 }
 
-.top-text{
-    margin-bottom:45px;
+.breadcrumb {
+    color: #777;
+    font-size: 13px;
+    margin-bottom: 25px;
 }
 
-.small-title{
-    color:#666;
-    font-size:10px;
-    letter-spacing:4px;
-    text-transform:uppercase;
-    margin-bottom:15px;
+.title {
+    font-size: 42px;
+    font-weight: 900;
+    margin-bottom: 10px;
 }
 
-h1{
-    font-size:clamp(40px,6vw,76px);
-    line-height:.95;
-    letter-spacing:-4px;
+.subtitle {
+    color: #888;
+    margin-bottom: 45px;
 }
 
-.description{
-    color:#777;
-    max-width:500px;
-    margin-top:20px;
-    line-height:1.6;
-}
-
-/* SHOP */
-
-.shop{
-    display:grid;
-    grid-template-columns:45% 55%;
-    gap:45px;
+/* SHOP GRID */
+.shop {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
 }
 
 /* LEFT */
-
-.panel{
-    background:#090909;
-    border:1px solid #1e1e1e;
-    border-radius:16px;
-    padding:30px;
+.section-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #777;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
 }
 
-.panel-title{
-    font-size:12px;
-    color:#555;
-    letter-spacing:3px;
-    text-transform:uppercase;
-    margin-bottom:10px;
+.color-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 13px;
+    margin-bottom: 35px;
 }
 
-.panel h2{
-    font-size:34px;
-    margin-bottom:30px;
+.color {
+    width: 39px;
+    height: 39px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: .2s;
 }
 
-.search{
-    width:100%;
-    background:#111;
-    border:1px solid #242424;
-    border-radius:8px;
-    padding:15px;
-    color:white;
-    outline:none;
-    margin-bottom:25px;
+.color:hover {
+    transform: scale(1.12);
 }
 
-.search:focus{
-    border-color:#555;
+.color.active {
+    border-color: white;
+    box-shadow: 0 0 0 3px #333;
 }
 
-/* COLORS */
-
-.colors{
-    display:grid;
-    grid-template-columns:repeat(8,1fr);
-    gap:13px;
-    margin-bottom:30px;
+.color-name {
+    color: #aaa;
+    font-size: 14px;
+    margin-top: 12px;
 }
 
-.color{
-    width:35px;
-    height:35px;
-    border-radius:50%;
-    border:2px solid #222;
-    cursor:pointer;
-    transition:.2s;
-    position:relative;
+.options {
+    display: flex;
+    gap: 10px;
 }
 
-.color:hover{
-    transform:scale(1.12);
+.option {
+    padding: 13px 20px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #aaa;
 }
 
-.color.selected{
-    outline:2px solid white;
-    outline-offset:4px;
+.option.active {
+    border-color: #8b5cf6;
+    color: white;
 }
 
-/* SELECTED */
-
-.selected-box{
-    border-top:1px solid #222;
-    padding-top:25px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+/* PREVIEW */
+.preview-box {
+    background: #eee;
+    border-radius: 15px;
+    min-height: 390px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.selected-name{
-    color:#aaa;
+.preview-box::before {
+    content: "KUKIRIN";
+    position: absolute;
+    top: 20px;
+    left: 25px;
+    color: #bbb;
+    font-size: 12px;
+    letter-spacing: 3px;
 }
 
-.hex{
-    font-family:monospace;
-    color:white;
+.sticker {
+    color: #6a0dad;
+    font-size: 85px;
+    font-weight: 1000;
+    font-style: italic;
+    transform: skew(-8deg);
+    transition: .3s;
 }
 
-/* RIGHT PREVIEW */
-
-.preview{
-    background:#eee;
-    min-height:500px;
-    border-radius:16px;
-    position:relative;
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.sticker small {
+    display: block;
+    text-align: right;
+    font-size: 22px;
+    margin-top: -15px;
+    letter-spacing: 5px;
 }
 
-.preview-label{
-    position:absolute;
-    top:20px;
-    left:25px;
-    color:#888;
-    font-size:10px;
-    letter-spacing:3px;
+.live {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #111;
+    color: white;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 11px;
 }
 
-.preview-size{
-    position:absolute;
-    top:20px;
-    right:25px;
-    color:#888;
-    font-size:10px;
+/* PRODUCT INFO */
+.product-info {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* STICKER */
-
-.sticker{
-    width:82%;
-    height:180px;
-    position:relative;
-    transition:.3s;
+.product-name {
+    font-size: 18px;
+    font-weight: bold;
 }
 
-.g2{
-    position:absolute;
-    right:0;
-    top:15px;
-    font-size:100px;
-    font-weight:1000;
-    letter-spacing:-10px;
-    color:var(--sticker-color);
+.price {
+    font-size: 24px;
+    font-weight: bold;
 }
 
-.square{
-    position:absolute;
-    background:var(--sticker-color);
+.buy {
+    width: 100%;
+    margin-top: 20px;
+    border: none;
+    background: white;
+    color: black;
+    padding: 17px;
+    border-radius: 9px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
 }
 
-.s1{
-    width:32px;
-    height:32px;
-    left:0;
-    top:80px;
+.buy:hover {
+    background: #8b5cf6;
+    color: white;
 }
 
-.s2{
-    width:45px;
-    height:45px;
-    left:55px;
-    top:65px;
+.saved {
+    margin-top: 12px;
+    color: #777;
+    font-size: 12px;
+    text-align: center;
 }
 
-.s3{
-    width:25px;
-    height:25px;
-    left:120px;
-    top:105px;
-}
-
-.s4{
-    width:70px;
-    height:25px;
-    left:150px;
-    top:40px;
-    transform:skew(-25deg);
-}
-
-/* PRODUCT */
-
-.product-info{
-    margin-top:35px;
-    display:flex;
-    align-items:flex-end;
-    justify-content:space-between;
-    gap:20px;
-}
-
-.product-info h3{
-    font-size:25px;
-}
-
-.product-info p{
-    color:#666;
-    margin-top:8px;
-    font-size:13px;
-}
-
-.price{
-    font-size:28px;
-    font-weight:bold;
-}
-
-/* BUTTON */
-
-.buy{
-    width:100%;
-    margin-top:25px;
-    background:white;
-    color:black;
-    border:none;
-    padding:18px;
-    border-radius:9px;
-    font-size:14px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.buy:hover{
-    background:#ccc;
-    transform:translateY(-2px);
-}
-
-/* MESSAGE */
-
-.message{
-    position:fixed;
-    bottom:25px;
-    right:25px;
-    background:white;
-    color:black;
-    padding:15px 20px;
-    border-radius:8px;
-    font-size:13px;
-    transform:translateY(100px);
-    transition:.3s;
-    z-index:50;
-}
-
-.message.show{
-    transform:translateY(0);
+/* FOOTER */
+footer {
+    border-top: 1px solid #222;
+    margin-top: 100px;
+    padding: 40px 7%;
+    color: #666;
+    text-align: center;
 }
 
 /* MOBILE */
+@media(max-width: 800px) {
 
-@media(max-width:850px){
-
-    header{
-        padding:0 20px;
+    .navbar {
+        padding: 0 5%;
     }
 
-    nav{
-        display:none;
+    .nav-links {
+        display: none;
     }
 
-    .container{
-        padding:45px 20px;
+    .container {
+        margin-top: 30px;
     }
 
-    .shop{
-        grid-template-columns:1fr;
+    .title {
+        font-size: 31px;
     }
 
-    .colors{
-        grid-template-columns:repeat(6,1fr);
+    .shop {
+        grid-template-columns: 1fr;
+        gap: 35px;
     }
 
-    .preview{
-        min-height:350px;
+    .preview-box {
+        min-height: 300px;
     }
 
-    .sticker{
-        transform:scale(.75);
-    }
-
-    h1{
-        letter-spacing:-2px;
+    .sticker {
+        font-size: 65px;
     }
 }
 </style>
@@ -380,148 +291,144 @@ h1{
 
 <body>
 
-<header>
+<nav class="navbar">
 
-    <div class="logo">TXNC1</div>
-
-    <nav>
-        <a href="#">Shop</a>
-        <a href="#">G2</a>
-        <a href="#">About</a>
-    </nav>
-
-    <div class="cart">
-        🛒 CART <span id="cartCount">0</span>
+    <div class="logo">
+        TXNC<span>SHOP</span>
     </div>
 
-</header>
+    <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Sticker Sets</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <div class="cart">
+        🛒 Cart <span id="cartCount">0</span>
+    </div>
+
+</nav>
 
 
 <main class="container">
 
-    <div class="top-text">
-
-        <div class="small-title">
-            01 / Customize
-        </div>
-
-        <h1>
-            Build your<br>
-            G2 set.
-        </h1>
-
-        <p class="description">
-            Válaszd ki a matricád színét, és készítsd el
-            a saját Kukirin G2 sticker szetted.
-        </p>
-
+    <div class="breadcrumb">
+        HOME / STICKER SETS / KUKIRIN G2
     </div>
 
+    <h1 class="title">
+        Build your G2 set.
+    </h1>
 
-    <section class="shop">
+    <p class="subtitle">
+        Customize your scooter sticker set.
+    </p>
 
-        <!-- BAL OLDAL -->
 
-        <div class="panel">
+    <div class="shop">
 
-            <div class="panel-title">
-                Build your set
+        <!-- CUSTOMIZER -->
+
+        <section>
+
+            <div class="section-title">
+                Choose your sticker color
             </div>
 
-            <h2>
-                Choose your color.
-            </h2>
+            <div class="color-grid">
 
-            <input
-                class="search"
-                id="search"
-                type="text"
-                placeholder="Search a color..."
-            >
+                <div class="color active"
+                     style="background:#6A0DAD"
+                     data-color="#6A0DAD"
+                     data-name="Royal Purple"></div>
 
-            <div class="colors" id="colors">
+                <div class="color"
+                     style="background:#ff003c"
+                     data-color="#ff003c"
+                     data-name="Red"></div>
 
-                <div class="color selected" data-name="Royal Purple" data-hex="#6A0DAD" style="background:#6A0DAD"></div>
+                <div class="color"
+                     style="background:#ff6a00"
+                     data-color="#ff6a00"
+                     data-name="Orange"></div>
 
-                <div class="color" data-name="White" data-hex="#FFFFFF" style="background:#FFFFFF"></div>
+                <div class="color"
+                     style="background:#ffd000"
+                     data-color="#ffd000"
+                     data-name="Yellow"></div>
 
-                <div class="color" data-name="Red" data-hex="#E50914" style="background:#E50914"></div>
+                <div class="color"
+                     style="background:#65c466"
+                     data-color="#65c466"
+                     data-name="Green"></div>
 
-                <div class="color" data-name="Orange" data-hex="#FF5A00" style="background:#FF5A00"></div>
+                <div class="color"
+                     style="background:#00d5ff"
+                     data-color="#00d5ff"
+                     data-name="Cyan"></div>
 
-                <div class="color" data-name="Yellow" data-hex="#FFD600" style="background:#FFD600"></div>
+                <div class="color"
+                     style="background:#087cff"
+                     data-color="#087cff"
+                     data-name="Blue"></div>
 
-                <div class="color" data-name="Lime" data-hex="#7CFC00" style="background:#7CFC00"></div>
+                <div class="color"
+                     style="background:#ffffff"
+                     data-color="#ffffff"
+                     data-name="White"></div>
 
-                <div class="color" data-name="Green" data-hex="#00A651" style="background:#00A651"></div>
+                <div class="color"
+                     style="background:#111111"
+                     data-color="#111111"
+                     data-name="Black"></div>
 
-                <div class="color" data-name="Cyan" data-hex="#00D9FF" style="background:#00D9FF"></div>
-
-                <div class="color" data-name="Blue" data-hex="#0066FF" style="background:#0066FF"></div>
-
-                <div class="color" data-name="Pink" data-hex="#FF1493" style="background:#FF1493"></div>
-
-                <div class="color" data-name="Hot Pink" data-hex="#FF007F" style="background:#FF007F"></div>
-
-                <div class="color" data-name="Purple" data-hex="#8A2BE2" style="background:#8A2BE2"></div>
-
-                <div class="color" data-name="Black" data-hex="#050505" style="background:#050505"></div>
-
-                <div class="color" data-name="Grey" data-hex="#777777" style="background:#777"></div>
-
-                <div class="color" data-name="Gold" data-hex="#D4AF37" style="background:#D4AF37"></div>
-
-                <div class="color" data-name="Brown" data-hex="#704214" style="background:#704214"></div>
-
-            </div>
-
-
-            <div class="selected-box">
-
-                <div>
-                    <div class="small-title">
-                        Selected
-                    </div>
-
-                    <div class="selected-name" id="selectedName">
-                        Royal Purple
-                    </div>
-                </div>
-
-                <div class="hex" id="hex">
-                    #6A0DAD
-                </div>
+                <div class="color"
+                     style="background:#ff70c8"
+                     data-color="#ff70c8"
+                     data-name="Pink"></div>
 
             </div>
 
-        </div>
+            <div class="color-name">
+                Selected: <strong id="colorName">Royal Purple</strong>
+            </div>
 
 
-        <!-- JOBB OLDAL -->
+            <div class="section-title" style="margin-top:35px;">
+                Scooter model
+            </div>
 
-        <div>
+            <div class="options">
 
-            <div class="preview">
-
-                <div class="preview-label">
-                    LIVE PREVIEW
+                <div class="option active">
+                    KuKirin G2
                 </div>
 
-                <div class="preview-size">
-                    145 × 30 mm
+                <div class="option">
+                    KuKirin G2 Pro
                 </div>
 
+            </div>
+
+        </section>
+
+
+        <!-- PREVIEW -->
+
+        <section>
+
+            <div class="preview-box">
+
+                <div class="live">
+                    ● LIVE PREVIEW
+                </div>
 
                 <div class="sticker" id="sticker">
 
-                    <div class="square s1"></div>
-                    <div class="square s2"></div>
-                    <div class="square s3"></div>
-                    <div class="square s4"></div>
+                    G2
 
-                    <div class="g2">
-                        G2
-                    </div>
+                    <small>KUKIRIN</small>
 
                 </div>
 
@@ -531,13 +438,13 @@ h1{
             <div class="product-info">
 
                 <div>
-                    <h3>
-                        Full Kukirin G2 sticker set
-                    </h3>
+                    <div class="product-name">
+                        Full KuKirin G2 Sticker Set
+                    </div>
 
-                    <p>
-                        Egyedi szín • 145 × 30 mm
-                    </p>
+                    <div style="color:#777;font-size:13px;margin-top:5px;">
+                        Custom color • Premium vinyl
+                    </div>
                 </div>
 
                 <div class="price">
@@ -548,24 +455,32 @@ h1{
 
 
             <button class="buy" onclick="addToCart()">
-                ADD TO CART — €30
+                ADD TO CART
             </button>
 
-        </div>
+            <div class="saved">
+                💾 Save your design before leaving
+            </div>
 
-    </section>
+        </section>
+
+    </div>
 
 </main>
 
 
-<div class="message" id="message">
-    ✓ A matrica bekerült a kosárba!
-</div>
+<footer>
+    © 2026 TXNC SHOP • Custom Scooter Graphics
+</footer>
 
 
 <script>
 
 let selectedColor = "#6A0DAD";
+let cart = 0;
+
+
+/* COLOR SELECTOR */
 
 const colors = document.querySelectorAll(".color");
 
@@ -573,78 +488,39 @@ colors.forEach(color => {
 
     color.addEventListener("click", () => {
 
-        colors.forEach(c => c.classList.remove("selected"));
+        colors.forEach(c => c.classList.remove("active"));
 
-        color.classList.add("selected");
+        color.classList.add("active");
 
-        selectedColor = color.dataset.hex;
+        selectedColor = color.dataset.color;
 
-        document.getElementById("selectedName").textContent =
+        document.getElementById("colorName").textContent =
             color.dataset.name;
 
-        document.getElementById("hex").textContent =
-            color.dataset.hex;
-
-        document.documentElement.style.setProperty(
-            "--sticker-color",
-            color.dataset.hex
-        );
+        document.getElementById("sticker").style.color =
+            selectedColor;
 
     });
 
 });
 
 
-/* Keresés */
+/* CART */
 
-document.getElementById("search").addEventListener("input", function(){
-
-    const value = this.value.toLowerCase();
-
-    colors.forEach(color => {
-
-        const name = color.dataset.name.toLowerCase();
-
-        if(name.includes(value)){
-            color.style.display = "block";
-        }else{
-            color.style.display = "none";
-        }
-
-    });
-
-});
-
-
-/* Kosár */
-
-function addToCart(){
-
-    let cart =
-        Number(document.getElementById("cartCount").textContent);
+function addToCart() {
 
     cart++;
 
     document.getElementById("cartCount").textContent = cart;
 
-    const message =
-        document.getElementById("message");
-
-    message.classList.add("show");
-
-    setTimeout(() => {
-        message.classList.remove("show");
-    },2500);
+    alert(
+        "Added to cart!\\n\\n" +
+        "KuKirin G2 Sticker Set\\n" +
+        "Color: " +
+        document.getElementById("colorName").textContent
+    );
 
 }
-
-
-/* Alap szín */
-
-document.documentElement.style.setProperty(
-    "--sticker-color",
-    "#6A0DAD"
-);
 
 </script>
 
