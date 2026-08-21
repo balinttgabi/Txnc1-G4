@@ -3,9 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Custom G2 Sticker Shop</title>
+
+<title>TXNC SHOP - KuKirin G2 Sticker</title>
 
 <style>
+
+/* =========================
+   ALAP
+========================= */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -18,15 +24,26 @@ body {
     color: white;
 }
 
-/* NAVBAR */
+button {
+    font-family: inherit;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
 .navbar {
     height: 70px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     padding: 0 7%;
-    border-bottom: 1px solid #242424;
+
     background: #090909;
+    border-bottom: 1px solid #242424;
 }
 
 .logo {
@@ -48,6 +65,7 @@ body {
     color: #aaa;
     text-decoration: none;
     font-size: 14px;
+    transition: 0.2s;
 }
 
 .nav-links a:hover {
@@ -57,65 +75,100 @@ body {
 .cart {
     background: white;
     color: black;
+
     padding: 10px 17px;
+
     border-radius: 20px;
+
     font-weight: bold;
+    font-size: 14px;
 }
 
-/* MAIN */
+
+/* =========================
+   FŐOLDAL
+========================= */
+
 .container {
     width: 90%;
     max-width: 1250px;
+
     margin: 50px auto;
 }
 
 .breadcrumb {
-    color: #777;
+    color: #666;
     font-size: 13px;
+
     margin-bottom: 25px;
 }
 
 .title {
     font-size: 42px;
     font-weight: 900;
+
     margin-bottom: 10px;
 }
 
 .subtitle {
     color: #888;
+
     margin-bottom: 45px;
 }
 
-/* SHOP GRID */
+
+/* =========================
+   SHOP
+========================= */
+
 .shop {
     display: grid;
+
     grid-template-columns: 1fr 1fr;
+
     gap: 60px;
+
+    align-items: start;
 }
 
-/* LEFT */
+
+/* =========================
+   SZÍNVÁLASZTÓ
+========================= */
+
 .section-title {
     font-size: 13px;
+
     text-transform: uppercase;
+
     color: #777;
+
     letter-spacing: 2px;
+
     margin-bottom: 15px;
 }
 
 .color-grid {
     display: flex;
+
     flex-wrap: wrap;
+
     gap: 13px;
-    margin-bottom: 35px;
+
+    margin-bottom: 15px;
 }
 
 .color {
-    width: 39px;
-    height: 39px;
+    width: 40px;
+    height: 40px;
+
     border-radius: 50%;
+
     border: 3px solid transparent;
+
     cursor: pointer;
-    transition: .2s;
+
+    transition: 0.2s;
 }
 
 .color:hover {
@@ -124,138 +177,265 @@ body {
 
 .color.active {
     border-color: white;
-    box-shadow: 0 0 0 3px #333;
+
+    box-shadow:
+        0 0 0 3px #333;
 }
 
 .color-name {
-    color: #aaa;
+    color: #999;
+
     font-size: 14px;
-    margin-top: 12px;
+
+    margin-bottom: 40px;
 }
 
-.options {
-    display: flex;
-    gap: 10px;
-}
 
-.option {
-    padding: 13px 20px;
-    border: 1px solid #333;
-    border-radius: 8px;
-    cursor: pointer;
-    color: #aaa;
-}
+/* =========================
+   PREVIEW
+========================= */
 
-.option.active {
-    border-color: #8b5cf6;
-    color: white;
-}
-
-/* PREVIEW */
 .preview-box {
-    background: #eee;
+    position: relative;
+
+    width: 100%;
+
+    background: #eeeeee;
+
     border-radius: 15px;
-    min-height: 390px;
+
+    overflow: hidden;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.preview-box::before {
-    content: "KUKIRIN";
-    position: absolute;
-    top: 20px;
-    left: 25px;
-    color: #bbb;
-    font-size: 12px;
-    letter-spacing: 3px;
-}
-
-.sticker {
-    color: #6a0dad;
-    font-size: 85px;
-    font-weight: 1000;
-    font-style: italic;
-    transform: skew(-8deg);
-    transition: .3s;
-}
-
-.sticker small {
-    display: block;
-    text-align: right;
-    font-size: 22px;
-    margin-top: -15px;
-    letter-spacing: 5px;
 }
 
 .live {
     position: absolute;
-    top: 20px;
-    right: 20px;
+
+    z-index: 20;
+
+    top: 15px;
+    right: 15px;
+
     background: #111;
+
     color: white;
+
     padding: 7px 12px;
+
     border-radius: 20px;
+
     font-size: 11px;
+
+    box-shadow: 0 3px 15px rgba(0,0,0,0.25);
 }
 
-/* PRODUCT INFO */
+
+/* =========================
+   ROLLER KÉP + MATRICA
+========================= */
+
+.scooter-preview {
+    position: relative;
+
+    width: 100%;
+
+    line-height: 0;
+}
+
+.scooter-base {
+    display: block;
+
+    width: 100%;
+    height: auto;
+}
+
+
+/*
+   Ez a réteg kizárólag a
+   G2+ matricát fedi.
+*/
+
+.sticker-color {
+    position: absolute;
+
+    inset: 0;
+
+    background: #6A0DAD;
+
+    -webkit-mask-image: url("g2_sticker_mask.png");
+    mask-image: url("g2_sticker_mask.png");
+
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+
+    mix-blend-mode: color;
+
+    pointer-events: none;
+
+    transition:
+        background 0.25s ease;
+}
+
+
+/* =========================
+   TERMÉK ADATOK
+========================= */
+
 .product-info {
     margin-top: 25px;
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
+    gap: 20px;
 }
 
 .product-name {
-    font-size: 18px;
+    font-size: 19px;
+
     font-weight: bold;
+}
+
+.product-description {
+    color: #777;
+
+    font-size: 13px;
+
+    margin-top: 6px;
 }
 
 .price {
-    font-size: 24px;
+    font-size: 25px;
+
     font-weight: bold;
+
+    white-space: nowrap;
 }
+
+
+/* =========================
+   KOSÁR GOMB
+========================= */
 
 .buy {
     width: 100%;
+
     margin-top: 20px;
+
     border: none;
+
     background: white;
+
     color: black;
+
     padding: 17px;
+
     border-radius: 9px;
+
     font-size: 16px;
+
     font-weight: bold;
+
     cursor: pointer;
-    transition: .2s;
+
+    transition: 0.2s;
 }
 
 .buy:hover {
     background: #8b5cf6;
+
     color: white;
+
+    transform: translateY(-2px);
 }
 
 .saved {
     margin-top: 12px;
-    color: #777;
+
+    color: #666;
+
     font-size: 12px;
+
     text-align: center;
 }
 
-/* FOOTER */
+
+/* =========================
+   CART POPUP
+========================= */
+
+.cart-message {
+    position: fixed;
+
+    left: 50%;
+
+    bottom: 30px;
+
+    transform:
+        translateX(-50%)
+        translateY(100px);
+
+    background: white;
+
+    color: black;
+
+    padding: 15px 25px;
+
+    border-radius: 12px;
+
+    font-weight: bold;
+
+    opacity: 0;
+
+    transition:
+        0.3s ease;
+
+    z-index: 100;
+}
+
+.cart-message.show {
+    opacity: 1;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
 footer {
     border-top: 1px solid #222;
+
     margin-top: 100px;
+
     padding: 40px 7%;
+
     color: #666;
+
     text-align: center;
+
+    font-size: 13px;
 }
 
-/* MOBILE */
-@media(max-width: 800px) {
+
+/* =========================
+   MOBIL
+========================= */
+
+@media (max-width: 800px) {
 
     .navbar {
         padding: 0 5%;
@@ -266,30 +446,48 @@ footer {
     }
 
     .container {
+        width: 92%;
+
         margin-top: 30px;
     }
 
     .title {
-        font-size: 31px;
+        font-size: 32px;
+    }
+
+    .subtitle {
+        margin-bottom: 30px;
     }
 
     .shop {
         grid-template-columns: 1fr;
+
         gap: 35px;
     }
 
     .preview-box {
-        min-height: 300px;
+        border-radius: 12px;
     }
 
-    .sticker {
-        font-size: 65px;
+    .product-info {
+        align-items: flex-start;
+    }
+
+    .price {
+        font-size: 21px;
     }
 }
+
 </style>
 </head>
 
+
 <body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
 
 <nav class="navbar">
 
@@ -298,229 +496,464 @@ footer {
     </div>
 
     <div class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">Sticker Sets</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
+
+        <a href="#">
+            Home
+        </a>
+
+        <a href="#">
+            Stickers
+        </a>
+
+        <a href="#">
+            About
+        </a>
+
+        <a href="#">
+            Contact
+        </a>
+
     </div>
 
     <div class="cart">
-        🛒 Cart <span id="cartCount">0</span>
+
+        🛒 Cart
+
+        <span id="cartCount">
+            0
+        </span>
+
     </div>
 
 </nav>
 
 
+
+<!-- =========================
+     FŐ TARTALOM
+========================= -->
+
 <main class="container">
 
+
     <div class="breadcrumb">
-        HOME / STICKER SETS / KUKIRIN G2
+
+        HOME / STICKERS / KUKIRIN G2
+
     </div>
 
+
     <h1 class="title">
+
         Build your G2 set.
+
     </h1>
 
+
     <p class="subtitle">
-        Customize your scooter sticker set.
+
+        Choose your sticker color.
+
     </p>
+
 
 
     <div class="shop">
 
-        <!-- CUSTOMIZER -->
+
+        <!-- =====================
+             BAL OLDAL
+        ====================== -->
 
         <section>
 
+
             <div class="section-title">
+
                 Choose your sticker color
+
             </div>
+
 
             <div class="color-grid">
 
-                <div class="color active"
-                     style="background:#6A0DAD"
-                     data-color="#6A0DAD"
-                     data-name="Royal Purple"></div>
 
-                <div class="color"
-                     style="background:#ff003c"
-                     data-color="#ff003c"
-                     data-name="Red"></div>
+                <!-- LILA -->
 
-                <div class="color"
-                     style="background:#ff6a00"
-                     data-color="#ff6a00"
-                     data-name="Orange"></div>
+                <div
+                    class="color active"
+                    style="background:#6A0DAD"
+                    data-color="#6A0DAD"
+                    data-name="Royal Purple">
+                </div>
 
-                <div class="color"
-                     style="background:#ffd000"
-                     data-color="#ffd000"
-                     data-name="Yellow"></div>
 
-                <div class="color"
-                     style="background:#65c466"
-                     data-color="#65c466"
-                     data-name="Green"></div>
+                <!-- PIROS -->
 
-                <div class="color"
-                     style="background:#00d5ff"
-                     data-color="#00d5ff"
-                     data-name="Cyan"></div>
+                <div
+                    class="color"
+                    style="background:#ff003c"
+                    data-color="#ff003c"
+                    data-name="Red">
+                </div>
 
-                <div class="color"
-                     style="background:#087cff"
-                     data-color="#087cff"
-                     data-name="Blue"></div>
 
-                <div class="color"
-                     style="background:#ffffff"
-                     data-color="#ffffff"
-                     data-name="White"></div>
+                <!-- NARANCS -->
 
-                <div class="color"
-                     style="background:#111111"
-                     data-color="#111111"
-                     data-name="Black"></div>
+                <div
+                    class="color"
+                    style="background:#ff6a00"
+                    data-color="#ff6a00"
+                    data-name="Orange">
+                </div>
 
-                <div class="color"
-                     style="background:#ff70c8"
-                     data-color="#ff70c8"
-                     data-name="Pink"></div>
+
+                <!-- SÁRGA -->
+
+                <div
+                    class="color"
+                    style="background:#ffd000"
+                    data-color="#ffd000"
+                    data-name="Yellow">
+                </div>
+
+
+                <!-- ZÖLD -->
+
+                <div
+                    class="color"
+                    style="background:#65c466"
+                    data-color="#65c466"
+                    data-name="Green">
+                </div>
+
+
+                <!-- CIÁN -->
+
+                <div
+                    class="color"
+                    style="background:#00d5ff"
+                    data-color="#00d5ff"
+                    data-name="Cyan">
+                </div>
+
+
+                <!-- KÉK -->
+
+                <div
+                    class="color"
+                    style="background:#087cff"
+                    data-color="#087cff"
+                    data-name="Blue">
+                </div>
+
+
+                <!-- FEHÉR -->
+
+                <div
+                    class="color"
+                    style="background:#ffffff"
+                    data-color="#ffffff"
+                    data-name="White">
+                </div>
+
+
+                <!-- FEKETE -->
+
+                <div
+                    class="color"
+                    style="background:#111111"
+                    data-color="#111111"
+                    data-name="Black">
+                </div>
+
+
+                <!-- RÓZSASZÍN -->
+
+                <div
+                    class="color"
+                    style="background:#ff70c8"
+                    data-color="#ff70c8"
+                    data-name="Pink">
+                </div>
+
 
             </div>
+
 
             <div class="color-name">
-                Selected: <strong id="colorName">Royal Purple</strong>
-            </div>
 
+                Selected:
 
-            <div class="section-title" style="margin-top:35px;">
-                Scooter model
-            </div>
-
-            <div class="options">
-
-                <div class="option active">
-                    KuKirin G2
-                </div>
-
-                <div class="option">
-                    KuKirin G2 Pro
-                </div>
+                <strong id="colorName">
+                    Royal Purple
+                </strong>
 
             </div>
+
 
         </section>
 
 
-        <!-- PREVIEW -->
+
+        <!-- =====================
+             JOBB OLDAL
+        ====================== -->
 
         <section>
 
+
             <div class="preview-box">
 
+
                 <div class="live">
+
                     ● LIVE PREVIEW
-                </div>
-
-                <div class="sticker" id="sticker">
-
-                    G2
-
-                    <small>KUKIRIN</small>
 
                 </div>
+
+
+                <div class="scooter-preview">
+
+
+                    <!-- EREDETI ROLLERFOTÓ -->
+
+                    <img
+                        src="g2_clean.jpg"
+                        class="scooter-base"
+                        alt="KuKirin G2"
+                    >
+
+
+                    <!-- CSAK A G2+ MATRICA -->
+
+                    <div
+                        id="stickerColor"
+                        class="sticker-color">
+                    </div>
+
+
+                </div>
+
 
             </div>
 
+
+
+            <!-- TERMÉK -->
 
             <div class="product-info">
 
+
                 <div>
+
                     <div class="product-name">
-                        Full KuKirin G2 Sticker Set
+
+                        Sticker
+
                     </div>
 
-                    <div style="color:#777;font-size:13px;margin-top:5px;">
-                        Custom color • Premium vinyl
+
+                    <div class="product-description">
+
+                        KuKirin G2 • Custom color
+
                     </div>
+
                 </div>
+
 
                 <div class="price">
+
                     €30
+
                 </div>
 
+
             </div>
 
 
-            <button class="buy" onclick="addToCart()">
+
+            <!-- VÁSÁRLÁS -->
+
+            <button
+                class="buy"
+                onclick="addToCart()">
+
                 ADD TO CART
+
             </button>
 
+
             <div class="saved">
+
                 💾 Save your design before leaving
+
             </div>
+
 
         </section>
 
+
     </div>
+
 
 </main>
 
 
+
+<!-- =========================
+     CART ÜZENET
+========================= -->
+
+<div
+    id="cartMessage"
+    class="cart-message">
+
+    Sticker added to cart! 🛒
+
+</div>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
-    © 2026 TXNC SHOP • Custom Scooter Graphics
+
+    © 2026 TXNC SHOP
+    •
+    Custom KuKirin G2 Graphics
+
 </footer>
+
 
 
 <script>
 
-let selectedColor = "#6A0DAD";
+
+/* =========================
+   VÁLTOZÓK
+========================= */
+
 let cart = 0;
 
+const colors =
+    document.querySelectorAll(".color");
 
-/* COLOR SELECTOR */
+const stickerColor =
+    document.getElementById("stickerColor");
 
-const colors = document.querySelectorAll(".color");
+const colorName =
+    document.getElementById("colorName");
+
+const cartCount =
+    document.getElementById("cartCount");
+
+const cartMessage =
+    document.getElementById("cartMessage");
+
+
+
+/* =========================
+   KEZDŐ SZÍN
+========================= */
+
+stickerColor.style.background =
+    "#6A0DAD";
+
+
+
+/* =========================
+   SZÍNVÁLTÁS
+========================= */
 
 colors.forEach(color => {
 
+
     color.addEventListener("click", () => {
 
-        colors.forEach(c => c.classList.remove("active"));
+
+        /*
+           Régi aktív szín eltávolítása
+        */
+
+        colors.forEach(c => {
+
+            c.classList.remove("active");
+
+        });
+
+
+        /*
+           Új szín kijelölése
+        */
 
         color.classList.add("active");
 
-        selectedColor = color.dataset.color;
 
-        document.getElementById("colorName").textContent =
+        /*
+           Szín lekérése
+        */
+
+        const selectedColor =
+            color.dataset.color;
+
+
+        /*
+           Matrica színezése
+        */
+
+        stickerColor.style.background =
+            selectedColor;
+
+
+        /*
+           Szín neve
+        */
+
+        colorName.textContent =
             color.dataset.name;
 
-        document.getElementById("sticker").style.color =
-            selectedColor;
 
     });
 
 });
 
 
-/* CART */
+
+/* =========================
+   KOSÁRBA RAKÁS
+========================= */
 
 function addToCart() {
 
+
     cart++;
 
-    document.getElementById("cartCount").textContent = cart;
 
-    alert(
-        "Added to cart!\\n\\n" +
-        "KuKirin G2 Sticker Set\\n" +
-        "Color: " +
-        document.getElementById("colorName").textContent
-    );
+    cartCount.textContent =
+        cart;
+
+
+    /*
+       Üzenet megjelenítése
+    */
+
+    cartMessage.classList.add("show");
+
+
+    setTimeout(() => {
+
+        cartMessage.classList.remove("show");
+
+    }, 2500);
+
 
 }
+
+
 
 </script>
 
